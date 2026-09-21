@@ -6,6 +6,16 @@ date
 pwd
 hostname
 
+if hostname | grep -qi '^login'; then
+  echo "ERROR: ARC modules should be checked from an allocated compute shell, not a login node."
+  echo "Run:"
+  echo "  srun -p compute1 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash"
+  echo "Then, inside that shell:"
+  echo "  cd $(pwd)"
+  echo "  bash arc_step3_check_density_tools.sh"
+  exit 1
+fi
+
 if [ -f monomer_hf_density.jobid ]; then
   jid="$(cat monomer_hf_density.jobid)"
   echo "Recorded density job id: $jid"
