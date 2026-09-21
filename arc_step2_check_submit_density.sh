@@ -9,7 +9,7 @@ hostname
 if hostname | grep -qi '^login'; then
   echo "ERROR: ARC modules should be checked from an allocated compute shell, not a login node."
   echo "Run:"
-  echo "  srun -p compute1 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash"
+  echo "  srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash"
   echo "Then, inside that shell:"
   echo "  cd $(pwd)"
   echo "  bash arc_step2_check_submit_density.sh"
@@ -57,7 +57,7 @@ echo "=== Testing ORCA module load ==="
 module purge
 module load orca
 echo "ORCA path: $(command -v orca || true)"
-orca --version || true
+orca 2>&1 | sed -n '1,12p' || true
 
 echo
 echo "=== Submitting density job ==="

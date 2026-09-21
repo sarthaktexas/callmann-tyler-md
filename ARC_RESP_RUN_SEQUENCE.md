@@ -3,7 +3,7 @@
 Run module-dependent setup/check scripts only from an allocated compute shell:
 
 ```bash
-srun -p compute1 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash
+srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash
 cd /work/wrz135/callmann-tyler-md
 bash arc_step1_env_submit_opt.sh
 ```
@@ -11,7 +11,7 @@ bash arc_step1_env_submit_opt.sh
 After the HF optimization job completes, allocate a compute shell again if needed:
 
 ```bash
-srun -p compute1 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash
+srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash
 cd /work/wrz135/callmann-tyler-md
 bash arc_step2_check_submit_density.sh
 ```
@@ -19,7 +19,7 @@ bash arc_step2_check_submit_density.sh
 After the density job completes:
 
 ```bash
-srun -p compute1 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash
+srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=8 --pty bash
 cd /work/wrz135/callmann-tyler-md
 bash arc_step3_check_density_tools.sh
 ```
