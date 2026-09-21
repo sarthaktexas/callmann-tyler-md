@@ -58,9 +58,9 @@ echo "Atom count from XYZ header: $natoms"
 
 echo
 echo "=== Validating ORCA optimization input ==="
-if [ ! -f monomer_hf_opt.inp ]; then
+if [ ! -f monomer_hf_opt.inp ] || grep -q 'SCF=Tight' monomer_hf_opt.inp; then
   {
-    echo '! HF 6-31G* Opt SCF=Tight'
+    echo '! HF 6-31G* Opt TightSCF PAL4'
     echo
     echo '* xyz 0 1'
     tail -n +3 "$geom"

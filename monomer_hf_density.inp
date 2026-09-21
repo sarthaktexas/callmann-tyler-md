@@ -1,4 +1,4 @@
-! HF 6-31G* SCF=Tight PAL4
+! HF 6-31G* TightSCF PAL4
 
 %output
   Print[P_Density] 1

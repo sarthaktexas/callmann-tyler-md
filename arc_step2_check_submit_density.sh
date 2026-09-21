@@ -52,6 +52,18 @@ fi
 
 echo "Optimization converged and monomer_hf_opt.xyz exists."
 
+if [ ! -f monomer_hf_density.inp ] || grep -q 'SCF=Tight' monomer_hf_density.inp; then
+  cat > monomer_hf_density.inp <<'EOF'
+! HF 6-31G* TightSCF PAL4
+
+%output
+  Print[P_Density] 1
+end
+
+* xyzfile 0 1 monomer_hf_opt.xyz
+EOF
+fi
+
 echo
 echo "=== Testing ORCA module load ==="
 module purge
