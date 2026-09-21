@@ -9,7 +9,7 @@ hostname
 if hostname | grep -qi '^login'; then
   echo "ERROR: ARC modules should be checked from an allocated compute shell, not a login node."
   echo "Run:"
-  echo "  srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=4 --pty bash"
+  echo "  srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=1 --pty bash"
   echo "Then, inside that shell:"
   echo "  cd $(pwd)"
   echo "  bash arc_step2_check_submit_density.sh"
@@ -52,9 +52,9 @@ fi
 
 echo "Optimization converged and monomer_hf_opt.xyz exists."
 
-if [ ! -f monomer_hf_density.inp ] || grep -q 'SCF=Tight' monomer_hf_density.inp; then
+if [ ! -f monomer_hf_density.inp ] || grep -Eq 'SCF=Tight|PAL[0-9]+' monomer_hf_density.inp; then
   cat > monomer_hf_density.inp <<'EOF'
-! HF 6-31G* TightSCF PAL4
+! HF 6-31G* TightSCF
 
 %output
   Print[P_Density] 1

@@ -9,7 +9,7 @@ hostname
 if hostname | grep -qi '^login'; then
   echo "ERROR: ARC modules should be checked from an allocated compute shell, not a login node."
   echo "Run:"
-  echo "  srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=4 --pty bash"
+  echo "  srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=1 --pty bash"
   echo "Then, inside that shell:"
   echo "  cd $(pwd)"
   echo "  bash arc_step1_env_submit_opt.sh"
@@ -58,9 +58,9 @@ echo "Atom count from XYZ header: $natoms"
 
 echo
 echo "=== Validating ORCA optimization input ==="
-if [ ! -f monomer_hf_opt.inp ] || grep -q 'SCF=Tight' monomer_hf_opt.inp; then
+if [ ! -f monomer_hf_opt.inp ] || grep -Eq 'SCF=Tight|PAL[0-9]+' monomer_hf_opt.inp; then
   {
-    echo '! HF 6-31G* Opt TightSCF PAL4'
+    echo '! HF 6-31G* Opt TightSCF'
     echo
     echo '* xyz 0 1'
     tail -n +3 "$geom"
