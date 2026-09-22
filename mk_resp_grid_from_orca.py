@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Generate ORCA vpot points and convert ORCA ESP output to Amber RESP ESP."""
 
-from __future__ import annotations
-
 import argparse
 import math
 from pathlib import Path
