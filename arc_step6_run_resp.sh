@@ -16,6 +16,15 @@ if [ ! -f monomer_hf_opt.xyz ]; then
   exit 1
 fi
 
+if [ -f monomer_resp.vpot.out ]; then
+  echo "Regenerating monomer_resp.esp with current converter."
+  python3 mk_resp_grid_from_orca.py \
+    --xyz monomer_hf_opt.xyz \
+    --vpot-out monomer_resp.vpot.out \
+    --resp-esp monomer_resp.esp \
+    --convert
+fi
+
 module load miniconda/24.4.0
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate ambertools

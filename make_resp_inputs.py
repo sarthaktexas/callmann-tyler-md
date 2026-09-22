@@ -89,6 +89,7 @@ def write_resp_input(path, title, qwt, atoms, ivary, iqopt):
         handle.write("  nmol = 1,\n")
         handle.write("  ihfree = 1,\n")
         handle.write(f"  iqopt = {iqopt},\n")
+        handle.write("  iunits = 1,\n")
         handle.write(f"  qwt = {qwt:.6f}\n")
         handle.write(" &end\n")
         handle.write("  1.0\n")
