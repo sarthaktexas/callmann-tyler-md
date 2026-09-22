@@ -85,17 +85,12 @@ def read_vpot(path: Path):
 def write_resp_esp(atoms, points, potentials, path: Path):
     if len(points) != len(potentials):
         raise SystemExit(f"point/potential count mismatch: {len(points)} vs {len(potentials)}")
-    values = []
-    for _elem, xyz in atoms:
-        values.extend(coord * ANG_TO_BOHR for coord in xyz)
-    for xyz, pot in zip(points, potentials):
-        values.append(pot)
-        values.extend(coord * ANG_TO_BOHR for coord in xyz)
-
     with path.open("w") as handle:
         handle.write(f"{len(atoms):5d}{len(points):5d}\n")
-        for i in range(0, len(values), 8):
-            handle.write("".join(f"{value:16.7E}" for value in values[i : i + 8]) + "\n")
+        for _elem, xyz in atoms:
+            handle.write(" " * 17 + "".join(f"{coord * ANG_TO_BOHR:16.7E}" for coord in xyz) + "\n")
+        for xyz, pot in zip(points, potentials):
+            handle.write(" " + f"{pot:16.7E}" + "".join(f"{coord * ANG_TO_BOHR:16.7E}" for coord in xyz) + "\n")
 
 
 def main():
