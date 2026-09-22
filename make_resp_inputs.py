@@ -85,12 +85,12 @@ def h_equivalences(atoms):
 def write_resp_input(path, title, qwt, atoms, ivary, iqopt):
     with Path(path).open("w") as handle:
         handle.write(f"{title}\n")
-        handle.write("&cntrl\n")
+        handle.write(" &cntrl\n")
         handle.write("  nmol = 1,\n")
         handle.write("  ihfree = 1,\n")
         handle.write(f"  iqopt = {iqopt},\n")
         handle.write(f"  qwt = {qwt:.6f}\n")
-        handle.write("/\n")
+        handle.write(" &end\n")
         handle.write("  1.0\n")
         handle.write("Monomer\n")
         handle.write(f"{0:5d}{len(atoms):5d}\n")
