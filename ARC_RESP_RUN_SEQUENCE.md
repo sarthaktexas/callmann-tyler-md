@@ -53,4 +53,4 @@ Notes:
 
 - Do not run ORCA directly on the login node.
 - The Slurm batch scripts load ORCA inside scheduled jobs, so they are still the right way to run the HF optimization and density jobs.
-- The `cryoridge` conda environment is not used for this workflow unless it turns out to contain a needed tool. AmberTools should be activated from its own conda environment once identified on ARC.
+- The `cryoridge` conda environment is not used for this workflow. AmberTools is activated with `module load miniconda/24.4.0` followed by `conda activate ambertools`.

@@ -16,7 +16,9 @@ if [ ! -f monomer_hf_opt.xyz ]; then
   exit 1
 fi
 
-module load ambertools
+module load miniconda/24.4.0
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate ambertools
 echo "resp: $(command -v resp)"
 
 python3 make_resp_inputs.py --xyz monomer_hf_opt.xyz

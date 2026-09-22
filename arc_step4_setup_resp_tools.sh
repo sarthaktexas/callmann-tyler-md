@@ -17,9 +17,10 @@ if hostname | grep -qi '^login'; then
 fi
 
 echo
-echo "=== AmberTools module ==="
-module avail ambertools 2>&1 | tee module_avail_ambertools_step4.txt || true
-module load ambertools
+echo "=== AmberTools conda env ==="
+module load miniconda/24.4.0
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate ambertools
 echo "ambertools" > ambertools_env.txt
 
 echo
