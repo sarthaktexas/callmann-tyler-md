@@ -16,8 +16,8 @@ fi
 module purge
 module load orca
 
-if [ ! -f monomer_hf_density.scfp ]; then
-  echo "monomer_hf_density.scfp is missing."
+if [ ! -f monomer_hf_density.densities ]; then
+  echo "monomer_hf_density.densities is missing."
   echo "This means the density job must be rerun with KeepDens."
   cat > monomer_hf_density.inp <<'EOF'
 ! HF 6-31G* TightSCF KeepDens
@@ -47,11 +47,15 @@ fi
 
 python3 mk_resp_grid_from_orca.py --xyz monomer_hf_opt.xyz --points monomer_resp.vpot.xyz
 
+echo "Available ORCA density-container entries:"
+/apps/orca/6.0.1/orca_vpot monomer_hf_density.densities || true
+
 /apps/orca/6.0.1/orca_vpot \
   monomer_hf_density.gbw \
   monomer_hf_density.scfp \
   monomer_resp.vpot.xyz \
-  monomer_resp.vpot.out
+  monomer_resp.vpot.out \
+  monomer_hf_density
 
 python3 mk_resp_grid_from_orca.py \
   --xyz monomer_hf_opt.xyz \
