@@ -23,15 +23,25 @@ echo "resp: $(command -v resp)"
 
 python3 make_resp_inputs.py --xyz monomer_hf_opt.xyz
 
+echo
+echo "=== resp_stage1.in ==="
+cat resp_stage1.in
+echo
+echo "=== monomer_resp.esp header ==="
+head -5 monomer_resp.esp
+
 resp -O \
   -i resp_stage1.in \
   -o resp_stage1.out \
   -p resp_stage1.pch \
-  -q resp_stage1.qin \
   -t resp_stage1.qout \
   -e monomer_resp.esp
 
 python3 make_resp_inputs.py --xyz monomer_hf_opt.xyz --stage1-qout resp_stage1.qout
+
+echo
+echo "=== resp_stage2.in ==="
+cat resp_stage2.in
 
 resp -O \
   -i resp_stage2.in \
