@@ -120,6 +120,9 @@ def read_charges(path, natom):
         except ValueError:
             pass
     if len(vals) < natom:
+        out_path = path.with_suffix(".out")
+        if path.suffix == ".qout" and out_path.exists():
+            return read_resp_out_charges(out_path, natom)
         raise SystemExit(f"Could not read {natom} charges from {path}")
     return vals[:natom]
 
