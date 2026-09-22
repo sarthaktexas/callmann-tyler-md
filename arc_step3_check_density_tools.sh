@@ -66,6 +66,14 @@ fi
 
 echo
 echo "=== AmberTools availability ==="
+module avail ambertools 2>&1 | tee module_avail_ambertools_step3.txt || true
+if module load ambertools 2>/dev/null; then
+  echo "AmberTools module loaded."
+  echo "resp: $(command -v resp || true)"
+  echo "respgen: $(command -v respgen || true)"
+  echo "antechamber: $(command -v antechamber || true)"
+  echo "espgen: $(command -v espgen || true)"
+fi
 if command -v conda >/dev/null 2>&1; then
   conda env list
 fi

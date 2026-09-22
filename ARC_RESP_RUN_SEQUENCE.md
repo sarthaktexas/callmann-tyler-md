@@ -24,6 +24,14 @@ cd /work/wrz135/callmann-tyler-md
 bash arc_step3_check_density_tools.sh
 ```
 
+If Multiwfn/AmberTools are not available, set up/check RESP tools:
+
+```bash
+srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=1 --pty bash
+cd /work/wrz135/callmann-tyler-md
+bash arc_step4_setup_resp_tools.sh
+```
+
 Notes:
 
 - Do not run ORCA directly on the login node.
