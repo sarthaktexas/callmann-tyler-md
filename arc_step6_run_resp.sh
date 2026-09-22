@@ -37,6 +37,10 @@ resp -O \
   -t resp_stage1.qout \
   -e monomer_resp.esp
 
+if [ ! -f resp_stage1.qout ]; then
+  echo "NOTE: resp_stage1.qout was not written; stage 2 will read q(opt) from resp_stage1.out."
+fi
+
 python3 make_resp_inputs.py --xyz monomer_hf_opt.xyz --stage1-qout resp_stage1.qout
 
 echo
@@ -50,6 +54,10 @@ resp -O \
   -q resp_stage2.qin \
   -t resp_stage2.qout \
   -e monomer_resp.esp
+
+if [ ! -f resp_stage2.qout ]; then
+  echo "NOTE: resp_stage2.qout was not written; final charges will be read from resp_stage2.out."
+fi
 
 python3 make_resp_inputs.py --xyz monomer_hf_opt.xyz --stage2-qout resp_stage2.qout
 

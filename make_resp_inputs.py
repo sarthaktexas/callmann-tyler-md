@@ -108,8 +108,13 @@ def write_qin(path, atoms, charges=None):
 
 
 def read_charges(path, natom):
+    path = Path(path)
+    if not path.exists() and path.suffix == ".qout":
+        out_path = path.with_suffix(".out")
+        if out_path.exists():
+            return read_resp_out_charges(out_path, natom)
     vals = []
-    for field in Path(path).read_text().split():
+    for field in path.read_text().split():
         try:
             vals.append(float(field))
         except ValueError:
@@ -117,6 +122,34 @@ def read_charges(path, natom):
     if len(vals) < natom:
         raise SystemExit(f"Could not read {natom} charges from {path}")
     return vals[:natom]
+
+
+def read_resp_out_charges(path, natom):
+    charges = []
+    in_table = False
+    for line in Path(path).read_text(errors="ignore").splitlines():
+        if "q(opt)" in line and "ivary" in line:
+            in_table = True
+            charges = []
+            continue
+        if not in_table:
+            continue
+        fields = line.split()
+        if len(fields) < 4:
+            if charges:
+                break
+            continue
+        try:
+            int(fields[0])
+            charge = float(fields[2])
+        except ValueError:
+            continue
+        charges.append(charge)
+        if len(charges) == natom:
+            return charges
+    if len(charges) < natom:
+        raise SystemExit(f"Could not read {natom} q(opt) charges from {path}")
+    return charges[:natom]
 
 
 def write_charge_table(path, atoms, charges):
