@@ -1,4 +1,4 @@
-! HF 6-31G* TightSCF
+! HF 6-31G* TightSCF KeepDens
 
 %output
   Print[P_Density] 1

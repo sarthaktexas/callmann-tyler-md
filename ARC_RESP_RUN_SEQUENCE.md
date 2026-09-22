@@ -32,6 +32,16 @@ cd /work/wrz135/callmann-tyler-md
 bash arc_step4_setup_resp_tools.sh
 ```
 
+Generate ORCA ESP points and an Amber RESP ESP file:
+
+```bash
+srun -p compute3 -n 1 -t 02:00:00 --cpus-per-task=1 --pty bash
+cd /work/wrz135/callmann-tyler-md
+bash arc_step5_make_esp_with_orca_vpot.sh
+```
+
+If this reports that `monomer_hf_density.scfp` is missing, it will submit a replacement density job with `KeepDens`. Wait for that job to finish, then rerun the same step 5 command.
+
 Notes:
 
 - Do not run ORCA directly on the login node.

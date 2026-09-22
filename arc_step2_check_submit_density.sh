@@ -54,7 +54,7 @@ echo "Optimization converged and monomer_hf_opt.xyz exists."
 
 if [ ! -f monomer_hf_density.inp ] || grep -Eq 'SCF=Tight|PAL[0-9]+' monomer_hf_density.inp; then
   cat > monomer_hf_density.inp <<'EOF'
-! HF 6-31G* TightSCF
+! HF 6-31G* TightSCF KeepDens
 
 %output
   Print[P_Density] 1
