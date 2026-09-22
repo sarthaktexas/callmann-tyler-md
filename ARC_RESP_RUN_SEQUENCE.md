@@ -42,6 +42,13 @@ bash arc_step5_make_esp_with_orca_vpot.sh
 
 If this reports that `monomer_hf_density.scfp` is missing, it will submit a replacement density job with `KeepDens`. Wait for that job to finish, then rerun the same step 5 command.
 
+Run the two-stage RESP fit:
+
+```bash
+cd /work/wrz135/callmann-tyler-md
+bash arc_step6_run_resp.sh
+```
+
 Notes:
 
 - Do not run ORCA directly on the login node.
