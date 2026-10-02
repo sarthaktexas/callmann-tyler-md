@@ -1,0 +1,43 @@
+=== ARC RESP pipeline step 2: check opt + submit density job ===
+Mon Sep 21 20:32:36 CDT 2026
+/work/wrz135/callmann-tyler-md
+c124
+Recorded optimization job id: 815839
+slurm_load_jobs error: Invalid job id specified
+JobID                         JobName      State ExitCode    Elapsed     MaxRSS 
+------------ ------------------------ ---------- -------- ---------- ---------- 
+815839                 monomer_hf_opt  COMPLETED      0:0   02:10:57            
+815839.batch                    batch  COMPLETED      0:0   02:10:57    243324K 
+815839.exte+                   extern  COMPLETED      0:0   02:10:57       932K 
+
+=== ORCA optimization completion checks ===
+               *           SCF CONVERGED AFTER  13 CYCLES          *
+               *           SCF CONVERGED AFTER  12 CYCLES          *
+               *           SCF CONVERGED AFTER  11 CYCLES          *
+               *           SCF CONVERGED AFTER  12 CYCLES          *
+               *           SCF CONVERGED AFTER  11 CYCLES          *
+               *           SCF CONVERGED AFTER  11 CYCLES          *
+               *           SCF CONVERGED AFTER  10 CYCLES          *
+               *           SCF CONVERGED AFTER  10 CYCLES          *
+               *           SCF CONVERGED AFTER  10 CYCLES          *
+               *           SCF CONVERGED AFTER   9 CYCLES          *
+               *           SCF CONVERGED AFTER   7 CYCLES          *
+               *           SCF CONVERGED AFTER   6 CYCLES          *
+               *           SCF CONVERGED AFTER   6 CYCLES          *
+               *           SCF CONVERGED AFTER   6 CYCLES          *
+                    ***        THE OPTIMIZATION HAS CONVERGED     ***
+               *           SCF CONVERGED AFTER   5 CYCLES          *
+                             ****ORCA TERMINATED NORMALLY****
+Optimization converged and monomer_hf_opt.xyz exists.
+
+=== Testing ORCA module load ===
+ORCA path: /apps/orca/6.0.1/orca
+This program requires the name of a parameterfile as argument
+For example ORCA TEST.INP 
+
+=== Submitting density job ===
+Submitted monomer_hf_density job id: 816117
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+            816117  compute3 monomer_   wrz135 PD       0:00      1 (None)
+
+DONE step 2.

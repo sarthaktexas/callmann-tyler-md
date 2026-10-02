@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "=== ARC RESP pipeline step 6: two-stage RESP fit ==="
+date
+pwd
+hostname
+
+if [ ! -f pyrene_resp.esp ]; then
+  echo "ERROR: pyrene_resp.esp is missing. Run step 5 first."
+  exit 1
+fi
+
+if [ ! -f pyrene_hf_opt.xyz ]; then
+  echo "ERROR: pyrene_hf_opt.xyz is missing."
+  exit 1
+fi
+
+if [ -f pyrene_resp.vpot.out ]; then
+  echo "Regenerating pyrene_resp.esp with current converter."
+  python3 mk_resp_grid_from_orca.py \
+    --xyz pyrene_hf_opt.xyz \
+    --vpot-out pyrene_resp.vpot.out \
+    --resp-esp pyrene_resp.esp \
+    --convert
+fi
+
+module load miniconda/24.4.0
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate ambertools
+echo "resp: $(command -v resp)"
+
+python3 make_resp_inputs.py --xyz pyrene_hf_opt.xyz
+
+echo
+echo "=== resp_stage1.in ==="
+cat resp_stage1.in
+echo
+echo "=== pyrene_resp.esp header ==="
+head -5 pyrene_resp.esp
+
+resp -O \
+  -i resp_stage1.in \
+  -o resp_stage1.out \
+  -p resp_stage1.pch \
+  -t resp_stage1.qout \
+  -e pyrene_resp.esp
+
+if [ ! -f resp_stage1.qout ]; then
+  echo "NOTE: resp_stage1.qout was not written; stage 2 will read q(opt) from resp_stage1.out."
+fi
+
+python3 make_resp_inputs.py --xyz pyrene_hf_opt.xyz --stage1-qout resp_stage1.qout
+
+echo
+echo "=== resp_stage2.in ==="
+cat resp_stage2.in
+
+resp -O \
+  -i resp_stage2.in \
+  -o resp_stage2.out \
+  -p resp_stage2.pch \
+  -q resp_stage2.qin \
+  -t resp_stage2.qout \
+  -e pyrene_resp.esp
+
+if [ ! -f resp_stage2.qout ]; then
+  echo "NOTE: resp_stage2.qout was not written; final charges will be read from resp_stage2.out."
+fi
+
+python3 make_resp_inputs.py --xyz pyrene_hf_opt.xyz --stage2-qout resp_stage2.qout
+
+echo
+echo "=== Charge sum ==="
+tail -1 resp_charges_stage2.dat
+awk '/^[[:space:]]*[0-9]+/{sum+=$3} END{printf "awk charge_sum %.10f\n", sum; if (sum > 0.0001 || sum < -0.0001) exit 2}' resp_charges_stage2.dat
+
+echo
+echo "=== Outputs ==="
+ls -lh resp_stage1.in resp_stage1.out resp_stage1.qout resp_stage2.in resp_stage2.out resp_stage2.qout resp_charges_stage2.dat
+
+echo
+echo "DONE step 6."

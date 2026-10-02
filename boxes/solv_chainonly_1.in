@@ -1,0 +1,18 @@
+source leaprc.gaff2
+source leaprc.water.tip3p
+addAtomTypes {
+  { "c5" "C" "sp3" }
+  { "c6" "C" "sp3" }
+}
+loadamberparams monomer.frcmod
+MON = loadmol2 res_MON.mol2
+MNF = loadmol2 res_MNF.mol2
+MNL = loadmol2 res_MNL.mol2
+CPH = loadmol2 res_CPH.mol2
+CPT = loadmol2 res_CPT.mol2
+sys = loadpdb chain_s1_min.pdb
+check sys
+charge sys
+solvatebox sys TIP3PBOX 15.0
+saveamberparm sys chainonly_1.prmtop chainonly_1.inpcrd
+quit

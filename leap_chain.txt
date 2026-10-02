@@ -1,0 +1,325 @@
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/prep to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/lib to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/parm to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/cmd to search path.
+-f: Source build_chain.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_chain.in
+----- Source: /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2
+----- Source of /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MNF 2>.A<H7 34> and .R<MON 3>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MNF 2>.A<H7 34> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MNF 2>.A<H6 33> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MNF 2>.A<H6 33> and .R<MON 4>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MNF 2>.A<H6 33> and .R<MON 4>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MNF 2>.A<H2 31> and .R<MON 4>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MNF 2>.A<C6 8> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MNF 2>.A<C3 6> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 3>.A<H7 34> and .R<MON 4>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 3>.A<H7 34> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 3>.A<H6 33> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 3>.A<H6 33> and .R<MON 5>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 3>.A<H6 33> and .R<MON 5>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 3>.A<H2 31> and .R<MON 5>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 3>.A<C6 8> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 3>.A<C3 6> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 4>.A<H7 34> and .R<MON 5>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 4>.A<H7 34> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 4>.A<H6 33> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 4>.A<H6 33> and .R<MON 6>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 4>.A<H6 33> and .R<MON 6>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 4>.A<H2 31> and .R<MON 6>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 4>.A<C6 8> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 4>.A<C3 6> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 5>.A<H7 34> and .R<MON 6>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 5>.A<H7 34> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 5>.A<H6 33> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 5>.A<H6 33> and .R<MON 7>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 5>.A<H6 33> and .R<MON 7>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 5>.A<H2 31> and .R<MON 7>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 5>.A<C6 8> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 5>.A<C3 6> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 6>.A<H7 34> and .R<MON 7>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 6>.A<H7 34> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 6>.A<H6 33> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 6>.A<H6 33> and .R<MON 8>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 6>.A<H6 33> and .R<MON 8>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 6>.A<H2 31> and .R<MON 8>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 6>.A<C6 8> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 6>.A<C3 6> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 7>.A<H7 34> and .R<MON 8>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 7>.A<H7 34> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 7>.A<H6 33> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 7>.A<H6 33> and .R<MON 9>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 7>.A<H6 33> and .R<MON 9>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 7>.A<H2 31> and .R<MON 9>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 7>.A<C6 8> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 7>.A<C3 6> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 8>.A<H7 34> and .R<MON 9>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 8>.A<H7 34> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 8>.A<H6 33> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 8>.A<H6 33> and .R<MON 10>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 8>.A<H6 33> and .R<MON 10>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 8>.A<H2 31> and .R<MON 10>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 8>.A<C6 8> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 8>.A<C3 6> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 9>.A<H7 34> and .R<MON 10>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 9>.A<H7 34> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 9>.A<H6 33> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 9>.A<H6 33> and .R<MNL 11>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 9>.A<H6 33> and .R<MNL 11>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 9>.A<H2 31> and .R<MNL 11>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 9>.A<C6 8> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 9>.A<C3 6> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 10>.A<H7 34> and .R<MNL 11>.A<H18 43>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 65
+Unit is OK.
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+Writing pdb file: chain.pdb
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 65; Notes = 0.

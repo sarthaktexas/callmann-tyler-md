@@ -1,0 +1,103 @@
+=== ARC RESP pipeline step 1: environment + HF opt submit ===
+Mon Sep 21 16:05:35 CDT 2026
+/work/wrz135/callmann-tyler-md
+c126
+
+=== Files in working directory ===
+total 1.9M
+drwx------. 3 wrz135 wrz135  4.0K Sep 21 16:05 .
+drwx------. 4 wrz135 wrz135  4.0K Sep 21 15:49 ..
+-rw-------. 1 wrz135 wrz135  1.1K Sep 21 16:05 ARC_RESP_RUN_SEQUENCE.md
+-rw-------. 1 wrz135 wrz135   163 Sep 21 16:05 arc_step1_env_submit_opt.log
+-rwx------. 1 wrz135 wrz135  2.2K Sep 21 16:05 arc_step1_env_submit_opt.sh
+-rwx------. 1 wrz135 wrz135  2.1K Sep 21 16:05 arc_step2_check_submit_density.sh
+-rwx------. 1 wrz135 wrz135  2.2K Sep 21 16:05 arc_step3_check_density_tools.sh
+-rw-------. 1 wrz135 wrz135    28 Sep 21 16:03 conda_envs.txt
+-rw-------. 1 wrz135 wrz135  2.9K Sep 21 15:33 dft-optimized-monomer.xyz
+drwx------. 8 wrz135 wrz135  4.0K Sep 21 16:05 .git
+-rw-------. 1 wrz135 wrz135   400 Sep 21 16:03 module_avail_multiwfn.txt
+-rw-------. 1 wrz135 wrz135   623 Sep 21 16:03 module_avail_orca.txt
+-rw-------. 1 wrz135 wrz135    89 Sep 21 16:05 monomer_hf_density.inp
+-rw-------. 1 wrz135 wrz135    59 Sep 21 15:58 monomer_hf_opt.815832.err
+-rw-------. 1 wrz135 wrz135     0 Sep 21 15:58 monomer_hf_opt.815832.out
+-rw-------. 1 wrz135 wrz135  1.4K Sep 21 16:03 monomer_hf_opt.815837.err
+-rw-------. 1 wrz135 wrz135     0 Sep 21 16:03 monomer_hf_opt.815837.out
+-rw-------. 1 wrz135 wrz135  153K Sep 21 16:03 monomer_hf_opt.bas0
+-rw-------. 1 wrz135 wrz135     4 Sep 21 16:03 monomer_hf_opt.bas1
+-rw-------. 1 wrz135 wrz135     4 Sep 21 16:03 monomer_hf_opt.bas2
+-rw-------. 1 wrz135 wrz135     4 Sep 21 16:03 monomer_hf_opt.bas3
+-rw-------. 1 wrz135 wrz135     4 Sep 21 16:03 monomer_hf_opt.bas4
+-rw-------. 1 wrz135 wrz135     4 Sep 21 16:03 monomer_hf_opt.bas5
+-rw-------. 1 wrz135 wrz135   988 Sep 21 16:03 monomer_hf_opt.citations.tmp
+-rw-------. 1 wrz135 wrz135 1017K Sep 21 16:03 monomer_hf_opt.gbw
+-rw-------. 1 wrz135 wrz135    65 Sep 21 16:03 monomer_hf_opt.ginp.tmp
+-rw-------. 1 wrz135 wrz135  453K Sep 21 16:03 monomer_hf_opt.gu.tmp
+-rw-------. 1 wrz135 wrz135  2.6K Sep 21 16:05 monomer_hf_opt.inp
+-rw-------. 1 wrz135 wrz135   37K Sep 21 16:03 monomer_hf_opt.int.tmp
+-rw-------. 1 wrz135 wrz135     7 Sep 21 16:03 monomer_hf_opt.jobid
+-rw-------. 1 wrz135 wrz135  6.7K Sep 21 16:03 monomer_hf_opt.opt
+-rw-------. 1 wrz135 wrz135   58K Sep 21 16:03 monomer_hf_opt.out
+-rw-------. 1 wrz135 wrz135  4.9K Sep 21 16:03 monomer_hf_opt.property.txt
+-rw-------. 1 wrz135 wrz135   42K Sep 21 16:03 monomer_hf_opt.SHARKINP.tmp
+-rw-------. 1 wrz135 wrz135  4.6K Sep 21 16:03 monomer_hf_opt.xyz
+-rwx------. 1 wrz135 wrz135   411 Sep 21 16:05 run_monomer_hf_density.sbatch
+-rwx------. 1 wrz135 wrz135   395 Sep 21 16:05 run_monomer_hf_opt.sbatch
+
+=== ORCA modules ===
+
+------------------------------------------------------------------------------ /apps/computemodules ------------------------------------------------------------------------------
+   orca/4.2.1    orca/5.0.3    orca/6.0.1 (D)
+
+  Where:
+   D:  Default Module
+
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+
+
+
+=== Multiwfn modules ===
+No module(s) or extension(s) found!
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+
+
+
+=== Conda environments, if conda exists ===
+conda not currently on PATH
+
+=== Finding geometry ===
+Using geometry: dft-optimized-monomer.xyz
+61
+name: O=C([C@]1([H])[C@]2(C(C=C)CC1C=C)[H])N(CCCCO[C@@H]3[C@@H](O)[C@H](CO)O[C@H](O)[C@H]3O)C2=O (Conformer 1) (Step 76); charge: 0; multiplicity: 1; energy: -275.90044300; method: ωB97M-D3BJ; basis_set: vDZP; engine: GPU4PySCF; generated_by: Rowan; timestamp: 2026-09-16 17:41:35;
+O    -2.73977451   2.70754886   1.87870293
+C    -2.48124516   1.54067634   1.70623814
+C    -3.44783539   0.39925018   1.58608702
+Atom count from XYZ header: 61
+
+=== Validating ORCA optimization input ===
+Coordinate lines in ORCA input: 61
+
+=== Testing ORCA module load in this shell ===
+ORCA path: /apps/orca/6.0.1/orca
+This program requires the name of a parameterfile as argument
+For example ORCA TEST.INP 
+
+=== Submitting HF optimization ===
+Submitted monomer_hf_opt job id: 815839
+
+=== Queue status ===
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+            815839  compute3 monomer_   wrz135 PD       0:00      1 (None)
+
+DONE step 1.

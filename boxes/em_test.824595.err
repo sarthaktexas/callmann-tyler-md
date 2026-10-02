@@ -1,0 +1,44 @@
+                      :-) GROMACS - gmx grompp, 2025.2 (-:
+
+Executable:   /apps/gromacs/2025.2/bin/gmx
+Data prefix:  /apps/gromacs/2025.2
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx grompp -f em.mdp -c sys_1to1.gro -p sys_1to1.top -o em_1.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group rest is 38661.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+GROMACS reminds you: "Life would be tragic if it weren't funny." (Stephen Hawking)
+
+                      :-) GROMACS - gmx mdrun, 2025.2 (-:
+
+Executable:   /apps/gromacs/2025.2/bin/gmx
+Data prefix:  /apps/gromacs/2025.2
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx mdrun -deffnm em_1 -ntomp 4 -v
+
+Reading file em_1.tpr, VERSION 2025.2 (single precision)
+Using 10 MPI threads
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 4 OpenMP threads per tMPI thread
+
+
+Steepest Descents:
+   Tolerance (Fmax)   =  1.00000e+03
+   Number of steps    =        50000
+Step=    0, Dmax= 1.0e-03 nm, Epot= -2.16794e+05 Fmax= 9.67478e+02, atom= 2527
+
+writing lowest energy coordinates.
+
+Steepest Descents converged to Fmax < 1000 in 1 steps
+Potential Energy  = -2.1679369e+05
+Maximum force     =  9.6747766e+02 on atom 2527
+Norm of force     =  2.4357996e+02
+
+GROMACS reminds you: "Let Me Do This" (Urban Dance Squad)
+

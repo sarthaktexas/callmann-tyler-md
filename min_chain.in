@@ -1,0 +1,5 @@
+vacuum minimization
+&cntrl
+ imin=1, maxcyc=10000, ncyc=2000,
+ ntb=0, igb=0, cut=999.,
+/

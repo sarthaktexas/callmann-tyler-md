@@ -1,0 +1,7 @@
+! HF 6-31G* TightSCF KeepDens
+
+%output
+  Print[P_Density] 1
+end
+
+* xyzfile 0 1 pyrene_hf_opt.xyz

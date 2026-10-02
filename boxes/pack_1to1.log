@@ -1,0 +1,148 @@
+
+################################################################################
+
+ PACKMOL - Packing optimization for the automated generation of
+ starting configurations for molecular dynamics simulations.
+ 
+                           Included as part of Packmol Memgen
+                                                              Version 20.14.3 
+
+################################################################################
+
+  Packmol must be run with: packmol < inputfile.inp 
+
+  Userguide at: http://m3g.iqm.unicamp.br/packmol 
+
+  Reading input file... (Control-C aborts)
+  Types of coordinate files specified: pdb
+  Seed for random number generator:      1234567
+  Output file: sys_1to1_raw.pdb
+  Reading coordinate file: pyrene_gaff2.pdb
+  Reading coordinate file: chain_s1_min.pdb
+  Number of independent structures:            2
+  The structures are: 
+  Structure            1 :pyrene_gaff2.pdb(          26  atoms)
+  Structure            2 :chain_s1_min.pdb(         556  atoms)
+  Maximum number of GENCAN loops for all molecule packing:          400
+  Total number of restrictions:            3
+  Distance tolerance:    2.0000000000000000     
+  Warning: Type of residue numbering not set for structure            1
+  Residue numbering set for structure            1 :           0
+  Swap chains of molecules of structure            1 : F
+  Warning: Type of residue numbering not set for structure            2
+  Residue numbering set for structure            2 :           1
+  Swap chains of molecules of structure            2 : F
+  Number of molecules of type            1 :            1
+  Number of molecules of type            2 :            1
+  Total number of atoms:          582
+  Molecule pyrene_gaff2.pdb(           1 ) will be fixed.
+  Total number of molecules:            2
+  Number of fixed molecules:            1
+  Number of free molecules:            1
+  Number of variables:            6
+  Total number of fixed atoms:           26
+  Maximum internal distance of type            1 :    42.092001639266336     
+  All atoms must be within these coordinates: 
+   x: [   -974.16394377926463      ,    1025.8360562207354       ] 
+   y: [   -983.07463870863842      ,    1016.9253612913616       ] 
+   z: [   -1020.1087754140048      ,    979.89122458599525       ] 
+  If the system is larger than this, increase the sidemax parameter. 
+
+################################################################################
+
+  Building initial approximation ... 
+
+################################################################################
+
+  Adjusting initial point to fit the constraints 
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            2
+
+  Packing:|0                                                             100%|
+          |******************************************************************|
+          |***********************************
+
+  Restraint-only function value:    1.2263053107910680E-003
+  Maximum violation of the restraints:    1.1609435252710207E-003
+
+--------------------------------------------------------------------------------
+
+  Rescaling maximum and minimum coordinates... 
+  Computing size of patches... 
+  Add fixed molecules to permanent arrays... 
+  Reseting center of mass... 
+
+--------------------------------------------------------------------------------
+
+  Setting initial trial coordinates ... 
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            2
+  Adjusting random positions to fit the constraints. 
+  Packing:|0                                                             100%|
+          |*************************************************
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+################################################################################
+
+  Objective function at initial point:    0.0000000000000000     
+
+################################################################################
+
+  Packing molecules of type:            2
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Current point written to file: sys_1to1_raw.pdb
+--------------------------------------------------------------------------------
+  Packing solved for molecules of type           2
+  Objective function value:    0.0000000000000000     
+  Maximum violation of target distance:    0.0000000000000000     
+  Max. constraint violation:    0.0000000000000000     
+--------------------------------------------------------------------------------
+
+################################################################################
+
+  Packing all molecules together 
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Solution written to file: sys_1to1_raw.pdb
+
+################################################################################
+
+                                 Success! 
+              Final objective function value: .00000E+00
+              Maximum violation of target distance:   0.000000
+              Maximum violation of the constraints: .00000E+00
+
+--------------------------------------------------------------------------------
+
+              Please cite this work if Packmol was useful: 
+
+           L. Martinez, R. Andrade, E. G. Birgin, J. M. Martinez, 
+         PACKMOL: A package for building initial configurations for
+                   molecular dynamics simulations. 
+          Journal of Computational Chemistry, 30:2157-2164,2009.
+
+################################################################################
+
+   Running time:    1.31490007E-02  seconds. 
+
+--------------------------------------------------------------------------------
+
+

@@ -1,0 +1,2163 @@
+log started: Thu Oct  1 16:06:30 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> MON = loadmol2 monomer_resid.mol2
+Loading Mol2 file: ./monomer_resid.mol2
+Reading MOLECULE named MON
+> dimer = sequence { MON MON }
+Sequence: MON
+Sequence: MON
+> check dimer
+Checking 'dimer'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+There is a bond of 4.580 angstroms between C16 and O4 atoms:
+-------  .R<MON 2>.A<C16 21> and .R<MON 2>.A<O4 24>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+There is a bond of 4.661 angstroms between C1 and C7 atoms:
+-------  .R<MON 2>.A<C1 3> and .R<MON 2>.A<C7 9>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.425 angstroms between nonbonded atoms H30 and H28
+-------  .R<MON 2>.A<H30 55> and .R<MON 2>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.103 angstroms between nonbonded atoms H29 and H26
+-------  .R<MON 2>.A<H29 54> and .R<MON 2>.A<H26 51>
+Checking parameters for unit 'dimer'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 4
+Unit is OK.
+> charge dimer
+Total unperturbed charge:  -0.000008
+Total perturbed charge:    -0.000008
+> saveamberparm dimer dimer.prmtop dimer.inpcrd
+Checking Unit.
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+There is a bond of 4.580 angstroms between C16 and O4 atoms:
+-------  .R<MON 2>.A<C16 21> and .R<MON 2>.A<O4 24>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+There is a bond of 4.661 angstroms between C1 and C7 atoms:
+-------  .R<MON 2>.A<C1 3> and .R<MON 2>.A<C7 9>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Note.
+Ignoring the warnings from Unit Checking.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 8 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	MON	2
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 6; Notes = 1.
+log started: Thu Oct  1 16:09:13 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 monomer_resid.mol2
+Loading Mol2 file: ./monomer_resid.mol2
+Reading MOLECULE named MON
+> mono = sequence { MON }
+Sequence: MON
+> check mono
+Checking 'mono'....
+Checking parameters for unit 'mono'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+> dimer = sequence { MON MON }
+Sequence: MON
+Sequence: MON
+> check dimer
+Checking 'dimer'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 1>.A<H7 34> and .R<MON 2>.A<H18 43>
+Checking parameters for unit 'dimer'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 1
+Unit is OK.
+> charge dimer
+Total unperturbed charge:  -0.000008
+Total perturbed charge:    -0.000008
+> savepdb dimer dimer.pdb
+Writing pdb file: dimer.pdb
+> saveamberparm dimer dimer.prmtop dimer.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 8 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	MON	2
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 1; Notes = 0.
+log started: Thu Oct  1 16:15:25 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 monomer_resid.mol2
+Loading Mol2 file: ./monomer_resid.mol2
+Reading MOLECULE named MON
+> dimer = sequence { MON MON }
+Sequence: MON
+Sequence: MON
+> torsion dimer.1.C7 dimer.1.C8 dimer.2.C4 dimer.2.C3 0.0
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Fatal Error!
+Error from the parser: 
+       syntax error.
+       Check for typos, misspellings, etc.
+       Try help on the command name and desc on the command arguments.
+
+Exiting LEaP: Errors = 1; Warnings = 0; Notes = 0.
+log started: Thu Oct  1 16:16:20 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 monomer_resid.mol2
+Loading Mol2 file: ./monomer_resid.mol2
+Reading MOLECULE named MON
+> dimer = loadpdb dimer_cis_input.pdb
+Loading PDB file: ./dimer_cis_input.pdb
+Matching PDB residue names to LEaP variables.
+  total atoms in file: 110
+> check dimer
+Checking 'dimer'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.394 angstroms between nonbonded atoms H7 and H2
+-------  .R<MON 1>.A<H7 34> and .R<MON 2>.A<H2 31>
+Checking parameters for unit 'dimer'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 1
+Unit is OK.
+> savepdb dimer dimer_cis.pdb
+Writing pdb file: dimer_cis.pdb
+> saveamberparm dimer dimer_cis.prmtop dimer_cis.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 8 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	MON	2
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 1; Notes = 0.
+log started: Thu Oct  1 16:21:02 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 res_MON.mol2
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+> MNF = loadmol2 res_MNF.mol2
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+> MNL = loadmol2 res_MNL.mol2
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+> CPH = loadmol2 res_CPH.mol2
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+> CPT = loadmol2 res_CPT.mol2
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+> chain = sequence { CPH MNF MON MON MON MON MON MON MON MON MNL CPT }
+Sequence: CPH
+Sequence: MNF
+Sequence: MON
+Sequence: MON
+Sequence: MON
+Sequence: MON
+Sequence: MON
+Sequence: MON
+Sequence: MON
+Sequence: MON
+Sequence: MNL
+Sequence: CPT
+> check chain
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MNF 2>.A<H7 34> and .R<MON 3>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MNF 2>.A<H7 34> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MNF 2>.A<H6 33> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MNF 2>.A<H6 33> and .R<MON 4>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MNF 2>.A<H6 33> and .R<MON 4>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MNF 2>.A<H2 31> and .R<MON 4>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MNF 2>.A<C6 8> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MNF 2>.A<C3 6> and .R<MON 4>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 3>.A<H7 34> and .R<MON 4>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 3>.A<H7 34> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 3>.A<H6 33> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 3>.A<H6 33> and .R<MON 5>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 3>.A<H6 33> and .R<MON 5>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 3>.A<H2 31> and .R<MON 5>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 3>.A<C6 8> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 3>.A<C3 6> and .R<MON 5>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 4>.A<H7 34> and .R<MON 5>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 4>.A<H7 34> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 4>.A<H6 33> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 4>.A<H6 33> and .R<MON 6>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 4>.A<H6 33> and .R<MON 6>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 4>.A<H2 31> and .R<MON 6>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 4>.A<C6 8> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 4>.A<C3 6> and .R<MON 6>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 5>.A<H7 34> and .R<MON 6>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 5>.A<H7 34> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 5>.A<H6 33> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 5>.A<H6 33> and .R<MON 7>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 5>.A<H6 33> and .R<MON 7>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 5>.A<H2 31> and .R<MON 7>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 5>.A<C6 8> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 5>.A<C3 6> and .R<MON 7>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 6>.A<H7 34> and .R<MON 7>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 6>.A<H7 34> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 6>.A<H6 33> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 6>.A<H6 33> and .R<MON 8>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 6>.A<H6 33> and .R<MON 8>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 6>.A<H2 31> and .R<MON 8>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 6>.A<C6 8> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 6>.A<C3 6> and .R<MON 8>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 7>.A<H7 34> and .R<MON 8>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 7>.A<H7 34> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 7>.A<H6 33> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 7>.A<H6 33> and .R<MON 9>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 7>.A<H6 33> and .R<MON 9>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 7>.A<H2 31> and .R<MON 9>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 7>.A<C6 8> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 7>.A<C3 6> and .R<MON 9>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 8>.A<H7 34> and .R<MON 9>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 8>.A<H7 34> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 8>.A<H6 33> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 8>.A<H6 33> and .R<MON 10>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 8>.A<H6 33> and .R<MON 10>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 8>.A<H2 31> and .R<MON 10>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 8>.A<C6 8> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 8>.A<C3 6> and .R<MON 10>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 9>.A<H7 34> and .R<MON 10>.A<H18 43>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.127 angstroms between nonbonded atoms H7 and H28
+-------  .R<MON 9>.A<H7 34> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.499 angstroms between nonbonded atoms H6 and H28
+-------  .R<MON 9>.A<H6 33> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.949 angstroms between nonbonded atoms H6 and O6
+-------  .R<MON 9>.A<H6 33> and .R<MNL 11>.A<O6 28>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms H6 and C19
+-------  .R<MON 9>.A<H6 33> and .R<MNL 11>.A<C19 27>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.274 angstroms between nonbonded atoms H2 and O5
+-------  .R<MON 9>.A<H2 31> and .R<MNL 11>.A<O5 26>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.937 angstroms between nonbonded atoms C6 and H28
+-------  .R<MON 9>.A<C6 8> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.260 angstroms between nonbonded atoms C3 and H28
+-------  .R<MON 9>.A<C3 6> and .R<MNL 11>.A<H28 53>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.885 angstroms between nonbonded atoms H7 and H18
+-------  .R<MON 10>.A<H7 34> and .R<MNL 11>.A<H18 43>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 65
+Unit is OK.
+> charge chain
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> savepdb chain chain.pdb
+Writing pdb file: chain.pdb
+> saveamberparm chain chain.prmtop chain.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 65; Notes = 0.
+log started: Thu Oct  1 16:24:22 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 res_MON.mol2
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+> MNF = loadmol2 res_MNF.mol2
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+> MNL = loadmol2 res_MNL.mol2
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+> CPH = loadmol2 res_CPH.mol2
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+> CPT = loadmol2 res_CPT.mol2
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+> chain = loadpdb chain_s1.pdb
+Loading PDB file: ./chain_s1.pdb
+Matching PDB residue names to LEaP variables.
+  total atoms in file: 556
+> check chain
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.953 angstroms between nonbonded atoms H9 and H25
+-------  .R<MON 3>.A<H9 36> and .R<MON 8>.A<H25 50>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.267 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 3>.A<H6 33> and .R<MON 4>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.009 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 4>.A<H6 33> and .R<MON 5>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.294 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 5>.A<H6 33> and .R<MON 6>.A<H2 31>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 4
+Unit is OK.
+> charge chain
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> saveamberparm chain chain_s1.prmtop chain_s1.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 4; Notes = 0.
+log started: Thu Oct  1 16:24:59 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 res_MON.mol2
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+> MNF = loadmol2 res_MNF.mol2
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+> MNL = loadmol2 res_MNL.mol2
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+> CPH = loadmol2 res_CPH.mol2
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+> CPT = loadmol2 res_CPT.mol2
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+> chain = loadpdb chain_s2.pdb
+Loading PDB file: ./chain_s2.pdb
+Matching PDB residue names to LEaP variables.
+  total atoms in file: 556
+> check chain
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.267 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 3>.A<H6 33> and .R<MON 4>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.009 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 4>.A<H6 33> and .R<MON 5>.A<H2 31>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 2
+Unit is OK.
+> charge chain
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> saveamberparm chain chain_s2.prmtop chain_s2.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 2; Notes = 0.
+log started: Thu Oct  1 16:25:36 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 res_MON.mol2
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+> MNF = loadmol2 res_MNF.mol2
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+> MNL = loadmol2 res_MNL.mol2
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+> CPH = loadmol2 res_CPH.mol2
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+> CPT = loadmol2 res_CPT.mol2
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+> chain = loadpdb chain_s3.pdb
+Loading PDB file: ./chain_s3.pdb
+Matching PDB residue names to LEaP variables.
+  total atoms in file: 556
+> check chain
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.011 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 4>.A<H6 33> and .R<MON 5>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.292 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 5>.A<H6 33> and .R<MON 6>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.430 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 6>.A<H6 33> and .R<MON 7>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.248 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 9>.A<H6 33> and .R<MON 10>.A<H2 31>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 4
+Unit is OK.
+> charge chain
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> saveamberparm chain chain_s3.prmtop chain_s3.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 4; Notes = 0.
+log started: Fri Oct  2 14:45:02 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 res_MON.mol2
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+> MNF = loadmol2 res_MNF.mol2
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+> MNL = loadmol2 res_MNL.mol2
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+> CPH = loadmol2 res_CPH.mol2
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+> CPT = loadmol2 res_CPT.mol2
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+> chain = loadpdb chain_s4.pdb
+Loading PDB file: ./chain_s4.pdb
+Matching PDB residue names to LEaP variables.
+  total atoms in file: 556
+> check chain
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.926 angstroms between nonbonded atoms H9 and H25
+-------  .R<MON 5>.A<H9 36> and .R<MON 10>.A<H25 50>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.297 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 5>.A<H6 33> and .R<MON 6>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.433 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 6>.A<H6 33> and .R<MON 7>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.211 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 7>.A<H6 33> and .R<MON 8>.A<H2 31>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 4
+Unit is OK.
+> charge chain
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> saveamberparm chain chain_s4.prmtop chain_s4.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 4; Notes = 0.
+log started: Fri Oct  2 14:45:53 2026
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the general Amber Force field.
+>> #       This file is mostly for use with Antechamber
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "h1"  "H" "sp3" }
+>> 	{ "h2"  "H" "sp3" }
+>> 	{ "h3"  "H" "sp3" }
+>> 	{ "h4"  "H" "sp3" }
+>> 	{ "h5"  "H" "sp3" }
+>> 	{ "ha"  "H" "sp3" }
+>> 	{ "hc"  "H" "sp3" }
+>> 	{ "hn"  "H" "sp3" }
+>> 	{ "ho"  "H" "sp3" }
+>> 	{ "hp"  "H" "sp3" }
+>> 	{ "hs"  "H" "sp3" }
+>> 	{ "hw"  "H" "sp3" }
+>> 	{ "hx"  "H" "sp3" }
+>> 	{ "o"  "O" "sp2" }
+>> 	{ "o2"  "O" "sp2" }
+>> 	{ "oh"  "O" "sp3" }
+>> 	{ "op"  "O" "sp3" }
+>> 	{ "oq"  "O" "sp3" }
+>> 	{ "os"  "O" "sp3" }
+>> 	{ "ow"  "O" "sp3" }
+>> 	{ "c"  "C" "sp2" }
+>> 	{ "c1"  "C" "sp2" }
+>> 	{ "c2"  "C" "sp2" }
+>> 	{ "c3"  "C" "sp3" }
+>> 	{ "ca"  "C" "sp2" }
+>> 	{ "cc"  "C" "sp2" }
+>> 	{ "cd"  "C" "sp2" }
+>> 	{ "ce"  "C" "sp2" }
+>> 	{ "cf"  "C" "sp2" }
+>> 	{ "cg"  "C" "sp2" }
+>> 	{ "ch"  "C" "sp2" }
+>> 	{ "cp"  "C" "sp2" }
+>> 	{ "cs"  "C" "sp2" }
+>> 	{ "cq"  "C" "sp2" }
+>> 	{ "cu"  "C" "sp2" }
+>> 	{ "cv"  "C" "sp2" }
+>> 	{ "cx"  "C" "sp2" }
+>> 	{ "cy"  "C" "sp2" }
+>> 	{ "cz"  "C" "sp2" }
+>> 	{ "n"   "N" "sp2" }
+>> 	{ "n1"  "N" "sp2" }
+>> 	{ "n2"  "N" "sp2" }
+>> 	{ "n3"  "N" "sp3" }
+>> 	{ "n4"  "N" "sp3" }
+>> 	{ "n5"  "N" "sp3" }
+>> 	{ "n6"  "N" "sp3" }
+>> 	{ "n7"  "N" "sp3" }
+>> 	{ "n8"  "N" "sp3" }
+>> 	{ "n9"  "N" "sp3" }
+>> 	{ "na"  "N" "sp2" }
+>> 	{ "nb"  "N" "sp2" }
+>> 	{ "nc"  "N" "sp2" }
+>> 	{ "nd"  "N" "sp2" }
+>> 	{ "ne"  "N" "sp2" }
+>> 	{ "nf"  "N" "sp2" }
+>> 	{ "nh"  "N" "sp2" }
+>> 	{ "ni"  "N" "sp2" }
+>> 	{ "nj"  "N" "sp2" }
+>> 	{ "nk"  "N" "sp3" }
+>> 	{ "nl"  "N" "sp3" }
+>> 	{ "nm"  "N" "sp2" }
+>> 	{ "nn"  "N" "sp2" }
+>> 	{ "no"  "N" "sp2" }
+>> 	{ "np"  "N" "sp3" }
+>> 	{ "nq"  "N" "sp3" }
+>> 	{ "ns"  "N" "sp2" }
+>> 	{ "nt"  "N" "sp2" }
+>> 	{ "nu"  "N" "sp2" }
+>> 	{ "nv"  "N" "sp2" }
+>> 	{ "nx"  "N" "sp3" }
+>> 	{ "ny"  "N" "sp3" }
+>> 	{ "nz"  "N" "sp3" }
+>> 	{ "n+"  "N" "sp3" }
+>> 	{ "s"   "S" "sp2" }
+>> 	{ "s2"   "S" "sp2" }
+>> 	{ "s3"   "S" "sp3" }
+>> 	{ "s4"   "S" "sp3" }
+>> 	{ "s6"   "S" "sp3" }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+(UNKNOWN ATOM TYPE: c5)
+(UNKNOWN ATOM TYPE: c6)
+> 
+> addAtomTypes {
+>   { "c5" "C" "sp3" }
+>   { "c6" "C" "sp3" }
+> }
+> loadamberparams monomer.frcmod
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> MON = loadmol2 res_MON.mol2
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+> MNF = loadmol2 res_MNF.mol2
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+> MNL = loadmol2 res_MNL.mol2
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+> CPH = loadmol2 res_CPH.mol2
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+> CPT = loadmol2 res_CPT.mol2
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+> chain = loadpdb chain_s4.pdb
+Loading PDB file: ./chain_s4.pdb
+Matching PDB residue names to LEaP variables.
+  total atoms in file: 556
+> check chain
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 0.926 angstroms between nonbonded atoms H9 and H25
+-------  .R<MON 5>.A<H9 36> and .R<MON 10>.A<H25 50>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.297 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 5>.A<H6 33> and .R<MON 6>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.433 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 6>.A<H6 33> and .R<MON 7>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.211 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 7>.A<H6 33> and .R<MON 8>.A<H2 31>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 4
+Unit is OK.
+> charge chain
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> saveamberparm chain chain_s4.prmtop chain_s4.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 4; Notes = 0.

@@ -1,0 +1,14 @@
+=== ARC RESP pipeline step 6: two-stage RESP fit ===
+Mon Sep 21 21:55:48 CDT 2026
+/work/wrz135/callmann-tyler-md
+c124
+Lmod has detected the following error: The following module(s) are unknown: "ambertools"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "ambertools"
+
+Also make sure that all modulefiles written in TCL start with the string #%Module
+
+
+

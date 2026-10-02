@@ -1,0 +1,82 @@
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/prep to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/lib to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/parm to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/cmd to search path.
+-f: Source flip_3.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./flip_3.in
+----- Source: /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2
+----- Source of /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+Loading PDB file: ./chain_s3.pdb
+  total atoms in file: 556
+Checking 'chain'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.011 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 4>.A<H6 33> and .R<MON 5>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.292 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 5>.A<H6 33> and .R<MON 6>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.430 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 6>.A<H6 33> and .R<MON 7>.A<H2 31>
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.248 angstroms between nonbonded atoms H6 and H2
+-------  .R<MON 9>.A<H6 33> and .R<MON 10>.A<H2 31>
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 4
+Unit is OK.
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 52 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	1
+	CPT	1
+	MNF	1
+	MNL	1
+	MON	8
+  )
+ (no restraints)
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 4; Notes = 0.

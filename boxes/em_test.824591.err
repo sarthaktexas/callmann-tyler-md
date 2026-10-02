@@ -1,0 +1,1 @@
+/var/spool/slurm/d/job824591/slurm_script: line 20: 244638 Illegal instruction     (core dumped) gmx grompp -f em.mdp -c sys_1to1.gro -p sys_1to1.top -o em_1.tpr -maxwarn 1

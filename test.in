@@ -1,0 +1,15 @@
+source leaprc.gaff2
+addAtomTypes {
+  { "c5" "C" "sp3" }
+  { "c6" "C" "sp3" }
+}
+loadamberparams monomer.frcmod
+MON = loadmol2 monomer_resid.mol2
+mono = sequence { MON }
+check mono
+dimer = sequence { MON MON }
+check dimer
+charge dimer
+savepdb dimer dimer.pdb
+saveamberparm dimer dimer.prmtop dimer.inpcrd
+quit

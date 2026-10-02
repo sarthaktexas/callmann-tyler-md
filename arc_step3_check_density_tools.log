@@ -1,0 +1,43 @@
+=== ARC RESP pipeline step 3: check density + tool availability ===
+Mon Sep 21 21:08:05 CDT 2026
+/work/wrz135/callmann-tyler-md
+c124
+Recorded density job id: 816117
+slurm_load_jobs error: Invalid job id specified
+JobID                         JobName      State ExitCode    Elapsed     MaxRSS 
+------------ ------------------------ ---------- -------- ---------- ---------- 
+816117                 monomer_hf_den  COMPLETED      0:0   00:08:52            
+816117.batch                    batch  COMPLETED      0:0   00:08:52    164824K 
+816117.exte+                   extern  COMPLETED      0:0   00:08:52       872K 
+
+=== ORCA density completion checks ===
+               *           SCF CONVERGED AFTER  13 CYCLES          *
+                             ****ORCA TERMINATED NORMALLY****
+Density job completed and monomer_hf_density.gbw exists.
+
+=== ORCA helper tools ===
+orca_2mkl: /apps/orca/6.0.1/orca_2mkl
+orca_vpot: /apps/orca/6.0.1/orca_vpot
+Reading the input file monomer_hf_density.gbw               ... done
+Writing the output file monomer_hf_density.molden.input     ... done
+-rw-------. 1 wrz135 wrz135 2.8M Sep 21 20:41 monomer_hf_density.gbw
+-rw-------. 1 wrz135 wrz135 5.7M Sep 21 21:08 monomer_hf_density.molden.input
+
+=== Multiwfn availability ===
+No module(s) or extension(s) found!
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+
+
+No loadable Multiwfn module found.
+
+=== AmberTools availability ===
+Current resp: 
+Current antechamber: 
+
+DONE step 3.

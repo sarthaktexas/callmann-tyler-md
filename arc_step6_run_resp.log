@@ -1,0 +1,182 @@
+=== ARC RESP pipeline step 6: two-stage RESP fit ===
+Mon Sep 21 22:11:58 CDT 2026
+/work/wrz135/callmann-tyler-md
+c124
+Regenerating monomer_resp.esp with current converter.
+wrote monomer_resp.esp with 61 atoms and 3151 ESP points
+resp: /home/wrz135/.conda/envs/ambertools/bin/resp
+wrote RESP inputs for 61 atoms; stage-2 constrained atoms: 8
+
+=== resp_stage1.in ===
+Stage 1 RESP fit
+ &cntrl
+  nmol = 1,
+  ihfree = 1,
+  iqopt = 1,
+  iunits = 1,
+  qwt = 0.000500
+ &end
+  1.0
+Monomer
+    0   61
+    8    0
+    6    0
+    6    0
+    1    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    1    0
+    7    0
+    6    0
+    6    0
+    6    0
+    6    0
+    8    0
+    6    0
+    6    0
+    8    0
+    6    0
+    6    0
+    8    0
+    8    0
+    6    0
+    8    0
+    6    0
+    8    0
+    6    0
+    8    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+
+
+=== monomer_resp.esp header ===
+   61 3151
+                   -5.1515265E+00   5.0518857E+00   3.3252107E+00
+                   -4.7771413E+00   2.8584665E+00   2.9916857E+00
+                   -6.7044035E+00   7.4955701E-01   3.1119987E+00
+                   -7.4068315E+00   6.6592657E-01   5.0343299E+00
+wrote RESP inputs for 61 atoms; stage-2 constrained atoms: 8
+
+=== resp_stage2.in ===
+Stage 2 RESP fit
+ &cntrl
+  nmol = 1,
+  ihfree = 1,
+  iqopt = 2,
+  iunits = 1,
+  qwt = 0.001000
+ &end
+  1.0
+Monomer
+    0   61
+    8    0
+    6    0
+    6    0
+    1    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    6    0
+    1    0
+    7    0
+    6    0
+    6    0
+    6    0
+    6    0
+    8    0
+    6    0
+    6    0
+    8    0
+    6    0
+    6    0
+    8    0
+    8    0
+    6    0
+    8    0
+    6    0
+    8    0
+    6    0
+    8    0
+    1    0
+    1    0
+    1    0
+    1   35
+    1    0
+    1   37
+    1    0
+    1    0
+    1    0
+    1   41
+    1    0
+    1   43
+    1    0
+    1   45
+    1    0
+    1   47
+    1    0
+    1   49
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+    1   55
+    1    0
+    1    0
+    1    0
+    1    0
+    1    0
+
+wrote resp_charges_stage2.dat; charge sum = -0.0000010000
+
+=== Charge sum ===
+# charge_sum -0.0000010000
+awk charge_sum -0.0000010000
+
+=== Outputs ===
+-rw-------. 1 wrz135 wrz135 1.3K Sep 21 22:12 resp_charges_stage2.dat
+-rw-------. 1 wrz135 wrz135  798 Sep 21 22:11 resp_stage1.in
+-rw-------. 1 wrz135 wrz135  12K Sep 21 22:11 resp_stage1.out
+-rw-------. 1 wrz135 wrz135  618 Sep 21 22:11 resp_stage1.qout
+-rw-------. 1 wrz135 wrz135  798 Sep 21 22:11 resp_stage2.in
+-rw-------. 1 wrz135 wrz135  12K Sep 21 22:11 resp_stage2.out
+-rw-------. 1 wrz135 wrz135  618 Sep 21 22:11 resp_stage2.qout
+
+DONE step 6.

@@ -1,0 +1,42 @@
+=== ARC RESP pipeline step 5: ORCA vpot ESP generation ===
+Mon Sep 21 21:45:54 CDT 2026
+/work/wrz135/callmann-tyler-md
+c124
+wrote monomer_resp.vpot.xyz with 3151 ESP points
+Available ORCA density-container entries:
+
+
+The DensityContainer provides the following densities:
+
+
+---------------------
+List of density names
+---------------------
+
+Index:                                                   Name of Density
+------------------------------------------------------------------------
+    0:                                           monomer_hf_density.scfp
+
+
+------------------------------------------------------------------------------
+                      ORCA ELECTROSTATIC POTENTIAL GENERATION
+------------------------------------------------------------------------------
+
+GBW file                           ... monomer_hf_density.gbw
+File with points to evaluate V(r)  ... monomer_resp.vpot.xyz
+Output file                        ... monomer_resp.vpot.out
+
+Reading the GBW file               ... done
+Reading the positions              ... done (3151 positions)
+Electrostatic potential evaluated in     3.102 sec
+
+Maximum memory used throughout the entire VPOT-calculation: 4.7 MB
+wrote monomer_resp.esp with 61 atoms and 3151 ESP points
+-rw-------. 1 wrz135 wrz135 203K Sep 21 21:45 monomer_resp.esp
+-rw-------. 1 wrz135 wrz135 308K Sep 21 21:45 monomer_resp.vpot.out
+-rw-------. 1 wrz135 wrz135 151K Sep 21 21:45 monomer_resp.vpot.xyz
+   61  3151
+  -5.1515265E+00   5.0518857E+00   3.3252107E+00
+  -4.7771413E+00   2.8584665E+00   2.9916857E+00
+
+DONE step 5.

@@ -1,0 +1,57 @@
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/prep to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/lib to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/parm to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/cmd to search path.
+-f: Source test_cis.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./test_cis.in
+----- Source: /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2
+----- Source of /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: ./monomer_resid.mol2
+Reading MOLECULE named MON
+Loading PDB file: ./dimer_cis_input.pdb
+  total atoms in file: 110
+Checking 'dimer'....
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Close contact of 1.394 angstroms between nonbonded atoms H7 and H2
+-------  .R<MON 1>.A<H7 34> and .R<MON 2>.A<H2 31>
+Checking parameters for unit 'dimer'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 1
+Unit is OK.
+Writing pdb file: dimer_cis.pdb
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 8 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	MON	2
+  )
+ (no restraints)
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 1; Notes = 0.

@@ -1,0 +1,109 @@
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/prep to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/lib to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/parm to search path.
+-I: Adding /home/wrz135/.conda/envs/ambertools/dat/leap/cmd to search path.
+-f: Source solv_2to1.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./solv_2to1.in
+----- Source: /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2
+----- Source of /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)
+----- Source: /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.water.tip3p
+----- Source of /home/wrz135/.conda/envs/ambertools/dat/leap/cmd/leaprc.water.tip3p done
+Loading library: /home/wrz135/.conda/envs/ambertools/dat/leap/lib/atomic_ions.lib
+Loading library: /home/wrz135/.conda/envs/ambertools/dat/leap/lib/solvents.lib
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/frcmod.tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+This is the additional/replacement parameter set for TIP3P water
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/frcmod.ions1lm_126_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Li/Merz ion parameters of monovalent ions for TIP3P water model (12-6 normal usage set)
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/frcmod.ionsjc_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Monovalent ion parameters for Ewald and TIP3P water from Joung & Cheatham JPCB (2008)
+Loading parameters: /home/wrz135/.conda/envs/ambertools/dat/leap/parm/frcmod.ions234lm_126_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Li/Merz ion parameters of divalent to tetravalent ions for TIP3P water model (12-6 normal usage set)
+Loading parameters: ./monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading parameters: ./pyrene.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: ./res_MON.mol2
+Reading MOLECULE named MON
+Loading Mol2 file: ./res_MNF.mol2
+Reading MOLECULE named MNF
+Loading Mol2 file: ./res_MNL.mol2
+Reading MOLECULE named MNL
+Loading Mol2 file: ./res_CPH.mol2
+Reading MOLECULE named CPH
+Loading Mol2 file: ./res_CPT.mol2
+Reading MOLECULE named CPT
+Loading Mol2 file: ./pyrene_gaff2.mol2
+Reading MOLECULE named PYR
+Loading PDB file: ./sys_2to1.pdb
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Warning!
+Name change in pdb file residue 1 ;
+this residue is split into PYR and CPH.
+
+/home/wrz135/.conda/envs/ambertools/bin/teLeap: Note.
+1 residues had naming warnings.
+Thus, there are split residues;
+residue sequence numbers will not correspond to those in the pdb.
+  total atoms in file: 1138
+Checking 'sys'....
+Checking parameters for unit 'sys'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+  Solute vdw bounding box:              56.168 46.737 39.642
+  Total bounding box for atom centers:  80.168 70.737 63.642
+  Solvent unit box:                     18.774 18.774 18.774
+  Total vdw box size:                   83.105 73.396 66.822 angstroms.
+  Volume: 407582.397 A^3 
+  Total mass 197320.616 amu,  Density 0.804 g/cc
+  Added 10497 residues.
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 120 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CPH	2
+	CPT	2
+	MNF	2
+	MNL	2
+	MON	16
+	PYR	1
+	WAT	10497
+  )
+ (no restraints)
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 1; Notes = 1.
