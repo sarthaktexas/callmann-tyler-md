@@ -3,8 +3,8 @@ addAtomTypes {
   { "c5" "C" "sp3" }
   { "c6" "C" "sp3" }
 }
-loadamberparams monomer.frcmod
-MON = loadmol2 monomer_resid.mol2
+loadamberparams ../../params/gaff2/monomer.frcmod
+MON = loadmol2 ../../params/gaff2/monomer_resid.mol2
 mono = sequence { MON }
 check mono
 dimer = sequence { MON MON }

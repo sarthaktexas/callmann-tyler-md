@@ -1,0 +1,17 @@
+source leaprc.gaff2
+addAtomTypes {
+  { "c5" "C" "sp3" }
+  { "c6" "C" "sp3" }
+}
+loadamberparams ../../params/gaff2/monomer.frcmod
+MON = loadmol2 ../../params/gaff2/res_MON.mol2
+MNF = loadmol2 ../../params/gaff2/res_MNF.mol2
+MNL = loadmol2 ../../params/gaff2/res_MNL.mol2
+CPH = loadmol2 ../../params/gaff2/res_CPH.mol2
+CPT = loadmol2 ../../params/gaff2/res_CPT.mol2
+chain = sequence { CPH MNF MON MON MON MON MON MON MON MON MNL CPT }
+check chain
+charge chain
+savepdb chain chain.pdb
+saveamberparm chain chain.prmtop chain.inpcrd
+quit

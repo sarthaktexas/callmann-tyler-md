@@ -1,0 +1,11 @@
+.DS_Store
+.codex/
+# local run outputs (keep inputs/scripts)
+local_runs/**/*.cpt
+local_runs/**/*.edr
+local_runs/**/*.trr
+local_runs/**/*.xtc
+local_runs/**/*.tpr
+local_runs/**/*.log
+local_runs/**/mdout.mdp
+local_runs/**/*.partial
