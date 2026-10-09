@@ -1,0 +1,10 @@
+source leaprc.gaff2
+source leaprc.water.tip3p
+loadamberparams pyrene.frcmod
+PYR = loadmol2 pyrene_gaff2.mol2
+sys = loadpdb pyrene_gaff2.pdb
+check sys
+charge sys
+solvatebox sys TIP3PBOX 28.0
+saveamberparm sys sys_pyronly.prmtop sys_pyronly.inpcrd
+quit
