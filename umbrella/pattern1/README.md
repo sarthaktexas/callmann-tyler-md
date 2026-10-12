@@ -21,14 +21,23 @@ binding free energy ΔG_bind. Pilot checks that the reaction coordinate and wind
 * `make_windows.py` ran on the 20 ps test pull for two windows (0.65, 0.70 nm); the generated window mdp passes grompp.
 * NOT tested: the NPT step, the 2 ns pull, windows above 0.73 nm, any window run, WHAM, and every slurm script on ARC.
   Local speed was too low (about 1 ns/day) to test further.
-* ARC GPU jobs failed within seconds earlier (cause not established). A likely cause is that Slurm gives no log at all when
-  the `--output` directory does not exist, so run `mkdir -p logs` first (the scripts here write to `logs/`). Run `00_probe.sh` first.
+* ARC probe and prep jobs (Oct 9) started on gpu039/gpu040 (A100-PCIE-40GB, EPYC 7F32) and exited after 2-4 s: the module loop found
+  no CUDA GROMACS. ARC has gromacs 2022.4, 2023.3, 2023.3-gpu, 2025.2, mpi/2022.4 and nonmpi/2022.4 (not 2024.2 or 2026.3). 2025.2 reported
+  no CUDA; 2023.3-gpu reported missing libraries. Logs were written, so the earlier "missing logs directory" idea was wrong.
+* Fix in progress: a conda-forge CUDA GROMACS in /work/wrz135/envs/gmx-cuda made by `setup_gmx_env.sh`; `arc_env.sh` uses it first.
+
+## One-time GROMACS install on ARC (login node)
+```
+cd /work/wrz135/callmann-tyler-md/umbrella/pattern1
+bash setup_gmx_env.sh list                    # pick a 2025.x build with cuda_12 in its build string
+bash setup_gmx_env.sh install '<build string>'
+```
 
 ## Run order on ARC
 ```
 cd /work/wrz135/callmann-tyler-md && git pull
 cd umbrella/pattern1 && mkdir -p logs
-sbatch 00_probe.sh                     # 15 min; read logs/probe.*.out / .err
+sbatch 00_probe.sh                     # 30 min limit; read logs/probe.*.out / .err
 sbatch 01_prep_pull.sh                 # EM, NVT, NPT, pull, window tpr files
 sbatch --dependency=afterok:<prep_jobid> 02_umbrella.sh     # 28 windows as an array, 8 at a time
 sbatch --dependency=afterok:<array_jobid> 03_wham.sh
