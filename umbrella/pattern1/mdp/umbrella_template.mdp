@@ -1,7 +1,7 @@
 ; Umbrella window. @D@ = window centre (nm), @K@ = force constant (kJ/mol/nm^2), @SEED@ = velocity seed
 integrator = md
 dt = 0.002
-nsteps = 10000000         ; 20 ns
+nsteps = 25000000         ; 50 ns
 constraints = h-bonds
 constraint-algorithm = lincs
 cutoff-scheme = Verlet

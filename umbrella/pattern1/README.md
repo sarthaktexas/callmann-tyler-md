@@ -12,7 +12,7 @@ binding free energy ΔG_bind. Pilot checks that the reaction coordinate and wind
   `CORE` spans about 2.5 nm, so `pull-group1-pbcatom = 369` is set (GROMACS refuses otherwise).
   The chain is flexible, so this coordinate does not control chain conformation, which can be a source of hysteresis;
   the pilot is meant to show how large that problem is.
-* Starting distance 0.655 nm. Windows: 0.65-1.00 nm every 0.05 nm, then 1.1-3.0 nm every 0.1 nm (28 windows), k = 1000 kJ/mol/nm².
+* Starting distance 0.655 nm. Windows: 0.65-1.00 nm every 0.05 nm, then 1.1-3.0 nm every 0.1 nm (28 windows), k = 1000 kJ/mol/nm², 50 ns per window (the ARC probe ran at about 660 ns/day on an A100, so a window takes roughly 2 h).
   Box size: at 3.0 nm the pyrene and the chain's far end stay more than 2 nm from their periodic images.
 
 ## What was tested locally (Mac, CPU, gromacs 2025.2)
@@ -24,7 +24,8 @@ binding free energy ΔG_bind. Pilot checks that the reaction coordinate and wind
 * ARC probe and prep jobs (Oct 9) started on gpu039/gpu040 (A100-PCIE-40GB, EPYC 7F32) and exited after 2-4 s: the module loop found
   no CUDA GROMACS. ARC has gromacs 2022.4, 2023.3, 2023.3-gpu, 2025.2, mpi/2022.4 and nonmpi/2022.4 (not 2024.2 or 2026.3). 2025.2 reported
   no CUDA; 2023.3-gpu reported missing libraries. Logs were written, so the earlier "missing logs directory" idea was wrong.
-* Fix in progress: a conda-forge CUDA GROMACS in /work/wrz135/envs/gmx-cuda made by `setup_gmx_env.sh`; `arc_env.sh` uses it first.
+* Fixed: conda-forge CUDA GROMACS 2025.2 (`gromacs=2025.2=nompi_cuda_h7ac747b_1`, installed with CONDA_OVERRIDE_CUDA=12.0 from a compute node) in /work/wrz135/envs/gmx-cuda; `arc_env.sh` uses it first.
+  Probe job 836069 on gpu040 (A100-PCIE-40GB, driver 13.20, EPYC 7F32): AVX2_256 build, EM exit 0, NVT exit 0, 657 ns/day for a 5,000-step run.
 
 ## One-time GROMACS install on ARC (login node)
 ```
