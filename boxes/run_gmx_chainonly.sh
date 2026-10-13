@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH --partition=gpu1a100
+#SBATCH --chdir=/work/wrz135/callmann-tyler-md/boxes
 #SBATCH --gres=gpu:1
 #SBATCH --nodes=1
 #SBATCH --ntasks=1

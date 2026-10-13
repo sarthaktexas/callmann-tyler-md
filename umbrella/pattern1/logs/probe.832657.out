@@ -1,0 +1,14 @@
+start Fri Oct  9 12:00:05 CDT 2026
+pwd=/work/wrz135/callmann-tyler-md/umbrella/pattern1
+user=wrz135
+drwx------. 4 wrz135 wrz135 4096 Oct  2 14:37 /work/wrz135
+drwx------. 4 wrz135 wrz135 4096 Oct  9 11:58 /work/wrz135/callmann-tyler-md/umbrella/pattern1
+write ok
+node: gpu039  job: 832657  array task: none
+Model name:          AMD EPYC 7F32 8-Core Processor
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-26df3837-d8c9-310e-43ae-8b24f678ac28)
+skip gromacs/2025.2: no CUDA
+skip gromacs/2026.3: no CUDA
+skip gromacs/2024.2: no CUDA
+skip gromacs/2023.3-gpu: missing libs
+ERROR: no usable CUDA GROMACS module

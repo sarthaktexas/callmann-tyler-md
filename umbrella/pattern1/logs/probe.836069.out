@@ -1,0 +1,45 @@
+start Mon Oct 12 20:03:06 CDT 2026
+pwd=/work/wrz135/callmann-tyler-md/umbrella/pattern1
+user=wrz135
+drwx------. 6 wrz135 wrz135 4096 Oct 11 22:53 /work/wrz135
+drwx------. 5 wrz135 wrz135 4096 Oct 11 23:02 /work/wrz135/callmann-tyler-md/umbrella/pattern1
+write ok
+node: gpu040  job: 836069  array task: none
+Model name:          AMD EPYC 7F32 8-Core Processor
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-c16c98ce-9365-8464-8552-7a0fdb55e78e)
+using conda env /work/wrz135/envs/gmx-cuda (/work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx)
+GROMACS version:     2025.2-conda_forge
+GPU support:         CUDA
+SIMD instructions:   AVX2_256
+CUDA driver:         13.20
+CUDA runtime:        12.60
+GROMACS version:     2025.2-conda_forge
+GPU support:         CUDA
+SIMD instructions:   AVX2_256
+Estimate for the relative computational load of the PME mesh part: 0.24
+
+This run will generate roughly 3 Mb of data
+Potential Energy  = -5.1266962e+05
+Maximum force     =  9.9317493e+02 on atom 86
+Norm of force     =  2.6988305e+01
+
+GROMACS reminds you: "We must have perseverance and above all confidence in ourselves. We must believe that we are gifted for something and that this thing must be attained." (Marie Curie)
+
+EM exit: 0
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 3 Mb of data
+Writing final coordinates.
+
+NOTE: 10 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:       10.511        1.314      799.7
+                 (ns/day)    (hour/ns)
+Performance:      657.462        0.037
+
+GROMACS reminds you: "Science is organized knowledge. Wisdom is organized life." (Immanuel Kant)
+
+NVT exit: 0
+end Mon Oct 12 20:03:34 CDT 2026

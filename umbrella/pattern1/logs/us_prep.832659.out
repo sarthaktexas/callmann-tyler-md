@@ -1,0 +1,8 @@
+node: gpu040  job: 832659  array task: none
+Model name:          AMD EPYC 7F32 8-Core Processor
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-c16c98ce-9365-8464-8552-7a0fdb55e78e)
+skip gromacs/2025.2: no CUDA
+skip gromacs/2026.3: no CUDA
+skip gromacs/2024.2: no CUDA
+skip gromacs/2023.3-gpu: missing libs
+ERROR: no usable CUDA GROMACS module

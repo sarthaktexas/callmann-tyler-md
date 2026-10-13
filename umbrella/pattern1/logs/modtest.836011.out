@@ -1,0 +1,27 @@
+gpu040
+Model name:          AMD EPYC 7F32 8-Core Processor
+avx512 flags on this CPU: 
+NVIDIA A100-PCIE-40GB, 595.45.04
+
+######## gromacs/2025.2
+binary: none
+
+######## gromacs/2023.3-gpu
+binary: none
+
+######## gromacs/2023.3
+binary: none
+
+######## gromacs/2022.4
+Lmod has detected the following error: The following module(s) are unknown:
+"gromacs/2022.4"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+binary: none
+
+######## gromacs/mpi/2022.4
+binary: none
+
+######## gromacs/nonmpi/2022.4
+binary: none
