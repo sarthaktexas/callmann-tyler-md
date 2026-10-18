@@ -1,0 +1,1159 @@
+node: gpu039  job: 837755  array task: none
+Model name:          AMD EPYC 7F32 8-Core Processor
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-26df3837-d8c9-310e-43ae-8b24f678ac28)
+using conda env /work/wrz135/envs/gmx-cuda (/work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx)
+GROMACS version:     2025.2-conda_forge
+GPU support:         CUDA
+SIMD instructions:   AVX2_256
+CUDA driver:         13.20
+CUDA runtime:        12.60
+Setting the LD random seed to -340300387
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+The largest distance between excluded atoms is 0.410 nm between atom 317 and 320
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.24
+
+This run will generate roughly 3 Mb of data
+Setting the LD random seed to -225057347
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.400 nm between atom 423 and 475
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 5 Mb of data
+Setting the LD random seed to -270582285
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Taking velocities from 'nvt.gro'
+
+The largest distance between excluded atoms is 0.408 nm between atom 432 and 436
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+
+Reading Coordinates, Velocities and Box size from old trajectory
+
+Will read whole trajectory
+
+Using frame at t = 100 ps
+
+Starting time for run is 0 ps
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 21 Mb of data
+Setting the LD random seed to -35475
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Taking velocities from 'npt.gro'
+
+The largest distance between excluded atoms is 0.406 nm between atom 423 and 475
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+
+Reading Coordinates, Velocities and Box size from old trajectory
+
+Will read whole trajectory
+
+Using frame at t = 1000 ps
+
+Starting time for run is 0 ps
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 167 Mb of data
+pull distance range 0.643 - 3.157 nm over 1001 frames
+00 0.650 frame_t=2.0 ps start_d=0.650
+01 0.700 frame_t=120.0 ps start_d=0.700
+02 0.750 frame_t=94.0 ps start_d=0.750
+03 0.800 frame_t=216.0 ps start_d=0.800
+04 0.850 frame_t=266.0 ps start_d=0.851
+05 0.900 frame_t=292.0 ps start_d=0.903
+06 0.950 frame_t=288.0 ps start_d=0.934
+07 1.000 frame_t=322.0 ps start_d=1.003
+08 1.100 frame_t=348.0 ps start_d=1.100
+09 1.200 frame_t=458.0 ps start_d=1.202
+10 1.300 frame_t=512.0 ps start_d=1.303
+11 1.400 frame_t=672.0 ps start_d=1.400
+12 1.500 frame_t=704.0 ps start_d=1.499
+13 1.600 frame_t=846.0 ps start_d=1.601
+14 1.700 frame_t=870.0 ps start_d=1.699
+15 1.800 frame_t=994.0 ps start_d=1.804
+16 1.900 frame_t=1022.0 ps start_d=1.904
+17 2.000 frame_t=1090.0 ps start_d=2.003
+18 2.100 frame_t=1152.0 ps start_d=2.101
+19 2.200 frame_t=1276.0 ps start_d=2.201
+20 2.300 frame_t=1342.0 ps start_d=2.299
+21 2.400 frame_t=1454.0 ps start_d=2.399
+22 2.500 frame_t=1550.0 ps start_d=2.499
+23 2.600 frame_t=1528.0 ps start_d=2.601
+24 2.700 frame_t=1748.0 ps start_d=2.705
+25 2.800 frame_t=1658.0 ps start_d=2.801
+26 2.900 frame_t=1876.0 ps start_d=2.903
+27 3.000 frame_t=1936.0 ps start_d=3.000
+Setting the LD random seed to -34766849
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.404 nm between atom 432 and 436
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -1513096342
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.411 nm between atom 97 and 100
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -85458969
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.412 nm between atom 42 and 45
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -71169
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.405 nm between atom 207 and 210
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 1874836208
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.410 nm between atom 487 and 491
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -155371602
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.407 nm between atom 207 and 210
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -385955875
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.410 nm between atom 537 and 540
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -1126531
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.405 nm between atom 313 and 365
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -109215747
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.409 nm between atom 423 and 475
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -1073752067
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.406 nm between atom 267 and 271
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 1481285115
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.408 nm between atom 423 and 475
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 1518333935
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.402 nm between atom 207 and 210
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 1065340911
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.404 nm between atom 322 and 326
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 2147430392
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.407 nm between atom 423 and 475
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -1073857026
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.405 nm between atom 537 and 540
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -688288529
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.409 nm between atom 212 and 216
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 1021190077
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.406 nm between atom 207 and 210
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -83914769
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.404 nm between atom 204 and 254
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -1090537509
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.407 nm between atom 317 and 320
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -41046441
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.408 nm between atom 537 and 540
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 938431852
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.405 nm between atom 267 and 271
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -547882006
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.403 nm between atom 157 and 161
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -9281
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.404 nm between atom 313 and 365
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -609272089
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.411 nm between atom 322 and 326
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to 1319622398
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.406 nm between atom 262 and 265
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -342403171
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.406 nm between atom 207 and 210
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -1504223243
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.409 nm between atom 423 and 475
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+Setting the LD random seed to -47114
+
+Generated 153 of the 153 non-bonded parameter combinations
+
+Generated 153 of the 153 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'PYR'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+turning H bonds into constraints...
+
+Excluding 3 bonded neighbours molecule type 'WAT'
+
+turning H bonds into constraints...
+
+Velocities were taken from a Maxwell distribution at 300 K
+
+The largest distance between excluded atoms is 0.404 nm between atom 423 and 475
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.035 nm, buffer size 0.035 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 60x60x60, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.26
+
+This run will generate roughly 104 Mb of data
+PREP DONE: 28 windows

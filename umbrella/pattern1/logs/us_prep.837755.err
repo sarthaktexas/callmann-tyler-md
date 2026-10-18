@@ -1,0 +1,738 @@
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f mdp/em.mdp -c sys_pull.gro -p sys_pull.top -n index.ndx -o em.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group rest is 67875.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+GROMACS reminds you: "And You Will Know That My Name is the Lord When I Lay My Vengeance Upon Thee." (Pulp Fiction)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx mdrun -deffnm em -ntmpi 1 -ntomp 8 -nb gpu
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file em.tpr, VERSION 2025.2-conda_forge (single precision)
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 1 GPU task in the 1 rank on this node:
+  PP:0
+PP tasks will do (non-perturbed) short-ranged interactions on the GPU
+PP task will update and constrain coordinates on the CPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+
+Steepest Descents:
+   Tolerance (Fmax)   =  1.00000e+03
+   Number of steps    =        50000
+
+writing lowest energy coordinates.
+
+Steepest Descents converged to Fmax < 1000 in 460 steps
+Potential Energy  = -5.1266831e+05
+Maximum force     =  9.9280444e+02 on atom 86
+Norm of force     =  2.6989519e+01
+
+GROMACS reminds you: "Once Again Let Me Do This" (Urban Dance Squad)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f mdp/nvt.mdp -c em.gro -p sys_pull.top -n index.ndx -o nvt.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group System is 67591.00
+
+GROMACS reminds you: "Your Country Needs YOU" (U.S. Army)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx mdrun -deffnm nvt -ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file nvt.tpr, VERSION 2025.2-conda_forge (single precision)
+Changing nstlist from 10 to 100, rlist from 1 to 1.161
+
+
+Update groups can not be used for this system because atoms that are (in)directly constrained together are interdispersed with other atoms
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+starting mdrun 'Generic title'
+50000 steps,    100.0 ps.
+
+Writing final coordinates.
+
+NOTE: 10 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:      102.118       12.770      799.7
+                 (ns/day)    (hour/ns)
+Performance:      676.589        0.035
+
+GROMACS reminds you: "Never, I said never, compare with experiment" (Magnus Bergh)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f mdp/npt.mdp -c nvt.gro -t nvt.cpt -p sys_pull.top -n index.ndx -o npt.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Last frame         -1 time  100.000   
+
+GROMACS reminds you: "It was something to at least have a choice of nightmares" (Joseph Conrad)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx mdrun -deffnm npt -ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file npt.tpr, VERSION 2025.2-conda_forge (single precision)
+Changing nstlist from 10 to 100, rlist from 1 to 1.161
+
+
+Update groups can not be used for this system because atoms that are (in)directly constrained together are interdispersed with other atoms
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+starting mdrun 'Generic title'
+500000 steps,   1000.0 ps.
+
+Writing final coordinates.
+
+NOTE: 14 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:     1024.536      128.070      800.0
+                 (ns/day)    (hour/ns)
+Performance:      674.631        0.036
+
+GROMACS reminds you: "If There Is No Guitar In The House, You Know It's Owner Can Not Be Trusted" (Gogol Bordello)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f mdp/pull.mdp -c npt.gro -t npt.cpt -p sys_pull.top -n index.ndx -o pull.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Last frame         -1 time 1000.000   
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.688 nm          0.688 nm
+
+GROMACS reminds you: "If There Is No Guitar In The House, You Know It's Owner Can Not Be Trusted" (Gogol Bordello)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx mdrun -deffnm pull -ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu -px pull_pullx -pf pull_pullf
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file pull.tpr, VERSION 2025.2-conda_forge (single precision)
+Changing nstlist from 10 to 100, rlist from 1 to 1.161
+
+
+Update groups can not be used for this system because atoms that are (in)directly constrained together are interdispersed with other atoms
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+starting mdrun 'Generic title'
+1000000 steps,   2000.0 ps.
+
+Writing final coordinates.
+
+NOTE: 15 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:     2088.462      261.062      800.0
+                 (ns/day)    (hour/ns)
+Performance:      661.914        0.036
+
+GROMACS reminds you: "Correctomundo" (Pulp Fiction)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_00.mdp -c windows/conf_00.gro -p sys_pull.top -n index.ndx -o windows/us_00.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.650 nm          0.650 nm
+
+GROMACS reminds you: "I will not be a lemming and follow the crowd over the cliff and into the C." (John Beidler)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_01.mdp -c windows/conf_01.gro -p sys_pull.top -n index.ndx -o windows/us_01.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.699 nm          0.700 nm
+
+GROMACS reminds you: "I will not be a lemming and follow the crowd over the cliff and into the C." (John Beidler)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_02.mdp -c windows/conf_02.gro -p sys_pull.top -n index.ndx -o windows/us_02.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.750 nm          0.750 nm
+
+GROMACS reminds you: "I will not be a lemming and follow the crowd over the cliff and into the C." (John Beidler)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_03.mdp -c windows/conf_03.gro -p sys_pull.top -n index.ndx -o windows/us_03.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.800 nm          0.800 nm
+
+GROMACS reminds you: "I will not be a lemming and follow the crowd over the cliff and into the C." (John Beidler)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_04.mdp -c windows/conf_04.gro -p sys_pull.top -n index.ndx -o windows/us_04.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.851 nm          0.850 nm
+
+GROMACS reminds you: "I will not be a lemming and follow the crowd over the cliff and into the C." (John Beidler)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_05.mdp -c windows/conf_05.gro -p sys_pull.top -n index.ndx -o windows/us_05.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.903 nm          0.900 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_06.mdp -c windows/conf_06.gro -p sys_pull.top -n index.ndx -o windows/us_06.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       0.934 nm          0.950 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_07.mdp -c windows/conf_07.gro -p sys_pull.top -n index.ndx -o windows/us_07.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.003 nm          1.000 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_08.mdp -c windows/conf_08.gro -p sys_pull.top -n index.ndx -o windows/us_08.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.100 nm          1.100 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_09.mdp -c windows/conf_09.gro -p sys_pull.top -n index.ndx -o windows/us_09.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.202 nm          1.200 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_10.mdp -c windows/conf_10.gro -p sys_pull.top -n index.ndx -o windows/us_10.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.303 nm          1.300 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_11.mdp -c windows/conf_11.gro -p sys_pull.top -n index.ndx -o windows/us_11.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.400 nm          1.400 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_12.mdp -c windows/conf_12.gro -p sys_pull.top -n index.ndx -o windows/us_12.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.499 nm          1.500 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_13.mdp -c windows/conf_13.gro -p sys_pull.top -n index.ndx -o windows/us_13.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.601 nm          1.600 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_14.mdp -c windows/conf_14.gro -p sys_pull.top -n index.ndx -o windows/us_14.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.699 nm          1.700 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_15.mdp -c windows/conf_15.gro -p sys_pull.top -n index.ndx -o windows/us_15.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.804 nm          1.800 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_16.mdp -c windows/conf_16.gro -p sys_pull.top -n index.ndx -o windows/us_16.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       1.903 nm          1.900 nm
+
+GROMACS reminds you: "I originally implemented PME to prove that you didn't need it..." (Erik Lindahl)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_17.mdp -c windows/conf_17.gro -p sys_pull.top -n index.ndx -o windows/us_17.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.003 nm          2.000 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_18.mdp -c windows/conf_18.gro -p sys_pull.top -n index.ndx -o windows/us_18.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.101 nm          2.100 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_19.mdp -c windows/conf_19.gro -p sys_pull.top -n index.ndx -o windows/us_19.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.201 nm          2.200 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_20.mdp -c windows/conf_20.gro -p sys_pull.top -n index.ndx -o windows/us_20.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.299 nm          2.300 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_21.mdp -c windows/conf_21.gro -p sys_pull.top -n index.ndx -o windows/us_21.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.399 nm          2.400 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_22.mdp -c windows/conf_22.gro -p sys_pull.top -n index.ndx -o windows/us_22.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.499 nm          2.500 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_23.mdp -c windows/conf_23.gro -p sys_pull.top -n index.ndx -o windows/us_23.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.601 nm          2.600 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_24.mdp -c windows/conf_24.gro -p sys_pull.top -n index.ndx -o windows/us_24.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.705 nm          2.700 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_25.mdp -c windows/conf_25.gro -p sys_pull.top -n index.ndx -o windows/us_25.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.801 nm          2.800 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_26.mdp -c windows/conf_26.gro -p sys_pull.top -n index.ndx -o windows/us_26.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       2.903 nm          2.900 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1
+Command line:
+  gmx grompp -f windows/umbrella_27.mdp -c windows/conf_27.gro -p sys_pull.top -n index.ndx -o windows/us_27.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Pull group 1 'CORE' has 120 atoms
+Pull group 2 'PYRENE' has 26 atoms
+Number of degrees of freedom in T-Coupling group System is 67591.00
+Pull group  natoms  pbc atom  distance at start  reference at t=0
+       1       120       369
+       2        26        13       3.000 nm          3.000 nm
+
+GROMACS reminds you: "The public have an insatiable curiosity to know everything, except what is worth knowing." (Oscar Wilde)
+

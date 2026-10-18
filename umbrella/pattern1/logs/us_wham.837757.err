@@ -1,0 +1,73 @@
+/work/wrz135/callmann-tyler-md/umbrella/pattern1/arc_env.sh: line 8: nvidia-smi: command not found
+                 :-) GROMACS - gmx wham, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1/wham
+Command line:
+  gmx wham -it tpr-files.dat -ix pullx-files.dat -o profile.xvg -hist histo.xvg -unit kJ -b 2000 -bsres bsres.xvg -nBootstrap 50 -bs-method b-hist -zprof0 3.0 -temp 300
+
+Reading file ../windows/us_00.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_01.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_02.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_03.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_04.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_05.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_06.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_07.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_08.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_09.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_10.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_11.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_12.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_13.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_14.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_15.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_16.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_17.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_18.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_19.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_20.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_21.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_22.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_23.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_24.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_25.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_26.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_27.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_00.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_01.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_02.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_03.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_04.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_05.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_06.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_07.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_08.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_09.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_10.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_11.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_12.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_13.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_14.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_15.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_16.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_17.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_18.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_19.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_20.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_21.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_22.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_23.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_24.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_25.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_26.tpr, VERSION 2025.2-conda_forge (single precision)
+Reading file ../windows/us_27.tpr, VERSION 2025.2-conda_forge (single precision)
+Warning, poor sampling bin 195 (z=3.16455). Check your histograms!
+Warning, poor sampling bin 196 (z=3.17832). Check your histograms!
+Warning, poor sampling bin 197 (z=3.19209). Check your histograms!
+Warning, poor sampling bin 198 (z=3.20586). Check your histograms!
+Warning, poor sampling bin 199 (z=3.21964). Check your histograms!
+
+GROMACS reminds you: "Mathematics is a game played according to certain rules with meaningless marks on paper." (David Hilbert)
+

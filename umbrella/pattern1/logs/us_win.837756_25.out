@@ -1,0 +1,10 @@
+node: gpu040  job: 840218  array task: 25
+Model name:          AMD EPYC 7F32 8-Core Processor
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-c16c98ce-9365-8464-8552-7a0fdb55e78e)
+using conda env /work/wrz135/envs/gmx-cuda (/work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx)
+GROMACS version:     2025.2-conda_forge
+GPU support:         CUDA
+SIMD instructions:   AVX2_256
+CUDA driver:         13.20
+CUDA runtime:        12.60
+WINDOW 25 DONE

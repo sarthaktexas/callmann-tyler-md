@@ -1,0 +1,46 @@
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/umbrella/pattern1/windows
+Command line:
+  gmx mdrun -deffnm us_04 -ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu -cpt 15 -maxh 7.5 -px us_04_pullx -pf us_04_pullf
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file us_04.tpr, VERSION 2025.2-conda_forge (single precision)
+Changing nstlist from 10 to 100, rlist from 1 to 1.161
+
+
+Update groups can not be used for this system because atoms that are (in)directly constrained together are interdispersed with other atoms
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+starting mdrun 'Generic title'
+25000000 steps,  50000.0 ps.
+
+Writing final coordinates.
+
+NOTE: 15 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:    51527.276     6440.918      800.0
+                         1h47:20
+                 (ns/day)    (hour/ns)
+Performance:      670.712        0.036
+
+GROMACS reminds you: "To survive science you have to become science." (Gerrit Groenhof)
+
