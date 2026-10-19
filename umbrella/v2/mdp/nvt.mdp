@@ -1,0 +1,20 @@
+; 100 ps NVT, new solvent around bound solute
+integrator = md
+dt = 0.002
+nsteps = 50000
+constraints = h-bonds
+constraint-algorithm = lincs
+cutoff-scheme = Verlet
+coulombtype = PME
+rcoulomb = 1.0
+rvdw = 1.0
+tcoupl = v-rescale
+tc-grps = System
+tau-t = 0.1
+ref-t = 300
+gen-vel = yes
+gen-temp = 300
+gen-seed = 1
+pcoupl = no
+pbc = xyz
+nstxout-compressed = 5000

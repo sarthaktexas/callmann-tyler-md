@@ -1,0 +1,44 @@
+; Umbrella window. @D@ centre (nm), @K@ force constant, @SEED@ velocity seed, @NSTEPS@ length (steps).
+; The early part of each near window is pre-equilibration and is DISCARDED in analysis (see windows_<dir>.txt, column equil_ns).
+integrator = md
+dt = 0.002
+constraints = h-bonds
+constraint-algorithm = lincs
+cutoff-scheme = Verlet
+coulombtype = PME
+rcoulomb = 1.0
+rvdw = 1.0
+tcoupl = v-rescale
+tc-grps = System
+tau-t = 0.1
+ref-t = 300
+pbc = xyz
+nsteps = @NSTEPS@
+pcoupl = c-rescale
+pcoupltype = isotropic
+tau-p = 2.0
+ref-p = 1.0
+compressibility = 4.5e-5
+gen-vel = yes
+gen-temp = 300
+gen-seed = @SEED@
+nstxout-compressed = 5000   ; 10 ps, solute only
+compressed-x-grps = SOLUTE
+nstenergy = 5000
+pull = yes
+pull-ncoords = 1
+pull-ngroups = 2
+pull-group1-name = CORE
+pull-group2-name = PYRENE
+pull-group1-pbcatom = 369   ; core atom closest to the middle of the CORE group
+pull-pbc-ref-prev-step-com = yes   ; chain starts extended, so the CORE group can span > half the pull box; reference = previous-step COM
+pull-coord1-type = umbrella
+pull-coord1-geometry = distance
+pull-coord1-groups = 1 2
+pull-coord1-dim = Y Y Y
+pull-coord1-start = no
+pull-coord1-init = @D@
+pull-coord1-rate = 0
+pull-coord1-k = @K@
+pull-nstxout = 500          ; 1 ps
+pull-nstfout = 500

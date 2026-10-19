@@ -1,0 +1,35 @@
+; Slow steered pull-out (bound -> unbound), 0.0002 nm/ps. Seeds the "out" windows. @NSTEPS@ is set by plan_pull.py.
+integrator = md
+dt = 0.002
+constraints = h-bonds
+constraint-algorithm = lincs
+cutoff-scheme = Verlet
+coulombtype = PME
+rcoulomb = 1.0
+rvdw = 1.0
+tcoupl = v-rescale
+tc-grps = System
+tau-t = 0.1
+ref-t = 300
+pbc = xyz
+nsteps = @NSTEPS@
+pcoupl = no
+continuation = yes
+nstxout-compressed = 10000
+nstenergy = 10000
+pull = yes
+pull-ncoords = 1
+pull-ngroups = 2
+pull-group1-name = CORE
+pull-group2-name = PYRENE
+pull-group1-pbcatom = 369   ; core atom closest to the middle of the CORE group
+pull-pbc-ref-prev-step-com = yes   ; chain starts extended, so the CORE group can span > half the pull box; reference = previous-step COM
+pull-coord1-type = umbrella
+pull-coord1-geometry = distance
+pull-coord1-groups = 1 2
+pull-coord1-dim = Y Y Y
+pull-coord1-k = 1000
+pull-coord1-start = yes
+pull-coord1-rate = 0.0002
+pull-nstxout = 500
+pull-nstfout = 500
