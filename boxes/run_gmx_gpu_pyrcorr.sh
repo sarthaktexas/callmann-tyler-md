@@ -22,19 +22,31 @@ lscpu | grep "Model name"
 nvidia-smi -L
 
 GMX=""
-for m in gromacs/2025.2 gromacs/2026.3 gromacs/2023.3-gpu gromacs/2024.2; do
+# 1) conda-forge CUDA GROMACS (same env the umbrella pilot used); the site gromacs modules on ARC are not CUDA-usable
+GMX_CONDA_ENV=/work/wrz135/envs/gmx-cuda
+if [ -d "$GMX_CONDA_ENV" ]; then
+  module purge
+  module load miniconda/24.4.0 >/dev/null 2>&1 || true
+  eval "$(conda shell.bash hook)" 2>/dev/null && conda activate "$GMX_CONDA_ENV" 2>/dev/null
+  g=$(command -v gmx || true)
+  if [ -n "$g" ] && "$g" --version 2>&1 | grep -qi "GPU support: *CUDA" \
+     && "$g" grompp -f em.mdp -c ${SYS}.gro -p ${SYS}_pyrcorr.top -o probe_pc${N}.tpr -maxwarn 1 >/dev/null 2>&1; then
+    GMX=$g; echo "using conda env $GMX_CONDA_ENV ($g)"
+  else echo "conda env present but not usable (no gmx, no CUDA, or grompp failed)"; fi
+fi
+# 2) fallback: site modules
+if [ -z "$GMX" ]; then
+for m in gromacs/2025.2 gromacs/2023.3-gpu; do
   module purge
   module load $m >/dev/null 2>&1 || continue
   g=$(command -v gmx || command -v gmx_mpi || true)
   [ -n "$g" ] || continue
   if ldd "$g" 2>/dev/null | grep -q "not found"; then echo "skip $m: missing libs"; continue; fi
   if ! "$g" --version 2>&1 | grep -qi "GPU support: *CUDA"; then echo "skip $m: no CUDA"; continue; fi
-  if ! "$g" grompp -f em.mdp -c ${SYS}.gro -p ${SYS}_pyrcorr.top -o probe_pc${N}.tpr -maxwarn 1 >/dev/null 2>&1; then echo "skip $m: grompp failed"; continue; fi
-  GMX=$g
-  echo "using $m ($g)"
-  break
+  GMX=$g; echo "using $m ($g)"; break
 done
-[ -n "$GMX" ] || { echo "ERROR: no usable CUDA GROMACS module"; exit 1; }
+fi
+[ -n "$GMX" ] || { echo "ERROR: no usable CUDA GROMACS (conda env or module)"; exit 1; }
 
 MD="-ntomp 8 -nb gpu -pme gpu -bonded gpu"
 
