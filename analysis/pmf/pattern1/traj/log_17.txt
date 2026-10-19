@@ -1,0 +1,1 @@
+window 17 done: mean coverage 0.04, mean Rg 1.03 nm

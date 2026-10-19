@@ -1,0 +1,1 @@
+window 07 done: mean coverage 0.59, mean Rg 1.03 nm

@@ -1,0 +1,1 @@
+window 11 done: mean coverage 0.37, mean Rg 1.04 nm

@@ -1,0 +1,1 @@
+window 15 done: mean coverage 0.16, mean Rg 1.02 nm

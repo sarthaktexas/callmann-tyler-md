@@ -1,0 +1,9 @@
+box sys_1to1 with corrected pyrene RESP charges (sys_1to1_pyrcorr.top); outputs tagged _pc1
+node: gpu040
+Model name:          AMD EPYC 7F32 8-Core Processor
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-c16c98ce-9365-8464-8552-7a0fdb55e78e)
+skip gromacs/2025.2: no CUDA
+skip gromacs/2026.3: no CUDA
+skip gromacs/2023.3-gpu: missing libs
+skip gromacs/2024.2: no CUDA
+ERROR: no usable CUDA GROMACS module

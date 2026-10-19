@@ -1,0 +1,1 @@
+window 16 done: mean coverage 0.08, mean Rg 1.05 nm

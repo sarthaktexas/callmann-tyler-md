@@ -1,0 +1,1 @@
+window 04 done: mean coverage 0.64, mean Rg 1.02 nm

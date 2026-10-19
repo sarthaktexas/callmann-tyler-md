@@ -1,0 +1,1 @@
+window 12 done: mean coverage 0.31, mean Rg 1.06 nm

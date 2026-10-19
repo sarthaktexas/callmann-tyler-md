@@ -1,0 +1,1 @@
+window 13 done: mean coverage 0.30, mean Rg 1.05 nm

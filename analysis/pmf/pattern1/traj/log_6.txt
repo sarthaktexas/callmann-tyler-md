@@ -1,0 +1,1 @@
+window 06 done: mean coverage 0.54, mean Rg 1.05 nm

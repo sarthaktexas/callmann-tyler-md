@@ -1,0 +1,1 @@
+window 10 done: mean coverage 0.42, mean Rg 1.03 nm
