@@ -1,17 +1,17 @@
 ;
 ;	File 'mdout.mdp' was generated
 ;	By user: unknown (1661514461)
-;	On host: c036
-;	At date: Fri Oct  2 15:13:02 2026
+;	On host: gpu040
+;	At date: Mon Oct 19 15:53:32 2026
 ;
 ;	Created by:
-;	                     :-) GROMACS - gmx grompp, 2025.2 (-:
+;	               :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
 ;	
-;	Executable:   /apps/gromacs/2025.2/bin/gmx
-;	Data prefix:  /apps/gromacs/2025.2
+;	Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+;	Data prefix:  /work/wrz135/envs/gmx-cuda
 ;	Working dir:  /work/wrz135/callmann-tyler-md/boxes
 ;	Command line:
-;	  gmx grompp -f em.mdp -c sys_1to1.gro -p sys_1to1.top -o em_1.tpr -maxwarn 1
+;	  gmx grompp -f em.mdp -c sys_2to1.gro -p sys_2to1_pyrcorr.top -o em_pc2.tpr -maxwarn 1
 
 ; VARIOUS PREPROCESSING OPTIONS
 ; Preprocessor information: use cpp syntax.
@@ -175,7 +175,7 @@ annealing-temp           =
 ; GENERATE VELOCITIES FOR STARTUP RUN
 gen-vel                  = no
 gen-temp                 = 300
-gen-seed                 = -17598665
+gen-seed                 = 1868544855
 
 ; OPTIONS FOR BONDS    
 constraints              = none

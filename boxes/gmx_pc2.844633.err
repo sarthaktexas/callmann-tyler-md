@@ -1,0 +1,40 @@
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx grompp -f em.mdp -c sys_2to1.gro -p sys_2to1_pyrcorr.top -o em_pc2.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group rest is 66393.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+GROMACS reminds you: "The message here is that Thermodynamic Integration sucks." (Berk Hess)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx mdrun -deffnm em_pc2 -ntomp 8 -nb gpu
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file em_pc2.tpr, VERSION 2025.2-conda_forge (single precision)
+
+-------------------------------------------------------
+Program:     gmx mdrun, version 2025.2-conda_forge
+Source file: src/gromacs/taskassignment/resourcedivision.cpp (line 227)
+
+Fatal error:
+When using GPUs, setting the number of OpenMP threads without specifying the
+number of ranks can lead to conflicting demands. Please specify the number of
+thread-MPI ranks as well (option -ntmpi).
+
+For more information and tips for troubleshooting, please check the GROMACS
+website at https://manual.gromacs.org/current/user-guide/run-time-errors.html
+-------------------------------------------------------
