@@ -1,28 +1,29 @@
 #!/usr/bin/env bash
-# C1 monomer: everything after the ORCA HF/6-31G* optimisation. Run from params/monomer_c1 after monomer_hf_opt.out/.xyz exist.
+# C1 monomer: everything after the ORCA HF/6-31G* optimisation. Run from params/monomer_c1 after $OPTD/monomer_hf_opt.out/.xyz exist.
 #   bash run_postopt.sh              (refuses an unconverged optimisation)
 #   ALLOW_UNCONVERGED=1 bash run_postopt.sh   plumbing test only; output must NOT be used for MD
 # Needs on PATH: python with rdkit + pyscf (local conda env), AmberTools (antechamber, parmchk2, respgen, resp, tleap).
 # PySCF ESP, standard Amber two-stage RESP, dipole gate, GAFF2, residues, tleap load test. Steps and gates: docs/PROTOCOL_glycomonomer_parameterization.md
 set -euo pipefail
 cd "$(dirname "$0")"
+export OPTD="${OPTD:-hf_opt}"   # folder with the finished ORCA run ($OPTD/monomer_hf_opt.out/.xyz); OPTD=. only for plumbing tests
 SMILES='C=C[C@@H]1C[C@H](C=C)[C@H]2C(=O)N(CCCCO[C@@H]3O[C@H](CO)[C@@H](O)[C@H](O)[C@H]3O)C(=O)[C@H]21'
 NAT=61
 
 echo "== 0. optimisation finished?"
 if [ "${ALLOW_UNCONVERGED:-0}" != 1 ]; then
-  grep -q "THE OPTIMIZATION HAS CONVERGED" monomer_hf_opt.out || { echo "STOP: no 'THE OPTIMIZATION HAS CONVERGED' in monomer_hf_opt.out"; exit 1; }
-  grep -q "ORCA TERMINATED NORMALLY"       monomer_hf_opt.out || { echo "STOP: ORCA did not terminate normally"; exit 1; }
+  grep -q "THE OPTIMIZATION HAS CONVERGED" $OPTD/monomer_hf_opt.out || { echo "STOP: no 'THE OPTIMIZATION HAS CONVERGED' in $OPTD/monomer_hf_opt.out"; exit 1; }
+  grep -q "ORCA TERMINATED NORMALLY"       $OPTD/monomer_hf_opt.out || { echo "STOP: ORCA did not terminate normally"; exit 1; }
 else echo "WARNING: ALLOW_UNCONVERGED=1 (test run, geometry is not an HF minimum)"; fi
-grep -E "FINAL SINGLE POINT ENERGY" monomer_hf_opt.out | tail -1 || true
-echo "optimisation cycles: $(grep -c 'GEOMETRY OPTIMIZATION CYCLE' monomer_hf_opt.out)"
+grep -E "FINAL SINGLE POINT ENERGY" $OPTD/monomer_hf_opt.out | tail -1 || true
+echo "optimisation cycles: $(grep -c 'GEOMETRY OPTIMIZATION CYCLE' $OPTD/monomer_hf_opt.out)"
 
 echo "== G2. optimised geometry still the intended molecule (beta-D, exo, same stereo)"
-python prep_monomer_geometry.py check monomer_hf_opt.xyz --smiles "$SMILES"
-python prep_monomer_geometry.py mdl   monomer_hf_opt.xyz --smiles "$SMILES" -o monomer.mol
+python prep_monomer_geometry.py check $OPTD/monomer_hf_opt.xyz --smiles "$SMILES"
+python prep_monomer_geometry.py mdl   $OPTD/monomer_hf_opt.xyz --smiles "$SMILES" -o monomer.mol
 
 echo "== 4a. ESP (PySCF HF/6-31G*, Cartesian d)"
-python esp_pyscf.py esp monomer_hf_opt.xyz -o monomer_resp.esp
+python esp_pyscf.py esp $OPTD/monomer_hf_opt.xyz -o monomer_resp.esp
 
 echo "== 4b. standard two-stage RESP (Amber respgen)"
 python3 -c "print('\n'.join(['0.0']*$NAT))" > q0.dat
@@ -34,7 +35,8 @@ resp -O -i r2.in -o s2.out -p s2.pch -t s2.qout -q s1.qout -e monomer_resp.esp
 python3 - <<'PY'
 import numpy as np
 q = np.array([float(x) for l in open('s2.qout') for x in l.split()])
-el = [l.split()[0] for l in open('monomer_hf_opt.xyz').read().splitlines()[2:63]]
+import os
+el = [l.split()[0] for l in open(os.path.join(os.environ['OPTD'], 'monomer_hf_opt.xyz')).read().splitlines()[2:63]]
 with open('resp_charges_stage2.dat', 'w') as f:
     f.write('# idx element charge  (standard Amber two-stage RESP, PySCF ESP)\n')
     for i, (e, c) in enumerate(zip(el, q), 1): f.write(f'{i:5d} {e:2s} {c: .8f}\n')
@@ -44,7 +46,7 @@ print('G5 charge sum %.2e' % q.sum())
 PY
 
 echo "== G4. dipole gate"
-python esp_pyscf.py dipole monomer_hf_opt.xyz s2.qout --raw
+python esp_pyscf.py dipole $OPTD/monomer_hf_opt.xyz s2.qout --raw
 
 echo "== 5. GAFF2 typing with final charges"
 antechamber -i monomer.mol -fi mdl -o monomer_gaff2.mol2 -fo mol2 -c rc -cf q_final.dat -nc 0 -at gaff2 -rn MON -pf y > ac2.log 2>&1

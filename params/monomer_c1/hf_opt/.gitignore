@@ -1,0 +1,5 @@
+# ORCA writes outputs and large scratch files here while the job runs. Nothing in this folder is tracked, so a git pull/add
+# cannot overwrite or snapshot a running job. After the job FINISHES, add only the small results you need, by name:
+#   git add -f params/monomer_c1/hf_opt/monomer_hf_opt.out params/monomer_c1/hf_opt/monomer_hf_opt.xyz params/monomer_c1/hf_opt/monomer_hf_opt_trj.xyz
+*
+!.gitignore
