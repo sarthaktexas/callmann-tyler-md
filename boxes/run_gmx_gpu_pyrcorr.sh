@@ -48,11 +48,11 @@ done
 fi
 [ -n "$GMX" ] || { echo "ERROR: no usable CUDA GROMACS (conda env or module)"; exit 1; }
 
-MD="-ntomp 8 -nb gpu -pme gpu -bonded gpu"
+MD="-ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu"
 
 if [ ! -f em_pc${N}.gro ]; then
   $GMX grompp -f em.mdp  -c ${SYS}.gro -p ${SYS}_pyrcorr.top -o em_pc${N}.tpr -maxwarn 1
-  $GMX mdrun -deffnm em_pc${N} -ntomp 8 -nb gpu
+  $GMX mdrun -deffnm em_pc${N} -ntmpi 1 -ntomp 8 -nb gpu
 fi
 if [ ! -f nvt_pc${N}.gro ]; then
   $GMX grompp -f nvt.mdp -c em_pc${N}.gro -p ${SYS}_pyrcorr.top -o nvt_pc${N}.tpr -maxwarn 1
