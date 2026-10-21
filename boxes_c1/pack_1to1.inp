@@ -1,0 +1,15 @@
+tolerance 2.0
+filetype pdb
+seed 1001
+output sys_1to1_raw.pdb
+
+structure /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2.pdb
+  number 1
+  fixed 0. 0. 0. 0. 0. 0.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 50.
+  outside sphere 0. 0. 0. 12.
+end structure

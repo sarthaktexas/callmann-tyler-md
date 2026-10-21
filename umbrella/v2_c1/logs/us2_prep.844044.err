@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/work/wrz135/callmann-tyler-md/umbrella/v2/build_start.py", line 8, in <module>
+    import sys, os, numpy as np
+ModuleNotFoundError: No module named 'numpy'

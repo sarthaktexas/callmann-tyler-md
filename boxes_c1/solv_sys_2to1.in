@@ -1,0 +1,16 @@
+source leaprc.gaff2
+source leaprc.water.tip3p
+loadamberparams /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/monomer.frcmod
+MON = loadmol2 /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_MON.mol2
+MNF = loadmol2 /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_MNF.mol2
+MNL = loadmol2 /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_MNL.mol2
+CPH = loadmol2 /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_CPH.mol2
+CPT = loadmol2 /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_CPT.mol2
+loadamberparams /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene.frcmod
+PYR = loadmol2 /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2_pyrcorr.mol2
+sys = loadpdb sys_2to1.pdb
+check sys
+charge sys
+solvatebox sys TIP3PBOX 12.0
+saveamberparm sys sys_2to1.prmtop sys_2to1.inpcrd
+quit

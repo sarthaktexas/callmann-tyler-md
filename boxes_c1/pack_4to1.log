@@ -1,0 +1,285 @@
+
+################################################################################
+
+ PACKMOL - Packing optimization for the automated generation of
+ starting configurations for molecular dynamics simulations.
+ 
+                                                             Version 21.0.1 
+
+################################################################################
+
+  Packmol must be run with: packmol < inputfile.inp 
+
+  Userguide at: http://m3g.iqm.unicamp.br/packmol 
+
+  Reading input file... (Control-C aborts)
+  Types of coordinate files specified: pdb
+  Seed for random number generator:         1004
+  Output file: sys_4to1_raw.pdb
+  Reading coordinate file: /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2.pdb
+  Reading coordinate file: /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  Reading coordinate file: /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  Reading coordinate file: /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  Reading coordinate file: /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  Number of independent structures:            5
+  The structures are: 
+  Structure            1 :/Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2.pdb(          26  atoms)
+  Structure            2 :/Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb(         556  atoms)
+  Structure            3 :/Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb(         556  atoms)
+  Structure            4 :/Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb(         556  atoms)
+  Structure            5 :/Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb(         556  atoms)
+  Maximum number of GENCAN loops for all molecule packing:         1000
+  Distance tolerance:    2.0000000000000000     
+  Warning: Type of residue numbering not set for structure            1
+  Residue numbering set for structure            1 :           0
+  Swap chains of molecules of structure            1 : F
+  Warning: Type of residue numbering not set for structure            2
+  Residue numbering set for structure            2 :           1
+  Swap chains of molecules of structure            2 : F
+  Warning: Type of residue numbering not set for structure            3
+  Residue numbering set for structure            3 :           1
+  Swap chains of molecules of structure            3 : F
+  Warning: Type of residue numbering not set for structure            4
+  Residue numbering set for structure            4 :           1
+  Swap chains of molecules of structure            4 : F
+  Warning: Type of residue numbering not set for structure            5
+  Residue numbering set for structure            5 :           1
+  Swap chains of molecules of structure            5 : F
+  Number of molecules of type            1 :            1
+  Number of molecules of type            2 :            1
+  Number of molecules of type            3 :            1
+  Number of molecules of type            4 :            1
+  Number of molecules of type            5 :            1
+  Total number of restrictions:            9
+  Total number of atoms:         2250
+  Molecule /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2.pdb(           1 ) will be fixed.
+  Total number of molecules:            5
+  Number of fixed molecules:            1
+  Number of free molecules:            4
+  Number of variables:           24
+  Total number of fixed atoms:           26
+  Maximum internal distance of type            1 :    36.990459580816236     
+  Maximum internal distance of type            2 :    32.690768804052318     
+  Maximum internal distance of type            3 :    39.120384111099931     
+  Maximum internal distance of type            4 :    38.973666122139448     
+  All atoms must be within these coordinates: 
+   x: [   -990.02655271952631      ,    1009.9734472804737       ] 
+   y: [   -1016.3001503450280      ,    983.69984965497201       ] 
+   z: [   -1025.5999999999999      ,    974.39999999999998       ] 
+  If the system is larger than this, increase the sidemax parameter. 
+
+################################################################################
+
+  Building initial approximation ... 
+
+################################################################################
+
+  Adjusting initial point to fit the constraints 
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            2
+
+  Packing:|0                                                        100%|
+          |******************
+
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            3
+
+  Packing:|0                                                        100%|
+          |***************************************
+
+  Restraint-only function value:    7.5681614872595004E-003
+  Maximum violation of the restraints:    4.0066355577403944E-003
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            4
+
+  Packing:|0                                                        100%|
+          |***
+
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            5
+
+  Packing:|0                                                        100%|
+          |*********************************
+
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+--------------------------------------------------------------------------------
+
+  Rescaling maximum and minimum coordinates... 
+  Mininum and maximum coordinates after constraint fitting: 
+   x: [   -14.497225688804782      ,    38.498034896400178       ] 
+   y: [   -39.670870158402430      ,    47.086219248792482       ] 
+   z: [   -31.875348477458449      ,    34.592232629894973       ] 
+  Computing size of patches... 
+  Number of cells in each direction and cell sides: 
+   x:           25  cells of size    2.2958104234081986     
+   y:           41  cells of size    2.2233436440779246     
+   z:           31  cells of size    2.2860510034630139     
+  Cell-system length:   57.39526  91.15709  70.86758
+  Add fixed molecules to permanent arrays... 
+  Reseting center of mass... 
+
+--------------------------------------------------------------------------------
+
+  Setting initial trial coordinates ... 
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            2
+  Adjusting random positions to fit the constraints. 
+  Packing:|0                                                        100%|
+          |***
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            3
+  Adjusting random positions to fit the constraints. 
+  Packing:|0                                                        100%|
+          |*********************
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            4
+  Adjusting random positions to fit the constraints. 
+  Packing:|0                                                        100%|
+          |************
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            5
+  Adjusting random positions to fit the constraints. 
+  Packing:|0                                                        100%|
+          |*********************
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+################################################################################
+
+  Objective function at initial point:    0.0000000000000000     
+
+################################################################################
+
+  Packing molecules of type:            2
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Current point written to file: sys_4to1_raw.pdb
+--------------------------------------------------------------------------------
+  Packing solved for molecules of type           2
+  Objective function value:    0.0000000000000000     
+  Maximum violation of target distance:    0.0000000000000000     
+  Max. constraint violation:    0.0000000000000000     
+--------------------------------------------------------------------------------
+
+################################################################################
+
+  Packing molecules of type:            3
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Current point written to file: sys_4to1_raw.pdb
+--------------------------------------------------------------------------------
+  Packing solved for molecules of type           3
+  Objective function value:    0.0000000000000000     
+  Maximum violation of target distance:    0.0000000000000000     
+  Max. constraint violation:    0.0000000000000000     
+--------------------------------------------------------------------------------
+
+################################################################################
+
+  Packing molecules of type:            4
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Current point written to file: sys_4to1_raw.pdb
+--------------------------------------------------------------------------------
+  Packing solved for molecules of type           4
+  Objective function value:    0.0000000000000000     
+  Maximum violation of target distance:    0.0000000000000000     
+  Max. constraint violation:    0.0000000000000000     
+--------------------------------------------------------------------------------
+
+################################################################################
+
+  Packing molecules of type:            5
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Current point written to file: sys_4to1_raw.pdb
+--------------------------------------------------------------------------------
+  Packing solved for molecules of type           5
+  Objective function value:    0.0000000000000000     
+  Maximum violation of target distance:    0.0000000000000000     
+  Max. constraint violation:    0.0000000000000000     
+--------------------------------------------------------------------------------
+
+################################################################################
+
+  Packing all molecules together 
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Solution written to file: sys_4to1_raw.pdb
+
+################################################################################
+
+                                 Success! 
+              Final objective function value: .00000E+00
+              Maximum violation of target distance:   0.000000
+              Maximum violation of the constraints: .00000E+00
+
+--------------------------------------------------------------------------------
+
+              Please cite this work if Packmol was useful: 
+
+           L. Martinez, R. Andrade, E. G. Birgin, J. M. Martinez, 
+         PACKMOL: A package for building initial configurations for
+                   molecular dynamics simulations. 
+        Journal of Computational Chemistry, 30(13) pp. 2157-2164, 2009.
+                  https://doi.org/10.1002/jcc.21224
+
+################################################################################
+
+   Running time:    7.39689991E-02  seconds. 
+
+--------------------------------------------------------------------------------
+
+

@@ -1,0 +1,154 @@
+
+################################################################################
+
+ PACKMOL - Packing optimization for the automated generation of
+ starting configurations for molecular dynamics simulations.
+ 
+                                                             Version 21.0.1 
+
+################################################################################
+
+  Packmol must be run with: packmol < inputfile.inp 
+
+  Userguide at: http://m3g.iqm.unicamp.br/packmol 
+
+  Reading input file... (Control-C aborts)
+  Types of coordinate files specified: pdb
+  Seed for random number generator:         1001
+  Output file: sys_1to1_raw.pdb
+  Reading coordinate file: /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2.pdb
+  Reading coordinate file: /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  Number of independent structures:            2
+  The structures are: 
+  Structure            1 :/Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2.pdb(          26  atoms)
+  Structure            2 :/Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb(         556  atoms)
+  Maximum number of GENCAN loops for all molecule packing:          400
+  Distance tolerance:    2.0000000000000000     
+  Warning: Type of residue numbering not set for structure            1
+  Residue numbering set for structure            1 :           0
+  Swap chains of molecules of structure            1 : F
+  Warning: Type of residue numbering not set for structure            2
+  Residue numbering set for structure            2 :           1
+  Swap chains of molecules of structure            2 : F
+  Number of molecules of type            1 :            1
+  Number of molecules of type            2 :            1
+  Total number of restrictions:            3
+  Total number of atoms:          582
+  Molecule /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2.pdb(           1 ) will be fixed.
+  Total number of molecules:            2
+  Number of fixed molecules:            1
+  Number of free molecules:            1
+  Number of variables:            6
+  Total number of fixed atoms:           26
+  Maximum internal distance of type            1 :    36.990459580816236     
+  All atoms must be within these coordinates: 
+   x: [   -990.02655271952631      ,    1009.9734472804737       ] 
+   y: [   -1016.3001503450280      ,    983.69984965497201       ] 
+   z: [   -1025.5999999999999      ,    974.39999999999998       ] 
+  If the system is larger than this, increase the sidemax parameter. 
+
+################################################################################
+
+  Building initial approximation ... 
+
+################################################################################
+
+  Adjusting initial point to fit the constraints 
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            2
+
+  Packing:|0                                                        100%|
+          |*********
+
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+--------------------------------------------------------------------------------
+
+  Rescaling maximum and minimum coordinates... 
+  Mininum and maximum coordinates after constraint fitting: 
+   x: [   -9.7394556136614678      ,    12.183921456569058       ] 
+   y: [   -44.554671556637267      ,    3.3919999999999999       ] 
+   z: [   -22.969714995552451      ,    12.555918945904333       ] 
+  Computing size of patches... 
+  Number of cells in each direction and cell sides: 
+   x:           11  cells of size    2.3930342791118662     
+   y:           23  cells of size    2.2759422415929249     
+   z:           17  cells of size    2.3485667024386343     
+  Cell-system length:   26.32338  52.34667  39.92563
+  Add fixed molecules to permanent arrays... 
+  Reseting center of mass... 
+
+--------------------------------------------------------------------------------
+
+  Setting initial trial coordinates ... 
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+  Molecules of type:            2
+  Adjusting random positions to fit the constraints. 
+  Restraint-only function value:    0.0000000000000000     
+  Maximum violation of the restraints:    0.0000000000000000     
+
+################################################################################
+
+  Objective function at initial point:    0.0000000000000000     
+
+################################################################################
+
+  Packing molecules of type:            2
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Current point written to file: sys_1to1_raw.pdb
+--------------------------------------------------------------------------------
+  Packing solved for molecules of type           2
+  Objective function value:    0.0000000000000000     
+  Maximum violation of target distance:    0.0000000000000000     
+  Max. constraint violation:    0.0000000000000000     
+--------------------------------------------------------------------------------
+
+################################################################################
+
+  Packing all molecules together 
+
+################################################################################
+
+
+  Initial approximation is a solution. Nothing to do. 
+
+  Solution written to file: sys_1to1_raw.pdb
+
+################################################################################
+
+                                 Success! 
+              Final objective function value: .00000E+00
+              Maximum violation of target distance:   0.000000
+              Maximum violation of the constraints: .00000E+00
+
+--------------------------------------------------------------------------------
+
+              Please cite this work if Packmol was useful: 
+
+           L. Martinez, R. Andrade, E. G. Birgin, J. M. Martinez, 
+         PACKMOL: A package for building initial configurations for
+                   molecular dynamics simulations. 
+        Journal of Computational Chemistry, 30(13) pp. 2157-2164, 2009.
+                  https://doi.org/10.1002/jcc.21224
+
+################################################################################
+
+   Running time:    1.17850006E-02  seconds. 
+
+--------------------------------------------------------------------------------
+
+
