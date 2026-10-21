@@ -1,0 +1,40 @@
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/prep to search path.
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/lib to search path.
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm to search path.
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd to search path.
+-f: Source build_s3.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_s3.in
+----- Source: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd/leaprc.gaff2
+----- Source of /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.30, Oct 2025)
+Loading parameters: /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/monomer.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_MON.mol2
+Reading MOLECULE named MON
+Loading Mol2 file: /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_MNF.mol2
+Reading MOLECULE named MNF
+Loading Mol2 file: /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_MNL.mol2
+Reading MOLECULE named MNL
+Loading Mol2 file: /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_CPH.mol2
+Reading MOLECULE named CPH
+Loading Mol2 file: /Users/sarthak/Developer/callmann-tyler-md/params/monomer_c1/res_CPT.mol2
+Reading MOLECULE named CPT
+Checking 'chain'....
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+Writing pdb file: chain_s3_raw.pdb
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 0; Notes = 0.
