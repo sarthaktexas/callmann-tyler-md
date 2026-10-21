@@ -1,0 +1,41 @@
+== 0. optimisation finished?
+FINAL SINGLE POINT ENERGY     -1466.604121435222
+optimisation cycles: 13
+== G2. optimised geometry still the intended molecule (beta-D, exo, same stereo)
+[xyz] formula C21H31NO8, 61 atoms
+[xyz] SMILES (heavy atoms) C=C[C@@H]1C[C@H](C=C)[C@H]2C(=O)N(CCCCO[C@@H]3O[C@H](CO)[C@@H](O)[C@H](O)[C@H]3O)C(=O)[C@H]21
+[xyz] CIP stereocentres: 9
+[xyz] sugar identity: ['D-gluco, 1-O-alkyl, beta']
+[xyz] norbornene-derived core: ['exo']
+[xyz] matches expected SMILES incl. stereo: True
+wrote monomer.mol (61 atoms, atom order unchanged)
+== 4a. ESP (PySCF HF/6-31G*, Cartesian d)
+E(HF/6-31G*) = -1466.61052656  points 3264  V range -0.0561..0.0362 a.u.
+QM dipole (Debye) [-2.181  0.568  2.643]  |mu| = 3.473
+wrote monomer_resp.esp
+== 4b. standard two-stage RESP (Amber respgen)
+
+
+G5 charge sum 1.39e-17
+== G4. dipole gate
+QM  dipole |mu| 3.473 D  [-2.181  0.568  2.643]
+RESP dipole |mu| 3.597 D  [-2.293  0.618  2.701]
+ratio 1.04  -> PASS
+== 5. GAFF2 typing with final charges
+parmchk2 ATTN lines: 0
+== 6. residues from the molecular graph
+res_MON.mol2: 55 atoms, charge +0.00000000
+res_MNF.mol2: 55 atoms, charge +0.06003500
+res_MNL.mol2: 55 atoms, charge +0.06003500
+res_CPH.mol2: 3 atoms, charge -0.06003500
+res_CPT.mol2: 3 atoms, charge -0.06003500
+head=C2 tail=C6 cap carbons=['C1', 'C7']
+symmetry classes averaged: 16, max charge change 0.0000 e
+cap charge each -0.06004 e, neutrality residual -4.58e-16 e
+checks passed: MON neutral, CPH + MNF neutral, CPT + MNL neutral
+== tleap load test: CPH-MNF-MON-MNL-CPT
+head/tail atoms: C2 C6 
+Unit is OK.
+Total unperturbed charge:  -0.000000
+Exiting LEaP: Errors = 0; Warnings = 0; Notes = 0.
+DONE post-opt

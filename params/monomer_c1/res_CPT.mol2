@@ -1,0 +1,18 @@
+@<TRIPOS>MOLECULE
+CPT
+ 3 2 1 0 0
+SMALL
+USER_CHARGES
+
+@<TRIPOS>ATOM
+     1 CC      -3.5360   -3.4380   -3.0450 c2   1 CPT   -0.41510500
+     2 HC1     -3.0780   -4.1090   -3.7490 ha   1 CPT    0.17753500
+     3 HC2     -4.5930   -3.5580   -2.8900 ha   1 CPT    0.17753500
+@<TRIPOS>BOND
+     1     1     2 1
+     2     1     3 1
+@<TRIPOS>SUBSTRUCTURE
+     1 CPT         1 TEMP              0 ****  ****    0 ROOT
+@<TRIPOS>HEADTAIL
+CC 1
+0 0
