@@ -1,0 +1,231 @@
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx grompp -f em.mdp -c sys_1to1.gro -p sys_1to1_pyrcorr.top -o em_pc1.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group rest is 38661.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+Back Off! I just backed up em_pc1.tpr to ./#em_pc1.tpr.1#
+
+GROMACS reminds you: "You should call it 'entropy'. No one knows what entropy really is, so in a debate you will always have the advantage." (John von Neumann to Claude Shannon, on why he should borrow the term for information theory)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx mdrun -deffnm em_pc1 -ntmpi 1 -ntomp 8 -nb gpu
+
+
+Back Off! I just backed up em_pc1.log to ./#em_pc1.log.1#
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file em_pc1.tpr, VERSION 2025.2-conda_forge (single precision)
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 1 GPU task in the 1 rank on this node:
+  PP:0
+PP tasks will do (non-perturbed) short-ranged interactions on the GPU
+PP task will update and constrain coordinates on the CPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+
+Steepest Descents:
+   Tolerance (Fmax)   =  1.00000e+03
+   Number of steps    =        50000
+
+writing lowest energy coordinates.
+
+Steepest Descents converged to Fmax < 1000 in 1 steps
+Potential Energy  = -2.1685452e+05
+Maximum force     =  9.6749530e+02 on atom 2527
+Norm of force     =  2.4350525e+02
+
+GROMACS reminds you: "Product of optimism and knowledge is a constant." (Lev Landau)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx grompp -f nvt.mdp -c em_pc1.gro -p sys_1to1_pyrcorr.top -o nvt_pc1.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group System is 38377.00
+
+GROMACS reminds you: "Product of optimism and knowledge is a constant." (Lev Landau)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx mdrun -deffnm nvt_pc1 -ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file nvt_pc1.tpr, VERSION 2025.2-conda_forge (single precision)
+Changing nstlist from 10 to 100, rlist from 1 to 1.149
+
+
+Update groups can not be used for this system because atoms that are (in)directly constrained together are interdispersed with other atoms
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+starting mdrun 'Generic title'
+50000 steps,    100.0 ps.
+
+Writing final coordinates.
+
+               Core t (s)   Wall t (s)        (%)
+       Time:       89.605       11.211      799.2
+                 (ns/day)    (hour/ns)
+Performance:      770.658        0.031
+
+GROMACS reminds you: "The historical meaning of QM/MM: Quanto Mangi, Mamma Mia!" (Attilio Vittorio Vargiu, at BioExcel 2022 Summer School in Sardinia)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx grompp -f npt.mdp -c nvt_pc1.gro -t nvt_pc1.cpt -p sys_1to1_pyrcorr.top -o npt_pc1.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group System is 38377.00
+Last frame         -1 time  100.000   
+
+GROMACS reminds you: "The historical meaning of QM/MM: Quanto Mangi, Mamma Mia!" (Attilio Vittorio Vargiu, at BioExcel 2022 Summer School in Sardinia)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx mdrun -deffnm npt_pc1 -ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file npt_pc1.tpr, VERSION 2025.2-conda_forge (single precision)
+Changing nstlist from 10 to 100, rlist from 1 to 1.157
+
+
+Update groups can not be used for this system because atoms that are (in)directly constrained together are interdispersed with other atoms
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+starting mdrun 'Generic title'
+250000 steps,    500.0 ps.
+
+Writing final coordinates.
+
+NOTE: 11 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:      374.066       46.767      799.9
+                 (ns/day)    (hour/ns)
+Performance:      923.741        0.026
+
+GROMACS reminds you: "There is nothing new to be discovered in physics now. All that remains is more and more precise measurement." (Lord Kelvin, 1900)
+
+                :-) GROMACS - gmx grompp, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx grompp -f md.mdp -c npt_pc1.gro -t npt_pc1.cpt -p sys_1to1_pyrcorr.top -o md_pc1.tpr -maxwarn 1
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group System is 38377.00
+Last frame         -1 time  500.000   
+
+GROMACS reminds you: "There is nothing new to be discovered in physics now. All that remains is more and more precise measurement." (Lord Kelvin, 1900)
+
+                :-) GROMACS - gmx mdrun, 2025.2-conda_forge (-:
+
+Executable:   /work/wrz135/envs/gmx-cuda/bin.AVX2_256/gmx
+Data prefix:  /work/wrz135/envs/gmx-cuda
+Working dir:  /work/wrz135/callmann-tyler-md/boxes
+Command line:
+  gmx mdrun -deffnm md_pc1 -ntmpi 1 -ntomp 8 -nb gpu -pme gpu -bonded gpu -cpt 15
+
+The current CPU can measure timings more accurately than the code in
+gmx mdrun was configured to use. This might affect your simulation
+speed as accurate timings are needed for load-balancing.
+Please consider rebuilding gmx mdrun with the GMX_USE_RDTSCP=ON CMake option.
+Reading file md_pc1.tpr, VERSION 2025.2-conda_forge (single precision)
+Changing nstlist from 10 to 100, rlist from 1 to 1.162
+
+
+Update groups can not be used for this system because atoms that are (in)directly constrained together are interdispersed with other atoms
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+  PP:0,PME:0
+PP tasks will do (non-perturbed) short-ranged and most bonded interactions on the GPU
+PP task will update and constrain coordinates on the GPU
+PME tasks will do all aspects on the GPU
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 8 OpenMP threads 
+
+starting mdrun 'Generic title'
+50000000 steps, 100000.0 ps.
+
+Writing final coordinates.
+
+NOTE: 13 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:    70731.992     8841.508      800.0
+                         2h27:21
+                 (ns/day)    (hour/ns)
+Performance:      977.209        0.025
+
+GROMACS reminds you: "I'm Looking for a New Simulation" (Stone Temple Pilots)
+
