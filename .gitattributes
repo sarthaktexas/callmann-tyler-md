@@ -1,1 +1,4 @@
 *.xtc filter=lfs diff=lfs merge=lfs -text
+
+# reduced trajectories are small; keep them out of LFS
+analysis_data/**/*.xtc !filter !diff !merge -text
