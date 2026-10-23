@@ -9,3 +9,39 @@ local_runs/**/*.tpr
 local_runs/**/*.log
 local_runs/**/mdout.mdp
 local_runs/**/*.partial
+
+# --- big run output (added Oct 23). Inputs, scripts and small results stay tracked; trajectories live on ARC / in rsync copies.
+# Ignoring only affects UNTRACKED files: anything already committed stays tracked (do not `git rm --cached` it: the next ARC pull would delete it there).
+# nested rsync copy of the whole repo (~13 GB)
+/callmann-tyler-md/
+*.xtc
+*.trr
+*.cpt
+*.edr
+*.tpr
+# reduced trajectories from scripts/reduce_box.sh are git-sized
+!analysis_data/**/*.xtc
+!analysis_data/**/*.tpr
+# whole.xtc scratch from analyze_box.py
+analysis/**/*_work/
+# GROMACS stage outputs and generated per-run files in the box folders (box inputs NAME.gro/.top/.mdp stay tracked)
+boxes_c1/em_*
+boxes_c1/nvt_*
+boxes_c1/npt_*
+boxes_c1/md_*
+boxes_many/em_*
+boxes_many/nvt_*
+boxes_many/npt_*
+boxes_many/md_*
+boxes_c1/logs/
+boxes_many/logs/
+**/slurm-*.out
+# GROMACS backup files
+**/#*#
+# regenerable from scripts/build_box.py and scripts/build_many.py
+boxes_c1/*.prmtop
+boxes_c1/*.inpcrd
+boxes_c1/*_raw.pdb
+# ORCA scratch (the finished .out/.xyz are added by name with git add -f)
+*.gbw
+*.tmp
