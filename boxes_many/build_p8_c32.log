@@ -1,0 +1,16 @@
+PASS packmol finished successfully
+PASS raw pdb has 18000 atoms == 18000
+  start: minimum pyrene-chain atom distance 7.87 A
+PASS no pyrene is in contact with a chain at the start (min atom distance > 6 A; Packmol rule is centre-to-atom >= 12 A)
+  start: minimum pyrene-pyrene centre distance 30.2 A
+  start: packmol sphere R=66 A, 8 pyrene, 32 chains
+PASS tleap errors = 0
+PASS tleap net charge 0.000016
+  tleap close-contact warnings: 0
+PASS prmtop written
+  [ molecules ]: PYR 8 | system1 32 | WAT 73049
+  box (nm): ['14.08055', '14.15283', '14.08314']  atoms: 237147  waters: 73049
+  pyrene concentration 4.7 mM; chain concentration 18.9 mM
+PASS atom count 237147 == solute 18000 + 3 x 73049 waters
+PASS pyrene charges corrected (max H 0.170, max |sum| 2.0e-06)
+RESULT: ALL CHECKS PASSED

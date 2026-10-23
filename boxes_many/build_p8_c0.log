@@ -1,0 +1,13 @@
+PASS packmol finished successfully
+PASS raw pdb has 208 atoms == 208
+  start: packmol sphere R=50 A, 8 pyrene, 0 chains
+PASS tleap errors = 0
+PASS tleap net charge 0.000016
+  tleap close-contact warnings: 0
+PASS prmtop written
+  [ molecules ]: PYR 8 | WAT 13384
+  box (nm): ['7.86720', '7.86343', '7.84107']  atoms: 40360  waters: 13384
+  pyrene concentration 27.4 mM; chain concentration 0.0 mM
+PASS atom count 40360 == solute 208 + 3 x 13384 waters
+PASS pyrene charges corrected (max H 0.170, max |sum| 2.0e-06)
+RESULT: ALL CHECKS PASSED

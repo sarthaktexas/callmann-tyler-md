@@ -1,0 +1,460 @@
+tolerance 2.0
+filetype pdb
+seed 3832
+output many_p8_c32_raw.pdb
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed 6.053 -37.258 3.858 4.9927 5.9743 2.4778
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed 27.519 -16.592 -9.618 1.8297 5.2784 5.9484
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -6.055 11.546 4.493 5.2839 0.7094 3.7082
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -1.516 -4.087 41.604 5.3634 4.6160 5.9152
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed 4.466 45.783 -1.557 3.1819 3.1570 3.2523
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -8.516 4.246 -24.711 5.1757 3.1600 2.3553
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -11.999 -31.705 -23.370 5.4964 4.1611 0.9734
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed 27.101 21.200 22.078 4.2041 5.4299 5.5318
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s1_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s2_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s3_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/chains/c1_dp10/chain_s4_min.pdb
+  number 1
+  inside sphere 0. 0. 0. 66.0
+  outside sphere 6.053 -37.258 3.858 12.
+  outside sphere 27.519 -16.592 -9.618 12.
+  outside sphere -6.055 11.546 4.493 12.
+  outside sphere -1.516 -4.087 41.604 12.
+  outside sphere 4.466 45.783 -1.557 12.
+  outside sphere -8.516 4.246 -24.711 12.
+  outside sphere -11.999 -31.705 -23.370 12.
+  outside sphere 27.101 21.200 22.078 12.
+end structure

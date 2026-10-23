@@ -1,0 +1,7 @@
+# regenerable with scripts/build_many.py (same policy as boxes_c1)
+*.prmtop
+*.inpcrd
+*.pdb
+*_raw.pdb
+logs/
+pack_*.log

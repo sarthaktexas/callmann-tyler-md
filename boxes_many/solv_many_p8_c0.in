@@ -1,0 +1,10 @@
+source leaprc.gaff2
+source leaprc.water.tip3p
+loadamberparams /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene.frcmod
+PYR = loadmol2 /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2_pyrcorr.mol2
+sys = loadpdb many_p8_c0.pdb
+check sys
+charge sys
+solvatebox sys TIP3PBOX 6.0 iso
+saveamberparm sys many_p8_c0.prmtop many_p8_c0.inpcrd
+quit

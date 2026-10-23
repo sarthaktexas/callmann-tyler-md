@@ -1,0 +1,44 @@
+tolerance 2.0
+filetype pdb
+seed 3800
+output many_p8_c0_raw.pdb
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -12.194 19.165 -5.583 1.7217 2.5696 0.5133
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed 21.582 -16.044 11.629 4.4781 4.2396 6.2382
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -7.702 -20.889 -20.590 3.5858 4.4568 2.6811
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed 22.001 5.931 -9.278 4.5843 4.0935 2.2360
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed 5.685 25.817 20.925 1.9020 3.0448 4.3999
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -11.901 -24.152 19.010 5.8969 4.7026 5.7266
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -19.419 4.600 24.916 2.4071 2.2920 2.6314
+end structure
+
+structure /Users/sarthak/Developer/callmann-tyler-md/boxes_many/pyrene_centered.pdb
+  number 1
+  fixed -31.684 -9.701 -2.708 3.1424 1.3119 3.6797
+end structure
