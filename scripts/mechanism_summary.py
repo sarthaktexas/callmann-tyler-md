@@ -11,9 +11,20 @@ import glob, json, os
 import numpy as np, pandas as pd
 
 M = 'analysis/mechanism'; W = 'site/work'; T0 = 20.0
-BOX = {'sys_1to1': (1, 1, ['s1']), 'sys_2to1': (1, 2, ['s1', 's2']), 'sys_3to1': (1, 3, ['s1', 's2', 's3']), 'sys_4to1': (1, 4, ['s1', 's2', 's3', 's4']),
-       'sys_pyronly': (1, 0, []), **{f'chainonly_{k}': (0, 1, [f's{k}']) for k in range(1, 5)},
-       **{f'many_p8_c{c}': (8, c, [f's{(k % 4) + 1}' for k in range(c)]) for c in (0, 8, 16, 24, 32)}}
+import re
+def comp(name):
+    """(npyr, nchains, patterns) from a box name: sys_Nto1[_r2], sys_pyronly, chainonly_K, many_pP_cC[_suffix]."""
+    m = re.match(r'sys_(\d)to1', name)
+    if m: n = int(m.group(1)); return 1, n, [f's{k}' for k in range(1, n + 1)]
+    if name.startswith('sys_pyronly'): return 1, 0, []
+    m = re.match(r'chainonly_(\d)', name)
+    if m: return 0, 1, [f's{m.group(1)}']
+    m = re.match(r'many_p(\d+)_c(\d+)', name)
+    if m: c = int(m.group(2)); return int(m.group(1)), c, [f's{(k % 4) + 1}' for k in range(c)]
+    return None
+ORDER = ['sys_1to1', 'sys_2to1', 'sys_3to1', 'sys_4to1', 'sys_pyronly'] + [f'chainonly_{k}' for k in range(1, 5)] + [f'many_p8_c{c}' for c in (0, 8, 16, 24, 32)]
+found = sorted(os.path.basename(f)[:-7] for f in glob.glob(f'{M}/*_ts.csv'))
+BOX = {n: comp(n) for n in ORDER + [n for n in found if n not in ORDER] if comp(n)}
 
 def tau_int(x, dt):
     x = np.asarray(x, float); x = x[np.isfinite(x)]

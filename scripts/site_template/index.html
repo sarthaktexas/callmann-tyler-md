@@ -56,6 +56,8 @@ th{font-weight:600;color:var(--muted);font-size:11.5px}
 .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;margin:2px 0 4px}
 .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:4px;vertical-align:middle}
 .small{font-size:11.5px;color:var(--muted)}
+.hm td{padding:3px 5px;text-align:center;font-size:11.5px;border:1px solid #fff}.hm th{text-align:center;padding:3px 5px}
+.bar{display:inline-block;height:9px;border-radius:2px;vertical-align:middle;margin-right:5px}
 kbd{font:11px ui-monospace,monospace;border:1px solid var(--line);border-radius:3px;padding:0 4px;background:#fff}
 @media (max-width:1100px){.boxview{grid-template-columns:1fr}.sticky{position:static}}
 </style>
@@ -63,7 +65,7 @@ kbd{font:11px ui-monospace,monospace;border:1px solid var(--line);border-radius:
 <body>
 <header>
   <h1>Glyco-ROMP chains + pyrene · MD dashboard</h1>
-  <div class="tabs"><button data-tab="overview">Overview</button><button data-tab="box">Box</button><button data-tab="wall">Wall (synced)</button><button data-tab="runs">Runs</button><button data-tab="help">Definitions</button></div>
+  <div class="tabs"><button data-tab="overview">Overview</button><button data-tab="box">Box</button><button data-tab="wall">Wall (synced)</button><button data-tab="mech">Mechanism</button><button data-tab="runs">Runs</button><button data-tab="help">Definitions</button></div>
   <div class="built" id="built"></div>
 </header>
 <div class="layout">
@@ -72,12 +74,17 @@ kbd{font:11px ui-monospace,monospace;border:1px solid var(--line);border-radius:
 </div>
 <div class="tip" id="tip"></div>
 <script src="data.js"></script>
+<script src="contacts.js"></script>
 <script>
 'use strict';
 const S = window.SITE || {boxes: []};
 const $ = (s, el = document) => el.querySelector(s);
 const h = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (k === 'html') e.innerHTML = v; else e.setAttribute(k, v); } for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(k)); return e; };
 const BOX = Object.fromEntries(S.boxes.map(b => [b.name, b]));
+const CT = window.CONTACTS || {};
+const GCOL = {core: '#B8400C', linker: '#6B7280', glucose: '#2563EB', backbone: '#A8A29E'};
+const GLAB = {core: 'imide core', linker: 'butyl linker', glucose: 'glucose', backbone: 'backbone and ends'};
+const GSHORT = {core: 'core', linker: 'linker', glucose: 'glc', backbone: 'bb'};
 const FPS = 25;
 const LS = (() => { try { const x = window.localStorage; x.getItem('a'); return x; } catch (e) { return {}; } })();
 const fmt = (v, d = 1) => (v == null || !isFinite(v)) ? '–' : v.toFixed(d);
@@ -162,7 +169,7 @@ class Chart {
     const o = this.o, tol = o.tol ?? 1.01, lines = [o.xName ? `${o.xName} = ${t.toFixed(2)}` : `t = ${t.toFixed(1)} ns`];
     if (o.heat) { const r = this.cv.getBoundingClientRect(); const row = Math.floor((e.clientY - r.top - this.T) / this.H * o.heat.rows.length);
       if (row >= 0 && row < o.heat.rows.length) { const i = idxAt(o.heat.x, t); lines.push(`${o.heat.rowLabel(row)}: ${o.heat.fmt(o.heat.rows[row][i])}`); } }
-    for (const s of o.series || []) if (s.name) { const i = idxAt(s.x, t); if (s.x[i] != null && Math.abs(s.x[i] - t) < tol) lines.push(`${s.name}: ${fmt(s.y[i], s.dec ?? 2)}${s.err && s.err[i] != null && isFinite(s.err[i]) ? ' ± ' + fmt(s.err[i], s.dec ?? 2) : ''}${s.note ? ' ' + s.note[i] : ''}`); }
+    for (const s of o.series || []) if (s.name) { const i = idxAt(s.x, t); if (s.x[i] != null && Math.abs(s.x[i] - t) < tol) lines.push(`${s.name}: ${fmt((s.yShow || s.y)[i], s.dec ?? 2)}${s.err && s.err[i] != null && isFinite(s.err[i]) ? ' ± ' + fmt(s.err[i], s.dec ?? 2) : ''}${s.note ? ' ' + s.note[i] : ''}`); }
     TIP.textContent = lines.join('\n'); TIP.style.display = 'block'; TIP.style.left = (e.clientX + 14) + 'px'; TIP.style.top = (e.clientY + 10) + 'px';
   }
   layout() {
@@ -203,12 +210,15 @@ class Chart {
     c.save(); c.beginPath(); c.rect(this.L, this.T - 2, this.W, this.H + 4); c.clip();
     for (const s of o.series) {
       if (s.hidden) continue;
-      c.strokeStyle = s.color; c.lineWidth = s.width || 1.4; c.globalAlpha = s.alpha ?? 1; c.setLineDash(s.dash || []); c.beginPath(); let pen = false;
+      if (s.base) { c.globalAlpha = s.fillAlpha ?? .6; c.fillStyle = s.color; c.beginPath();
+        for (let i = 0; i < s.x.length; i++) { const xx = X(s.x[i]), yy = Y(s.y[i] ?? 0); if (i) c.lineTo(xx, yy); else c.moveTo(xx, yy); }
+        for (let i = s.x.length - 1; i >= 0; i--) c.lineTo(X(s.x[i]), Y(s.base[i] ?? 0)); c.closePath(); c.fill(); c.globalAlpha = 1; }
+      c.strokeStyle = s.color; c.lineWidth = s.noLine ? 0 : (s.width || 1.4); c.globalAlpha = s.alpha ?? 1; c.setLineDash(s.dash || []); c.beginPath(); let pen = false;
       for (let i = 0; i < s.x.length; i++) { const v = s.y[i]; if (v == null || !isFinite(v)) { pen = false; continue; } const xx = X(s.x[i]), yy = Y(v);
         if (!pen) { c.moveTo(xx, yy); pen = true; } else if (s.step) { c.lineTo(xx, Y(s.y[i - 1] ?? v)); c.lineTo(xx, yy); } else c.lineTo(xx, yy); }
-      c.stroke();
+      if (!s.noLine) c.stroke();
       if (s.err) { c.setLineDash([]); c.lineWidth = 1.2; s.y.forEach((v, i) => { const e = s.err[i]; if (v == null || e == null || !isFinite(e)) return; const xx = X(s.x[i]); c.beginPath(); c.moveTo(xx, Y(v - e)); c.lineTo(xx, Y(v + e)); c.moveTo(xx - 4, Y(v - e)); c.lineTo(xx + 4, Y(v - e)); c.moveTo(xx - 4, Y(v + e)); c.lineTo(xx + 4, Y(v + e)); c.stroke(); }); }
-      if (s.points) { c.globalAlpha = 1; s.y.forEach((v, i) => { if (v == null || !isFinite(v)) return; c.fillStyle = s.color; c.beginPath(); c.arc(X(s.x[i]), Y(v), 4.2, 0, 7); c.fill(); c.strokeStyle = '#fff'; c.lineWidth = 1.2; c.stroke(); c.strokeStyle = s.color; }); }
+      if (s.points) { c.globalAlpha = 1; s.y.forEach((v, i) => { if (v == null || !isFinite(v)) return; c.fillStyle = s.hollow ? '#fff' : s.color; c.beginPath(); c.arc(X(s.x[i]), Y(v), 4.2, 0, 7); c.fill(); c.strokeStyle = s.hollow ? s.color : '#fff'; c.lineWidth = 1.2; c.stroke(); c.strokeStyle = s.color; }); }
       c.globalAlpha = 1;
     }
     c.restore(); this.draw(this.cur);
@@ -306,6 +316,20 @@ function boxView(name) {
       }
     }
   }
+  // mechanism time series (from analysis/mechanism)
+  if (b.mech_ts && b.nchains) {
+    const m = b.mech_ts, mt = m.time_ns;
+    if (m.agg_rg) add({title: 'Largest polymer aggregate', height: 120, series: [{x: mt, y: smooth(m.agg_rg, sw), color: '#1B2A41', width: 2, marker: true, name: 'aggregate Rg (nm)', dec: 2}],
+      valueText: x => { const i = idxAt(mt, x); return `Rg ${fmt(m.agg_rg[i], 2)} nm · ${fmt(m.agg_size[i], 0)} chains · κ² ${fmt(m.agg_kappa2[i], 2)}`; }});
+    if (m.depth && b.npyr) add({title: 'Pyrene position in its aggregate and imide stacking', height: 120, yMin: 0,
+      series: [{x: mt, y: smooth(m.depth, sw), color: '#7C3AED', width: 2, marker: true, name: 'depth r/R (0 centre, 1 surface)', dec: 2}, {x: mt, y: smooth(m.stack_imide, sw), color: '#B8400C', width: 1.6, marker: true, name: 'imide rings stacked per pyrene', dec: 2}],
+      legend: [['#7C3AED', 'depth r/R (0 centre, 1 surface)'], ['#B8400C', 'imide rings stacked per pyrene']], valueText: x => { const i = idxAt(mt, x); return `depth ${fmt(m.depth[i], 2)} · stacked ${fmt(m.stack_imide[i], 2)}`; }});
+    const fr = (S.mech || {}).free_chain_hydration;
+    if (m.hyd_core) add({title: 'Core dehydration and inter-chain glucose H-bonds', height: 120, yMin: 0,
+      series: [{x: mt, y: smooth(m.hyd_core, sw), color: '#B8400C', width: 2, marker: true, name: 'waters per core atom', dec: 2}, ...(m.hb_inter ? [{x: mt, y: smooth(m.hb_inter.map(v => v / b.nchains), sw), color: '#2563EB', width: 1.6, marker: true, name: 'inter-chain H-bonds per chain', dec: 2}] : [])],
+      refs: fr ? [{y: fr.core, label: `free-chain core ${fr.core.toFixed(2)}`, color: '#B8400C'}] : [], legend: [['#B8400C', 'waters per imide-core atom'], ['#2563EB', 'inter-chain glucose H-bonds per chain']],
+      valueText: x => { const i = idxAt(mt, x); return `core waters ${fmt(m.hyd_core[i], 2)} · H-bonds ${fmt(m.hb_inter ? m.hb_inter[i] / b.nchains : null, 2)}/chain`; }});
+  }
   // heatmaps: per-pyrene coverage, per-chain contact with any pyrene
   if (d.covper && b.npyr > 1) {
     const cm = v => `hsl(265,${20 + 0.6 * v}%,${97 - 0.55 * v}%)`;
@@ -319,6 +343,10 @@ function boxView(name) {
       heat: {x: t, rows, color: cm, short: r => `c${r + 1}`, rowLabel: r => `chain ${r + 1} (${b.patterns[r]}) min distance`, fmt: v => fmt(v, 2) + ' nm'},
       valueText: x => { const i = idxAt(t, x); return `${rows.filter(a => a[i] < 0.4).length} of ${b.nchains} chains in contact`; }, sub: 'Shades: <0.4 nm contact, 0.4–0.8 nm near, 0.8–1.5 nm nearby, white >1.5 nm. Long dark runs = chains that stay bound; gaps = exchange.'});
   }
+  // which part of the chain touches pyrene (site_contacts.py -> contacts.js)
+  const ct = CT[b.name];
+  if (ct && ct.series && ct.series.time_ns && ct.series.time_ns.length === t.length) partsSection(b, ct, t, sw, add, right);
+  else if (b.npyr && b.nchains) right.append(h('div', {class: 'notice info'}, 'Contacts by chain part not built for this box yet (scripts/build_site.py writes site/contacts.js).'));
   // windows table
   const wins = (() => { const te = t[t.length - 1]; const w = [['0–20 ns', 0, 20]]; if (te > 20) w.push([`20–${fmt(te, 0)} ns`, 20, te + 1e-6]); w.push([`last 10 ns (${fmt(Math.max(0, te - 10), 0)}–${fmt(te, 0)})`, te - 10, te + 1e-6]); return w; })();
   const rowsW = [];
@@ -336,6 +364,68 @@ function boxView(name) {
   window.onkeydown = e => { if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return; if (e.code === 'Space') { e.preventDefault(); play.onclick(); } if (e.code === 'ArrowLeft') step(e.shiftKey ? -10 : -1); if (e.code === 'ArrowRight') step(e.shiftKey ? 10 : 1); };
 }
 
+// ---------- chain parts touching pyrene ----------
+function ctDerive(ct) {
+  if (ct._d) return ct._d; const cs = ct.series, G = ct.groups, NPOS = ct.npos, n = cs.time_ns.length;
+  const caGP = G.map(g => range(NPOS).map(p => cs[`ca_${g}_m${p + 1}`]));
+  const caG = caGP.map(rows => range(n).map(i => rows.reduce((s, r) => s + r[i], 0)));
+  const atomsG = ct.atoms_gp.map(r => r.reduce((a, b) => a + b, 0)), atomsTot = atomsG.reduce((a, b) => a + b, 0);
+  return ct._d = {cs, G, NPOS, caGP, caG, atomsG, atomsTot, covG: G.map(g => cs[`covg_${g}`]), covP: range(NPOS).map(p => cs[`covp_m${p + 1}`])};
+}
+function partStats(ct, t, lo) {   // window means over t >= lo; shares from ratio of means (frames with no contact count as zero)
+  const D = ctDerive(ct), w = a => mean(a.filter((_, i) => t[i] >= lo));
+  const cG = D.caG.map(w), cTot = cG.reduce((a, b) => a + b, 0);
+  return {D, cG, cTot, share: cG.map(v => cTot ? 100 * v / cTot : NaN), atomShare: D.atomsG.map(v => 100 * v / D.atomsTot),
+          enr: cG.map((v, k) => cTot ? (v / cTot) / (D.atomsG[k] / D.atomsTot) : NaN), covG: D.covG.map(a => blockStat(t, a, lo)),
+          gp: D.caGP.map(rows => rows.map(w)), covP: D.covP.map(w)};
+}
+const heatCell = (v, vmax, hue = 22) => { const f = vmax > 0 && isFinite(v) ? Math.min(1, v / vmax) : 0; return `background:hsl(${hue},${30 + 55 * f}%,${97 - 47 * f}%);color:${f > .62 ? '#fff' : '#1B2A41'}`; };
+function partsSection(b, ct, t, sw, add, right) {
+  const D = ctDerive(ct), {cs, G, NPOS} = D;
+  right.append(h('h3', {style: 'margin:14px 0 6px;font-size:14px'}, 'Which part of the chain touches pyrene'));
+  let acc = t.map(() => 0);
+  const layers = G.map((g, k) => { const y = smooth(D.covG[k], sw), base = acc, top = base.map((v, i) => v + (y[i] ?? 0)); acc = top; return {x: t, y: top, base, yShow: y, color: GCOL[g], width: 1, name: GLAB[g], dec: 1}; });
+  add({title: 'Pyrene surface covered, split by chain part (%)', yMin: 0, yMax: 100, yTicks: [0, 25, 50, 75, 100], height: 170, series: layers, legend: G.map(g => [GCOL[g], GLAB[g]]),
+    valueText: x => { const i = idxAt(t, x); return G.map((g, k) => `${GSHORT[g]} ${fmt(D.covG[k][i], 0)}`).join(' · ') + ' %'; },
+    sub: `Each buried surface dot on pyrene is credited to the chain atom it lies deepest inside, so the stack adds up to the polymer-coverage curve${b.npyr > 1 ? ' (mean over the ' + b.npyr + ' pyrene)' : ''}. Pyrene–pyrene burial is excluded.`},
+    [{label: 'covered by imide core (%)', get: i => fmt(D.covG[0][i], 0)}, {label: 'covered by glucose (%)', get: i => fmt(D.covG[2][i], 0)}]);
+  add({title: 'Chain heavy atoms within 0.4 nm of pyrene, by part' + (b.npyr > 1 ? ` (all ${b.npyr} pyrene)` : ''), yMin: 0, height: 140,
+    series: G.map((g, k) => ({x: t, y: smooth(D.caG[k], sw), color: GCOL[g], width: 1.8, marker: true, name: GLAB[g], dec: 1})), legend: G.map(g => [GCOL[g], GLAB[g]]),
+    valueText: x => { const i = idxAt(t, x); return G.map((g, k) => `${GSHORT[g]} ${fmt(D.caG[k][i], 0)}`).join(' · ') + ' atoms'; },
+    sub: `Per chain: ${G.map((g, k) => `${D.atomsG[k]} ${GSHORT[g]}`).join(', ')} heavy atoms (${D.atomsTot} total), so raw counts favour the bigger parts; see enrichment below.`});
+  const rows = range(NPOS).map(r => D.covP[NPOS - 1 - r]);   // top row = monomer 1 (head end)
+  const vmax = Math.max(10, ...rows.flat().filter(isFinite));
+  add({title: 'Pyrene surface covered by each monomer position (%)', height: 14 * NPOS + 30,
+    heat: {x: t, rows, color: v => v > 0.05 ? `hsl(22,${30 + 55 * Math.min(1, v / vmax)}%,${97 - 47 * Math.min(1, v / vmax)}%)` : '#FFFFFF', short: r => `m${NPOS - r}`,
+      rowLabel: r => { const p = NPOS - r; return `monomer ${p}${p === 1 ? ' (head end + CPH cap)' : p === NPOS ? ' (tail end + CPT cap)' : ''}`; }, fmt: v => fmt(v, 1) + '%'},
+    valueText: x => { const i = idxAt(t, x); const v = D.covP.map(a => a[i]); const k = v.indexOf(Math.max(...v)); return v[k] > 0 ? `most: monomer ${k + 1} (${fmt(v[k], 0)}%)` : 'no polymer contact'; },
+    sub: `Summed over all ${b.nchains} chain${b.nchains > 1 ? 's' : ''} (monomer 1 = head end). The 10 monomers are chemically identical, so a fixed pattern here reflects where the chain first landed (no exchange within a run), not chemistry.`});
+  // window summary
+  const te = t[t.length - 1], LO = te > 30 ? 20 : 0, P = partStats(ct, t, LO);
+  const tb = h('table', {}, h('tr', {}, ['part', '% of chain heavy atoms', '% of contacts', 'enrichment', 'pyrene covered (%)', 'share of polymer coverage'].map(x => h('th', {}, x))),
+    G.map((g, k) => { const covTot = P.covG.reduce((s, x) => s + x.m, 0);
+      return h('tr', {}, h('td', {}, h('span', {class: 'bar', style: `background:${GCOL[g]};width:10px`}), GLAB[g]), h('td', {}, fmt(P.atomShare[k], 1)),
+        h('td', {}, h('span', {class: 'bar', style: `background:${GCOL[g]};width:${Math.round(0.9 * (P.share[k] || 0))}px`}), fmt(P.share[k], 1)),
+        h('td', {style: P.enr[k] > 1.15 ? 'font-weight:600;color:#B8400C' : P.enr[k] < 0.85 ? 'color:#6B7280' : ''}, fmt(P.enr[k], 2)),
+        h('td', {}, `${fmt(P.covG[k].m, 1)}${isFinite(P.covG[k].se) ? ' ± ' + fmt(P.covG[k].se, 1) : ''}`), h('td', {}, fmt(covTot ? 100 * P.covG[k].m / covTot : NaN, 0) + '%')); }));
+  const gpMax = Math.max(...P.gp.flat()), gpTot = P.gp.flat().reduce((a, b2) => a + b2, 0);
+  const tgp = h('table', {class: 'hm'}, h('tr', {}, h('th', {}, 'monomer →'), range(NPOS).map(p => h('th', {}, p + 1)), h('th', {}, 'all')),
+    G.map((g, k) => h('tr', {}, h('td', {style: 'text-align:left'}, GLAB[g]), P.gp[k].map(v => h('td', {style: heatCell(v, gpMax), title: `${fmt(v, 2)} atoms per frame`}, gpTot ? fmt(100 * v / gpTot, 1) : '–')),
+      h('td', {}, fmt(P.share[k], 1)))),
+    h('tr', {}, h('td', {style: 'text-align:left;font-weight:600'}, 'pyrene covered (%)'), P.covP.map(v => h('td', {style: heatCell(v, Math.max(...P.covP), 265)}, fmt(v, 1))), h('td', {}, fmt(P.covP.reduce((a, b2) => a + b2, 0), 1))));
+  const card = h('div', {class: 'card', style: 'margin-bottom:10px'},
+    h('div', {class: 'ct', style: 'font-weight:600;margin-bottom:4px'}, `Chain parts on pyrene, mean over ${LO}–${fmt(te, 0)} ns`), tb,
+    h('div', {class: 'small', style: 'margin:3px 0 10px'}, 'Contact = chain heavy atom within 0.4 nm of a pyrene heavy atom. Enrichment = % of contacts ÷ % of heavy atoms (1 = touches pyrene in proportion to its size). Coverage ± SE of 4 contiguous blocks.'),
+    h('div', {class: 'ct', style: 'font-weight:600;margin-bottom:4px'}, '% of all pyrene contacts, by part × monomer position'), tgp);
+  if (ct.chain_pos_mean_t20 && b.nchains > 1) {
+    const cp = ct.chain_pos_mean_t20, mx = Math.max(...cp.flat());
+    card.append(h('div', {class: 'ct', style: 'font-weight:600;margin:10px 0 4px'}, 'Contact atoms per frame, each chain × monomer position (≥ 20 ns)'),
+      h('table', {class: 'hm'}, h('tr', {}, h('th', {}, 'chain'), range(NPOS).map(p => h('th', {}, p + 1)), h('th', {}, 'all')),
+        cp.map((r, k) => h('tr', {}, h('td', {style: 'text-align:left'}, `chain ${k + 1} (${b.patterns[k]})`), r.map(v => h('td', {style: heatCell(v, mx)}, v ? fmt(v, 1) : '·')), h('td', {}, fmt(r.reduce((a, b2) => a + b2, 0), 1))))));
+  }
+  right.append(card);
+}
+
 // ---------- WALL view ----------
 const METRICS = {
   cov: {label: 'Pyrene coverage by polymer (%) [pyrene-only: burial by pyrene]', get: d => d.cov, yMin: 0, yMax: 100, dec: 0},
@@ -349,9 +439,9 @@ const METRICS = {
 };
 function wallView(setName, metric) {
   stopLoop(); window.onkeydown = null; const M = $('#main'); M.innerHTML = '';
-  const sets = [...new Set(S.boxes.map(b => b.set))]; setName = sets.includes(setName) ? setName : sets.find(s => s.startsWith('Many')) || sets[0];
+  const sets = [...new Set(S.boxes.flatMap(b => [b.set, ...(b.also || [])]))]; setName = sets.includes(setName) ? setName : sets.find(s => s.startsWith('Many')) || sets[0];
   metric = METRICS[metric] ? metric : 'cov';
-  const boxes = S.boxes.filter(b => b.set === setName && b.series);
+  const boxes = S.boxes.filter(b => (b.set === setName || (b.also || []).includes(setName)) && b.series);
   const selS = h('select', {}, sets.map(s => h('option', {value: s}, s))); selS.value = setName;
   const selM = h('select', {}, Object.entries(METRICS).map(([k, m]) => h('option', {value: k}, m.label))); selM.value = metric;
   selS.onchange = () => go(`wall/${encodeURIComponent(selS.value)}/${selM.value}`); selM.onchange = () => go(`wall/${encodeURIComponent(selS.value)}/${selM.value}`);
@@ -420,10 +510,12 @@ function overviewView() {
       rows.map(r => h('tr', {}, h('td', {}, h('a', {href: `#box/${r.b.name}`}, r.b.label)), h('td', {}, r.b.npyr ? `${r.b.nchains}:${r.b.npyr}` : '–'), h('td', {}, r.b.geo && r.b.geo.pyr_mM ? fmt(r.b.geo.pyr_mM, 1) : '–'), h('td', {}, `0–${fmt(r.te, 0)} ns`),
         h('td', {}, r.b.nchains ? pm(r.cov) : (r.b.npyr > 1 ? pm(r.cov) + ' (by pyrene)' : '–')), h('td', {}, r.b.npyr && (r.b.nchains || r.b.npyr > 1) ? fmt(r.cov10, 1) : '–'), h('td', {}, pm(r.wpp)), h('td', {}, r.b.name === 'sys_pyronly' ? 'ref' : pm(r.strip, 0)),
         h('td', {}, pm(r.cpp, 2)), h('td', {}, r.b.npyr > 1 ? pm(r.pclu, 2) : '–'), h('td', {}, r.b.nchains > 1 ? pm(r.clarge, 1) : '–'), h('td', {}, pm(r.rgm, 3)), h('td', {}, r.b.name.startsWith('chainonly') ? 'ref' : pm(r.drg, 3)))))));
-  const sets = [['C1 stoichiometry (1 pyrene)', '#B8400C', 'C1: 1 pyrene + N chains'], ['Many-pyrene (8 pyrene)', '#7C3AED', '8 pyrene + 8N chains']];
+  const sets = [['C1 stoichiometry (1 pyrene)', '#B8400C', 'C1: 1 pyrene + N chains'], ['Many-pyrene (8 pyrene)', '#7C3AED', '8 pyrene + 8N chains'], ['Loading series (8 chains)', '#15803D', '8 chains + 8N pyrene']];
   const mk = (key, title, opts = {}) => {
-    const series = sets.map(([set, color, name]) => { const rr = rows.filter(r => r.b.set === set && r.ratio != null && (opts.keep ? opts.keep(r) : true)).sort((a, b2) => a.ratio - b2.ratio);
-      return {x: rr.map(r => r.ratio), y: rr.map(r => r[key].m), err: rr.map(r => r[key].se), color, width: 1.6, points: true, name, dec: opts.dec ?? 1, note: rr.map(r => `(${r.b.label}${r.b.geo && r.b.geo.pyr_mM ? ', ' + fmt(r.b.geo.pyr_mM, 1) + ' mM' : ''})`)}; }).filter(s => s.x.length);
+    const series = sets.map(([set, color, name]) => { const rr = rows.filter(r => (r.b.set === set || (r.b.also || []).includes(set)) && r.ratio != null && (opts.keep ? opts.keep(r) : true)).sort((a, b2) => a.ratio - b2.ratio);
+      return {x: rr.map(r => r.ratio), y: rr.map(r => r[key].m), err: rr.map(r => r[key].se), color, width: 1.6, points: true, name, dec: opts.dec ?? 1, note: rr.map(r => `(${r.b.label}${r.b.geo && r.b.geo.pyr_mM ? ', ' + fmt(r.b.geo.pyr_mM, 1) + ' mM' : ''})`)}; }).filter(s => s.x.length >= 2);
+    const reps = rows.filter(r => r.b.set.startsWith('Replicates') && r.ratio != null && (opts.keep ? opts.keep(r) : true));
+    if (reps.length) series.push({x: reps.map(r => r.ratio), y: reps.map(r => r[key].m), err: reps.map(r => r[key].se), color: '#111827', noLine: true, hollow: true, points: true, name: 'replicate 2', dec: opts.dec ?? 1, note: reps.map(r => `(${r.b.label})`)});
     const c = new Chart({title, xMin: -0.3, xMax: 4.3, xTicks: [0, 1, 2, 3, 4], xLabel: '', xName: 'chains per pyrene', tol: 0.3, height: 170, noCursor: true, series, yMin: opts.yMin, yMax: opts.yMax,
       refs: opts.refs || [], legend: series.map(s => [s.color, s.name]), sub: 'x = chains per pyrene in the box (0 = no polymer). Whiskers: block SE.'});
     return h('div', {class: 'card'}, c.el);
@@ -435,6 +527,88 @@ function overviewView() {
     mk('pclu', 'Pyrene clusters (8 = all separate)', {yMin: 0, yMax: 8.5, dec: 2, keep: r => r.b.npyr > 1}),
     mk('drg', 'Chain Rg change vs same pattern alone (nm)', {dec: 3, keep: r => r.b.nchains > 0, refs: [{y: 0, label: 'free chain', color: '#9CA3AF'}]}),
     mk('clfrac', 'Chains in the largest chain cluster (% of chains in box)', {yMin: 0, yMax: 105, dec: 0, keep: r => r.b.nchains > 1})));
+  // which part of the chain touches pyrene, every box
+  const pr = rows.filter(r => CT[r.b.name] && CT[r.b.name].series && CT[r.b.name].series.time_ns.length === r.d.t.length).map(r => Object.assign({}, r, {P: partStats(CT[r.b.name], r.d.t, LO)}));
+  if (!pr.length) return;
+  const G = pr[0].P.D.G;
+  M.append(h('div', {class: 'card', style: 'margin-top:10px'}, h('h2', {style: 'margin:0 0 4px;font-size:16px'}, `Which part of the chain touches pyrene: ${LO} ns to end`),
+    h('div', {class: 'small', style: 'margin-bottom:6px'}, `Coverage = % of pyrene surface buried by that part (sums to polymer coverage). Enrichment = % of contacts ÷ % of heavy atoms (${G.map((g, k) => `${GSHORT[g]} ${fmt(pr[0].P.atomShare[k], 1)}%`).join(', ')}); >1 means that part touches pyrene more than its size predicts.`),
+    h('table', {}, h('tr', {}, h('th', {}, 'box'), h('th', {}, 'chains : pyrene'), ...G.map(g => h('th', {style: `color:${GCOL[g]}`}, `${GSHORT[g]} cov. %`)), ...G.map(g => h('th', {style: `color:${GCOL[g]}`}, `${GSHORT[g]} enrich.`))),
+      pr.map(r => h('tr', {}, h('td', {}, h('a', {href: `#box/${r.b.name}`}, r.b.label)), h('td', {}, `${r.b.nchains}:${r.b.npyr}`), ...r.P.covG.map(x => h('td', {}, pm(x))), ...r.P.enr.map(v => h('td', {style: v > 1.15 ? 'font-weight:600;color:#B8400C' : v < 0.85 ? 'color:#6B7280' : ''}, fmt(v, 2))))))));
+  const mkp = (title, get, opts) => { const series = [];
+    for (const [set, dash, sn] of [['C1 stoichiometry (1 pyrene)', null, 'C1'], ['Many-pyrene (8 pyrene)', [5, 3], '8-pyrene']]) G.forEach((g, k) => {
+      const rr = pr.filter(r => r.b.set === set).sort((a, b2) => a.ratio - b2.ratio); if (!rr.length) return;
+      series.push({x: rr.map(r => r.ratio + (k - 1.5) * 0.07 + (dash ? 0.025 : -0.025)), y: rr.map(r => get(r.P, k).m), err: rr.map(r => get(r.P, k).se), color: GCOL[g], dash, width: 1.5, points: true, name: `${GLAB[g]} (${sn})`, dec: opts.dec, note: rr.map(r => `(${r.b.label})`)}); });
+    return h('div', {class: 'card'}, new Chart({title, xMin: 0.5, xMax: 4.5, xTicks: [1, 2, 3, 4], xLabel: '', xName: 'chains per pyrene', tol: 0.3, height: 190, noCursor: true, series, yMin: 0, yMax: opts.yMax, refs: opts.refs || [],
+      legend: G.map(g => [GCOL[g], GLAB[g]]).concat([['#1B2A41', 'solid = C1 (1 pyrene)'], ['#1B2A41', 'dashed = 8 pyrene', true]]), sub: opts.sub + ' Points are nudged sideways by part so they do not overlap.'}).el); };
+  M.append(h('div', {style: 'display:grid;grid-template-columns:repeat(auto-fill,minmax(520px,1fr));gap:10px;margin-top:10px'},
+    mkp('Pyrene surface covered by each chain part (%)', (P, k) => P.covG[k], {dec: 1, sub: 'Whiskers: block SE.'}),
+    mkp('Contact enrichment by chain part (1 = in proportion to size)', (P, k) => ({m: P.enr[k], se: NaN}), {dec: 2, refs: [{y: 1, label: 'proportional', color: '#9CA3AF'}], sub: 'Ratio of window means; no error estimate.'})));
+}
+
+// ---------- MECHANISM view ----------
+const MECH_TS = {
+  agg_rg: {label: 'Largest aggregate radius of gyration (nm)', dec: 2},
+  agg_size: {label: 'Chains in the largest aggregate', dec: 0, step: true, yMin: 0},
+  agg_kappa2: {label: 'Aggregate shape anisotropy κ² (0 sphere … 1 rod)', dec: 2, yMin: 0, yMax: 1},
+  depth: {label: 'Pyrene depth in its aggregate, r/R (0 centre, 1 surface)', dec: 2, yMin: 0},
+  stack_imide: {label: 'Imide rings stacked on each pyrene', dec: 2, yMin: 0},
+  hb_inter_pc: {label: 'Inter-chain glucose H-bonds per chain', dec: 2, yMin: 0},
+  hyd_core: {label: 'Waters per imide-core heavy atom (0.45 nm)', dec: 2},
+  hyd_glc: {label: 'Waters per glucose heavy atom (0.45 nm)', dec: 2},
+  pp_stacked: {label: 'Stacked pyrene–pyrene pairs', dec: 2, yMin: 0},
+};
+function mechSeries(b, key) { const m = b.mech_ts; if (!m) return null; if (key === 'hb_inter_pc') return m.hb_inter && b.nchains ? m.hb_inter.map(v => v == null ? null : v / b.nchains) : null; return m[key] || null; }
+const inSet = (b, set) => b.set === set || (b.also || []).includes(set);
+function mechView(sel, setName, key) {
+  stopLoop(); window.onkeydown = null; const M = $('#main'); M.innerHTML = ''; const MS = S.mech || {}, MB = MS.boxes || {};
+  if (!Object.keys(MB).length) { M.append(h('div', {class: 'notice'}, 'Mechanism analyses not built yet (scripts/mechanism_analysis.py + mechanism_summary.py).')); return; }
+  const fr = MS.free_chain_hydration;
+  M.append(h('div', {class: 'card', style: 'margin-bottom:10px'}, h('h2', {style: 'margin:0 0 4px;font-size:16px'}, `Mechanism: where pyrene sits, what it touches, how often it exchanges (t ≥ ${MS.window_ns || 20} ns)`),
+    h('div', {class: 'small'}, '± = standard error corrected for autocorrelation (n_eff = T / 2τ). Events need ≥ 1 ns of contact or separation (single 0.5 ns gaps bridged). One replicate per box.')));
+  // summary table
+  const f = (d, k = 2) => !d || d.mean == null ? '–' : `${fmt(d.mean, k)}${d.se != null ? ' ± ' + fmt(d.se, k) : ''}`;
+  const names = Object.keys(MB).filter(n => BOX[n]);
+  M.append(h('div', {class: 'card', style: 'margin-bottom:10px;overflow:auto'}, h('table', {}, h('tr', {}, ['box', 'coverage %', 'τ (ns) / n_eff', 'depth r/R', 'imide stacked / pyrene', 'pyrene w/ stacked imide', 'chains ever on pyrene', 'bind / unbind events', 'median residence (ns)', 'aggregate Rg (nm)', 'κ²', 'inter-chain HB / chain', 'core waters / atom', 'glucose waters / atom'].map(x => h('th', {}, x))),
+    names.map(n => { const B = MB[n], k = B.kinetics || {}, c = B.coverage || {}; return h('tr', {}, h('td', {}, h('a', {href: `#mech/${n}`}, BOX[n].label)), h('td', {}, f(c, 1)), h('td', {}, c.tau_ns != null ? `${fmt(c.tau_ns, 1)} / ${fmt(c.n_eff, 0)}` : '–'),
+      h('td', {}, f(B.depth)), h('td', {}, f(B.stack_imide_per_pyrene)), h('td', {}, B.frac_pyrene_with_stacked_imide != null ? fmt(100 * B.frac_pyrene_with_stacked_imide, 0) + '%' : '–'),
+      h('td', {}, k.chains_ever_touching_pyrene != null ? `${k.chains_ever_touching_pyrene} / ${B.nchains}` : '–'), h('td', {}, k.binding_events != null ? `${k.binding_events} / ${k.unbinding_events}` : '–'), h('td', {}, k.residence_ns_median != null ? fmt(k.residence_ns_median, 1) : '–'),
+      h('td', {}, f(B.agg_rg)), h('td', {}, f(B.agg_kappa2)), h('td', {}, f(B.hb_inter_per_chain)), h('td', {}, f(B.hyd_core)), h('td', {}, f(B.hyd_glc))); })),
+    fr ? h('div', {class: 'small', style: 'margin-top:4px'}, `Free chain (chain-only controls): ${fmt(fr.core, 2)} waters per core atom, ${fmt(fr.glucose, 2)} per glucose atom.`) : null));
+  // profiles for the selected box
+  const withProf = names.filter(n => MB[n].profiles); sel = withProf.includes(sel) ? sel : (withProf.find(n => n === 'many_p8_c16') || withProf[0]);
+  const selB = h('select', {}, withProf.map(n => h('option', {value: n}, BOX[n].label))); selB.value = sel; selB.onchange = () => go(`mech/${selB.value}/${encodeURIComponent(setName || '')}/${key || ''}`);
+  const P = MB[sel].profiles, r = P.r_nm, GC = {core: '#B8400C', linker: '#6B7280', glucose: '#2563EB', backbone: '#A8A29E'};
+  const c1 = new Chart({title: 'Radial number density from the centre of the largest aggregate (heavy atoms, nm⁻³)', xMin: 0, xMax: 4, xLabel: 'nm', xName: 'r (nm)', tol: 0.06, height: 210, noCursor: true, yMin: 0,
+    series: [...Object.entries(GC).map(([g, c]) => ({x: r, y: P[g], color: c, width: 2, name: g, dec: 2})), {x: r, y: P.water, color: '#1F6F9F', width: 1.6, dash: [5, 3], name: 'water O', dec: 1}],
+    legend: [...Object.entries(GC).map(([g, c]) => [c, g]), ['#1F6F9F', 'water O', true]], sub: 'Blank beyond half the box edge (incomplete minimum-image shells).'});
+  const c2 = new Chart({title: 'Pyrene heavy atoms (nm⁻³) at the same radii', xMin: 0, xMax: 4, xLabel: 'nm', xName: 'r (nm)', tol: 0.06, height: 150, noCursor: true, yMin: 0, series: [{x: r, y: P.pyrene, color: '#7C3AED', width: 2.2, name: 'pyrene', dec: 3}]});
+  M.append(h('div', {class: 'card', style: 'margin-bottom:10px'}, h('div', {class: 'wallbar'}, h('b', {}, 'Profiles for'), selB), c1.el, c2.el));
+  // contact enrichment table with shading
+  const shade = e => e > 1 ? `background:rgba(184,64,12,${Math.min(0.5, (e - 1) * 0.5)})` : `background:rgba(37,99,235,${Math.min(0.5, (1 - e) * 0.8)})`;
+  const ce = names.filter(n => MB[n].contacts);
+  M.append(h('div', {class: 'card', style: 'margin-bottom:10px'}, h('div', {class: 'ct', style: 'font-weight:600'}, 'Which part of the chain touches pyrene: enrichment = share of contacting chain atoms ÷ share of chain heavy atoms (orange > 1 > blue)'),
+    h('table', {}, h('tr', {}, h('th', {}, 'box'), ['imide core', 'butyl linker', 'glucose', 'backbone/ends'].map(x => h('th', {}, x))),
+      ce.map(n => h('tr', {}, h('td', {}, BOX[n].label), MB[n].contacts.enrichment.map(e => h('td', {style: shade(e)}, fmt(e, 2))))))));
+  // pattern + pyrene pairs
+  const PT = MS.pattern || {};
+  M.append(h('div', {style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:10px;margin-bottom:10px'},
+    h('div', {class: 'card'}, h('div', {class: 'ct', style: 'font-weight:600'}, 'cis/trans pattern: chains in pyrene boxes'), h('table', {}, h('tr', {}, ['pattern', 'chains', 'fraction of frames on a pyrene (mean ± sd)', 'Rg nm (mean ± sd)'].map(x => h('th', {}, x))),
+      Object.keys(PT).sort().map(p => h('tr', {}, h('td', {}, p), h('td', {}, PT[p].n_chains), h('td', {}, `${fmt(PT[p].bound_frac_mean, 2)} ± ${fmt(PT[p].bound_frac_sd, 2)}`), h('td', {}, `${fmt(PT[p].rg_mean, 3)} ± ${fmt(PT[p].rg_sd, 3)}`))))),
+    h('div', {class: 'card'}, h('div', {class: 'ct', style: 'font-weight:600'}, 'Pyrene–pyrene contacts: free aggregation or co-encapsulation?'), h('table', {}, h('tr', {}, ['box', 'pair contacts / frame', 'stacked pairs / frame', 'in same aggregate', 'both > 70% covered'].map(x => h('th', {}, x))),
+      names.filter(n => MB[n].pyrene_pairs).map(n => { const q = MB[n].pyrene_pairs; return h('tr', {}, h('td', {}, BOX[n].label), h('td', {}, fmt(q.pair_contacts_per_frame, 2)), h('td', {}, fmt(q.stacked_pairs_per_frame, 2)),
+        h('td', {}, q.frac_in_same_aggregate != null ? fmt(100 * q.frac_in_same_aggregate, 0) + '%' : '–'), h('td', {}, q.frac_both_covered_gt70 != null ? fmt(100 * q.frac_both_covered_gt70, 0) + '%' : '–')); })))));
+  // time-series overlay across a set
+  const sets = [...new Set(S.boxes.flatMap(b => [b.set, ...(b.also || [])]))].filter(s => S.boxes.some(b => inSet(b, s) && b.mech_ts));
+  setName = sets.includes(setName) ? setName : (sets.find(s => s.startsWith('Many')) || sets[0]); key = MECH_TS[key] ? key : 'depth';
+  const sS = h('select', {}, sets.map(s => h('option', {value: s}, s))); sS.value = setName; const sK = h('select', {}, Object.entries(MECH_TS).map(([k, m]) => h('option', {value: k}, m.label))); sK.value = key;
+  const re = () => go(`mech/${sel}/${encodeURIComponent(sS.value)}/${sK.value}`); sS.onchange = re; sK.onchange = re;
+  const bx = S.boxes.filter(b => inSet(b, setName) && b.mech_ts && mechSeries(b, key)), pal = seqPal(bx.length), mk = MECH_TS[key];
+  const tMax = Math.max(100, ...bx.map(b => b.mech_ts.time_ns[b.mech_ts.time_ns.length - 1]));
+  const refs = key === 'hyd_core' && fr ? [{y: fr.core, label: 'free chain', color: '#6B7280'}] : key === 'hyd_glc' && fr ? [{y: fr.glucose, label: 'free chain', color: '#6B7280'}] : [];
+  const ch = new Chart({title: mk.label, xMax: tMax, height: 200, noCursor: true, yMin: mk.yMin, yMax: mk.yMax, refs,
+    series: bx.map((b, k) => ({x: b.mech_ts.time_ns, y: smooth(mechSeries(b, key), +(LS.smooth || 5)), color: pal[k], width: 1.8, step: mk.step, name: b.label, dec: mk.dec})), legend: bx.map((b, k) => [pal[k], b.label]), sub: 'Running mean over 2.5 ns unless the Box view smoothing is changed.'});
+  M.append(h('div', {class: 'card'}, h('div', {class: 'wallbar'}, h('b', {}, 'Set'), sS, h('b', {}, 'Quantity'), sK), ch.el));
 }
 
 // ---------- RUNS view ----------
@@ -457,6 +631,7 @@ function helpView() {
   <li><b>Waters per pyrene</b>: waters whose O lies within 0.45 nm of any heavy atom of that pyrene, averaged over the pyrene in the box. The union over all pyrene is in the tooltip. <b>Stripped %</b> = 1 − (waters per pyrene) / (free pyrene, sys_pyronly mean over ≥20 ns).</li>
   <li><b>Rg</b>: chain radius of gyration with masses guessed from atom names, which matches gmx gyrate to about 0.002 nm. The dashed baseline is the mean Rg of the same cis/trans patterns in the chain-only controls (≥20 ns).</li>
   <li><b>Aggregation</b>: connected components of the molecule contact graph, where contact means a minimum heavy-atom distance below 0.4 nm under minimum image. The 0.4 nm cutoff is descriptive, not a definition of "bound".</li>
+  <li><b>Chain parts</b>: atoms typed from the monomer graph (imide core with the carbocycle, butyl linker plus ether O, glucose, backbone CH=CH and the CPH/CPT caps; H atoms follow their heavy atom). Contacts count chain heavy atoms within 0.4 nm of a pyrene heavy atom. Coverage by part credits each buried pyrene surface dot to the chain atom it lies deepest inside, so the parts add up to the polymer coverage. Monomer 1 is the head end (CPH side).</li>
   <li>Each box is a single replicate. Many-pyrene boxes differ in pyrene concentration (larger packing spheres for 24 and 32 chains), so the chain ratio is confounded with dilution.</li>
   </ul>`}));
 }
@@ -464,9 +639,9 @@ function helpView() {
 // ---------- nav / routing ----------
 function buildNav(active) {
   const N = $('#nav'); N.innerHTML = '';
-  for (const set of [...new Set(S.boxes.map(b => b.set))]) {
+  for (const set of [...new Set(S.boxes.flatMap(b => [b.set, ...(b.also || [])]))]) {
     N.append(h('h3', {}, set, ' ', h('a', {href: `#wall/${encodeURIComponent(set)}/cov`, style: 'display:inline;padding:0;color:#7C3AED;font-weight:400;text-transform:none'}, '▸ wall')));
-    for (const b of S.boxes.filter(x => x.set === set)) N.append(h('a', {href: `#box/${b.name}`, class: b.name === active ? 'on' : ''}, h('span', {}, b.label), statusChip(b)));
+    for (const b of S.boxes.filter(x => x.set === set || (x.also || []).includes(set))) N.append(h('a', {href: `#box/${b.name}`, class: b.name === active ? 'on' : ''}, h('span', {}, b.label), statusChip(b)));
   }
 }
 function go(hash) { location.hash = hash; }
@@ -474,7 +649,7 @@ function route() {
   const [tab, a1, a2] = (location.hash.slice(1) || 'wall').split('/').map(decodeURIComponent);
   document.querySelectorAll('header .tabs button').forEach(bt => bt.classList.toggle('on', bt.dataset.tab === tab));
   buildNav(tab === 'box' ? a1 : null);
-  if (tab === 'box') boxView(a1 || S.boxes.find(b => b.series)?.name); else if (tab === 'overview') overviewView(); else if (tab === 'runs') runsView(); else if (tab === 'help') helpView(); else wallView(a1, a2);
+  if (tab === 'box') boxView(a1 || S.boxes.find(b => b.series)?.name); else if (tab === 'overview') overviewView(); else if (tab === 'mech') mechView(a1, a2, (location.hash.split('/')[3] || '')); else if (tab === 'runs') runsView(); else if (tab === 'help') helpView(); else wallView(a1, a2);
 }
 document.querySelectorAll('header .tabs button').forEach(bt => bt.onclick = () => go(bt.dataset.tab === 'box' ? `box/${(location.hash.match(/box\/([^/]+)/) || [])[1] || S.boxes.find(b => b.series)?.name}` : bt.dataset.tab));
 $('#built').textContent = S.built ? `built ${S.built} · ${S.boxes.filter(b => b.series).length}/${S.boxes.length} boxes processed` : 'data.js missing: run scripts/build_site.py';

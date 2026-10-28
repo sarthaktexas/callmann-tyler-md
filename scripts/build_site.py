@@ -34,8 +34,9 @@ MV = 2   # metrics version: bump to recompute metrics.csv for every box without 
 CV = 1   # contacts version (scripts/site_contacts.py -> contacts.csv, site/contacts.js); bump to recompute
 ENV = dict(os.environ, OMP_NUM_THREADS='2', MKL_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1', GMX=GMX, GMX_MAXBACKUP='-1')
 
-def B(name, set_, folder, npyr, nchains, label, movie, pattern):
-    return dict(name=name, set=set_, folder=folder, npyr=npyr, nchains=nchains, label=label, movie=movie, patterns=pattern)
+def B(name, set_, folder, npyr, nchains, label, movie, pattern, also=()):
+    return dict(name=name, set=set_, folder=folder, npyr=npyr, nchains=nchains, label=label, movie=movie, patterns=pattern, also=list(also))
+PAT = lambda n: [f's{(k % 4) + 1}' for k in range(n)]
 BOXES = []
 for n in range(1, 5):
     BOXES.append(B(f'sys_{n}to1', 'C1 stoichiometry (1 pyrene)', 'boxes_c1', 1, n, f'{n}:1 polymer:pyrene', f'movies/c1/c1_{n}to1.mp4', [f's{k}' for k in range(1, n + 1)]))
@@ -44,7 +45,21 @@ for n in range(1, 5):
     BOXES.append(B(f'chainonly_{n}', 'C1 chain-only controls', 'boxes_c1', 0, 1, f'chain s{n} alone', f'movies/c1/c1_chainonly_{n}.mp4', [f's{n}']))
 for c in (0, 8, 16, 24, 32):
     BOXES.append(B(f'many_p8_c{c}', 'Many-pyrene (8 pyrene)', 'boxes_many', 8, c, f'8 pyrene + {c} chains', f'movies/many/many_p8_c{c}.mp4',
-                   [f's{(k % 4) + 1}' for k in range(c)]))
+                   PAT(c), also=['Loading series (8 chains)'] if c == 8 else []))
+# ---- round 2 (docs/ROUND2_RUNS.md): registered now, processed when their trajectories are rsynced
+for p_ in (16, 24, 32):
+    BOXES.append(B(f'many_p{p_}_c8', 'Loading series (8 chains)', 'boxes_many', p_, 8, f'{p_} pyrene + 8 chains', f'movies/many/many_p{p_}_c8.mp4', PAT(8)))
+CTL = 'Matched controls (round 2)'
+BOXES.append(B('many_p8_c0_box8', CTL, 'boxes_many', 8, 0, '8 pyrene alone, c8 box (~13 mM)', 'movies/many/many_p8_c0_box8.mp4', []))
+BOXES.append(B('many_p8_c0_box32', CTL, 'boxes_many', 8, 0, '8 pyrene alone, c32 box (~5.5 mM)', 'movies/many/many_p8_c0_box32.mp4', []))
+for c in (8, 16, 32):
+    BOXES.append(B(f'many_p0_c{c}', CTL, 'boxes_many', 0, c, f'{c} chains, no pyrene', f'movies/many/many_p0_c{c}.mp4', PAT(c)))
+BOXES.append(B('many_p8_c16_pre', CTL, 'boxes_many', 8, 16, '8 pyrene into pre-formed 16-chain aggregate', 'movies/many/many_p8_c16_pre.mp4', PAT(16)))
+REP = 'Replicates (new velocities)'
+for n in (1, 2):
+    BOXES.append(B(f'sys_{n}to1_r2', REP, 'boxes_c1', 1, n, f'{n}:1 polymer:pyrene, replicate 2', f'movies/c1/c1_{n}to1_r2.mp4', [f's{k}' for k in range(1, n + 1)]))
+for c in (8, 16):
+    BOXES.append(B(f'many_p8_c{c}_r2', REP, 'boxes_many', 8, c, f'8 pyrene + {c} chains, replicate 2', f'movies/many/many_p8_c{c}_r2.mp4', PAT(c)))
 
 def log(*m): print(time.strftime('%H:%M:%S'), *m, flush=True)
 def run(cmd, cwd=ROOT, stdin=None, logf=None):
@@ -122,6 +137,9 @@ def process(b, force=False):
     os.replace(tmp, f'{VID}/{n}.mp4')
     nv, secs = imageio_ffmpeg.count_frames_and_secs(f'{VID}/{n}.mp4')
     json.dump(dict(frames=nv, secs=secs, fps=25, source=os.path.relpath(mv, ROOT)), open(f'{w}/video.json', 'w'))
+    try:
+        run(f'"{PY}" scripts/mechanism_analysis.py --name {n} --gro "{p["gro"]}" --xtc "{w}/whole500.xtc" --npyr {b["npyr"]} --nchains {b["nchains"]}', logf=lg)
+    except Exception as e: log(n, 'mechanism analysis failed (dashboard still updated):', str(e)[:200])
     json.dump(dict(key, mv=MV), open(kf, 'w')); log(n, f'done in {time.time() - t0:.0f} s ({nfr} frames, video {nv})')
     return 'processed'
 
@@ -181,9 +199,24 @@ def write_site():
             geo = dict(box_nm=[round(x, 2) for x in bx], pyr_mM=round(b['npyr'] / 6.02214076e23 / V * 1e3, 2) if b['npyr'] else None,
                        chain_mM=round(b['nchains'] / 6.02214076e23 / V * 1e3, 2) if b['nchains'] else None)
         st = run_status(b); st['processed_key'] = key; xk = xtc_key(b); st['stale'] = bool(key and xk and any(key.get(k) != xk[k] for k in ('size', 'mtime')))
-        boxes.append(dict({k: b[k] for k in ('name', 'set', 'npyr', 'nchains', 'label', 'patterns')}, status=st, geo=geo, video=(f'videos/{b["name"]}.mp4' if vj else None),
+        boxes.append(dict({k: b[k] for k in ('name', 'set', 'npyr', 'nchains', 'label', 'patterns', 'also')}, status=st, geo=geo, video=(f'videos/{b["name"]}.mp4' if vj else None),
                           video_info=vj, series=s))
-    js = 'window.SITE = ' + json.dumps(dict(built=time.strftime('%Y-%m-%d %H:%M'), boxes=boxes), separators=(',', ':')) + ';\n'
+    mech = {}
+    try:
+        run(f'"{PY}" scripts/mechanism_summary.py')
+        mech = json.load(open(os.path.join(ROOT, 'analysis/mechanism/summary.json')))
+        for bx in boxes:
+            f = os.path.join(ROOT, 'analysis/mechanism', f'{bx["name"]}_ts.csv')
+            if os.path.exists(f):
+                d = pd.read_csv(f); keep = {}
+                for k in ('agg_size', 'agg_rg', 'agg_kappa2', 'n_aggregates', 'hb_inter', 'hb_intra', 'hyd_core', 'hyd_glc', 'pp_stacked'):
+                    if k in d: keep[k] = [None if not np.isfinite(x) else round(float(x), 4) for x in d[k]]
+                dc = [c for c in d if c.startswith('depth_pyr')]; sc = [c for c in d if c.startswith('stack_imide_pyr')]
+                if dc: v = np.nanmean(d[dc].values, axis=1) if d[dc].notna().any().any() else np.full(len(d), np.nan); keep['depth'] = [None if not np.isfinite(x) else round(float(x), 4) for x in v]
+                if sc: keep['stack_imide'] = [round(float(x), 4) for x in d[sc].values.mean(1)]
+                keep['time_ns'] = [round(float(x), 3) for x in d.time_ns]; bx['mech_ts'] = keep
+    except Exception as e: log('mechanism summary skipped:', str(e)[:200])
+    js = 'window.SITE = ' + json.dumps(dict(built=time.strftime('%Y-%m-%d %H:%M'), boxes=boxes, mech=mech), separators=(',', ':')) + ';\n'
     tmp = f'{SITE}/.data.js.tmp'; open(tmp, 'w').write(js); os.replace(tmp, f'{SITE}/data.js')
     tpl = os.path.join(ROOT, 'scripts/site_template/index.html')
     if os.path.exists(tpl): shutil.copy(tpl, f'{SITE}/index.html')
