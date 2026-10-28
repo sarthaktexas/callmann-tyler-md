@@ -1,0 +1,12 @@
+PASS packmol finished successfully
+PASS raw pdb has 4448 atoms == 4448
+  start: packmol sphere R=50 A, 0 pyrene, 8 chains
+  box-edge target 10.65 nm: buffer 6.22 A -> tleap vdw box 10.65 nm
+PASS tleap errors = 0
+PASS tleap net charge -0.000000
+  tleap close-contact warnings: 0
+PASS prmtop written
+  [ molecules ]: system1 8 | WAT 32105
+  box (nm): ['10.64953', '10.59629', '10.64467']  atoms: 100763  waters: 32105
+PASS atom count 100763 == solute 4448 + 3 x 32105 waters
+RESULT: ALL CHECKS PASSED

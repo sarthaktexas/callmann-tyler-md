@@ -1,0 +1,81 @@
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/prep to search path.
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/lib to search path.
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm to search path.
+-I: Adding /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd to search path.
+-f: Source solv_many_p8_c0_box32.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./solv_many_p8_c0_box32.in
+----- Source: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd/leaprc.gaff2
+----- Source of /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.30, Oct 2025)
+----- Source: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd/leaprc.water.tip3p
+----- Source of /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/cmd/leaprc.water.tip3p done
+Loading library: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/lib/atomic_ions.lib
+Loading library: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/lib/solvents.lib
+Loading parameters: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm/frcmod.tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+This is the additional/replacement parameter set for TIP3P water
+Loading parameters: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm/frcmod.ions1lm_126_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Li/Merz ion parameters of monovalent ions for TIP3P water model (12-6 normal usage set)
+Loading parameters: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm/frcmod.ionsjc_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Monovalent ion parameters for Ewald and TIP3P water from Joung & Cheatham JPCB (2008)
+Loading parameters: /Users/sarthak/.claude-science/conda/envs/ambertools-check/dat/leap/parm/frcmod.ions234lm_126_tip3p
+Reading force field modification type file (frcmod)
+Reading title:
+Li/Merz ion parameters of divalent to tetravalent ions for TIP3P water model (12-6 normal usage set)
+Loading parameters: /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: /Users/sarthak/Developer/callmann-tyler-md/params/pyrene/pyrene_gaff2_pyrcorr.mol2
+Reading MOLECULE named PYR
+Loading PDB file: ./many_p8_c0_box32.pdb
+  total atoms in file: 208
+Checking 'sys'....
+Checking parameters for unit 'sys'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+Total unperturbed charge:   0.000016
+Total perturbed charge:     0.000016
+  Solute vdw bounding box:              67.180 46.114 59.728
+  Total bounding box for atom centers:  137.600 137.600 137.600
+      (box expansion for 'iso' is  24.8%)
+  Solvent unit box:                     18.774 18.774 18.774
+  Volume: 2791012.565 A^3 
+  Total mass 1499972.608 amu,  Density 0.892 g/cc
+  Added 83168 residues.
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 128 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	PYR	8
+	WAT	83168
+  )
+ (no restraints)
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 0; Notes = 0.

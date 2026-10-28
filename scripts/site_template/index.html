@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Glyco-ROMP / pyrene MD dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--navy:#1B2A41;--muted:#6B7280;--line:#E5E7EB;--bg:#F8FAFC;--card:#fff;--pyr:#7C3AED;--core:#B8400C;--glc:#2563EB;--water:#2B8CBE;--ok:#15803D;--warn:#B45309;--bad:#B91C1C}
+*{box-sizing:border-box}
+body{margin:0;font:13px/1.4 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--navy);background:var(--bg)}
+header{display:flex;align-items:center;gap:18px;padding:8px 16px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header h1{font-size:15px;margin:0;font-weight:600}
+header .tabs button{border:0;background:none;padding:6px 10px;font:inherit;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent}
+header .tabs button.on{color:var(--navy);border-bottom-color:var(--pyr);font-weight:600}
+header .built{margin-left:auto;color:var(--muted);font-size:12px}
+.layout{display:flex;min-height:calc(100vh - 42px)}
+nav{width:230px;flex:none;background:var(--card);border-right:1px solid var(--line);padding:8px 0;overflow:auto;max-height:calc(100vh - 42px);position:sticky;top:42px}
+nav h3{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:12px 14px 4px}
+nav a{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:5px 14px;color:var(--navy);text-decoration:none;cursor:pointer}
+nav a:hover{background:#F1F5F9}
+nav a.on{background:#EEF2FF;font-weight:600}
+.chip{font-size:10.5px;padding:1px 6px;border-radius:9px;white-space:nowrap;background:#F1F5F9;color:var(--muted)}
+.chip.ok{background:#DCFCE7;color:var(--ok)}.chip.part{background:#FEF3C7;color:var(--warn)}.chip.sync{background:#DBEAFE;color:#1D4ED8}.chip.none{background:#FEE2E2;color:var(--bad)}
+main{flex:1;padding:14px 18px;min-width:0}
+.boxview{display:grid;grid-template-columns:minmax(420px,46%) 1fr;gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.sticky{position:sticky;top:56px}
+video{width:100%;display:block;background:#fff;border-radius:6px}
+.transport{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.transport button,.transport select{font:inherit;padding:3px 9px;border:1px solid var(--line);background:#fff;border-radius:5px;cursor:pointer;color:var(--navy)}
+.transport input[type=range]{flex:1;min-width:120px}
+.tread{font-variant-numeric:tabular-nums;min-width:150px}
+.notice{margin:6px 0 10px;padding:6px 10px;border-radius:6px;background:#FFFBEB;color:#92400E;font-size:12px}
+.notice.info{background:#EFF6FF;color:#1E40AF}
+.now{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin-top:10px}
+.now div{background:#F8FAFC;border-radius:6px;padding:6px 8px}
+.now b{display:block;font-size:17px;font-variant-numeric:tabular-nums}
+.now span{color:var(--muted);font-size:11px}
+.chart{position:relative;margin-bottom:10px}
+.chart .ct{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:12.5px;margin-bottom:2px}
+.chart .ct .val{font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
+.chart canvas{width:100%;display:block;cursor:crosshair}
+.chart .sub{font-size:11px;color:var(--muted);margin-top:1px}
+.tip{position:fixed;pointer-events:none;background:rgba(27,42,65,.94);color:#fff;font-size:11.5px;padding:5px 8px;border-radius:5px;z-index:20;display:none;white-space:pre;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:4px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:600;color:var(--muted);font-size:11.5px}
+.wallbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.wallbar select{font:inherit;padding:3px 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px}
+.cell{position:relative;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.cell .lab{display:flex;justify-content:space-between;padding:4px 8px;font-size:12px;border-top:1px solid var(--line)}
+.cell .lab b{font-variant-numeric:tabular-nums}
+.cell .ended{position:absolute;inset:0 0 26px 0;background:rgba(255,255,255,.65);display:none;align-items:center;justify-content:center;font-weight:600;color:var(--warn)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;margin:2px 0 4px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.small{font-size:11.5px;color:var(--muted)}
+kbd{font:11px ui-monospace,monospace;border:1px solid var(--line);border-radius:3px;padding:0 4px;background:#fff}
+@media (max-width:1100px){.boxview{grid-template-columns:1fr}.sticky{position:static}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Glyco-ROMP chains + pyrene · MD dashboard</h1>
+  <div class="tabs"><button data-tab="overview">Overview</button><button data-tab="box">Box</button><button data-tab="wall">Wall (synced)</button><button data-tab="runs">Runs</button><button data-tab="help">Definitions</button></div>
+  <div class="built" id="built"></div>
+</header>
+<div class="layout">
+  <nav id="nav"></nav>
+  <main id="main"></main>
+</div>
+<div class="tip" id="tip"></div>
+<script src="data.js"></script>
+<script>
+'use strict';
+const S = window.SITE || {boxes: []};
+const $ = (s, el = document) => el.querySelector(s);
+const h = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (k === 'html') e.innerHTML = v; else e.setAttribute(k, v); } for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(k)); return e; };
+const BOX = Object.fromEntries(S.boxes.map(b => [b.name, b]));
+const FPS = 25;
+const LS = (() => { try { const x = window.localStorage; x.getItem('a'); return x; } catch (e) { return {}; } })();
+const fmt = (v, d = 1) => (v == null || !isFinite(v)) ? '–' : v.toFixed(d);
+const mean = a => { let s = 0, n = 0; for (const v of a) if (v != null && isFinite(v)) { s += v; n++; } return n ? s / n : NaN; };
+const range = n => Array.from({length: n}, (_, i) => i);
+const PAL = ['#2563EB','#B8400C','#15803D','#7C3AED','#DB2777','#0891B2','#CA8A04','#4B5563'];
+const seqPal = n => range(n).map(i => `hsl(${265 - 230 * (n > 1 ? i / (n - 1) : 0)},62%,${46 + 4 * (i % 2)}%)`);
+
+// ---------- derived series ----------
+function derive(b) {
+  const s = b.series; if (!s) return null; if (b._d) return b._d;
+  const t = s.time_ns, n = t.length, NP = b.npyr, NC = b.nchains, d = {t};
+  const col = (k, i) => s[k] ? s[k][i] : null;
+  const perIdx = (pre, N) => range(N).map(k => s[`${pre}${k + 1}`]).filter(Boolean);
+  if (NP) {
+    d.wpyr = perIdx('waters_pyr', NP);
+    d.wpp = range(n).map(i => mean(d.wpyr.map(a => a[i])));
+    d.wtot = s.waters_total;
+    if (NC && s.covpoly_mean) { d.cov = s.covpoly_mean; d.covper = perIdx('covpoly_pyr', NP); d.covLabel = 'Pyrene surface covered by polymer'; }
+    else if (NP > 1 && s.covtot_mean) { d.cov = s.covtot_mean; d.covper = perIdx('covtot_pyr', NP); d.covLabel = 'Pyrene surface buried by other pyrene'; }
+    if (NP > 1) { d.pclu = s.pyr_clusters; d.plarge = s.largest_pyr_cluster; }
+    if (NC) { d.cpp = range(n).map(i => mean(range(NP).map(k => col(`chains_on_pyr${k + 1}`, i)))); d.pfree = s.pyr_free; d.mdpyr = perIdx('mindist_pyr', NP); }
+  }
+  if (NC) {
+    d.rg = perIdx('rg_chain', NC); d.rgm = range(n).map(i => mean(d.rg.map(a => a[i])));
+    d.clarge = s.largest_chain_cluster; d.cclu = s.chain_clusters; d.mdch = perIdx('mindist_chain', NC);
+  }
+  const ref = waterRef(); if (ref && d.wpp) d.strip = d.wpp.map(v => 100 * (1 - v / ref.v));
+  b._d = d; return d;
+}
+function waterRef() {   // free pyrene hydration: sys_pyronly, waters within 0.45 nm, t >= 20 ns
+  const b = BOX.sys_pyronly; if (!b || !b.series || !b.series.waters_pyr1) return null;
+  const t = b.series.time_ns, w = b.series.waters_pyr1; const v = mean(w.filter((_, i) => t[i] >= 20));
+  return isFinite(v) ? {v, tend: t[t.length - 1]} : null;
+}
+function rgRef(b) {     // free-chain Rg baseline of the cis/trans patterns present in box b (chain-only controls, t >= 20 ns)
+  const per = {}; for (let k = 1; k <= 4; k++) { const c = BOX[`chainonly_${k}`]; if (c && c.series && c.series.rg_chain1) { const t = c.series.time_ns; per[`s${k}`] = mean(c.series.rg_chain1.filter((_, i) => t[i] >= 20)); } }
+  const v = mean((b.patterns || []).map(p => per[p])); return isFinite(v) ? {v, per} : null;
+}
+const smooth = (a, w) => { if (!a || w <= 1) return a; const h2 = Math.floor(w / 2); return a.map((_, i) => mean(a.slice(Math.max(0, i - h2), i + h2 + 1))); };
+function idxAt(t, x) { let lo = 0, hi = t.length - 1; if (x <= t[0]) return 0; if (x >= t[hi]) return hi; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (t[m] <= x) lo = m; else hi = m; } return (x - t[lo] < t[hi] - x) ? lo : hi; }
+
+// ---------- status ----------
+function statusChip(b) {
+  const st = b.status || {}, s = b.series;
+  if (st.syncing) return h('span', {class: 'chip sync', title: 'rsync temp file growing'}, `syncing ${(st.sync_bytes / 1e9).toFixed(1)} GB`);
+  if (!s) return h('span', {class: 'chip none'}, st.xtc_bytes ? 'not built' : 'no xtc');
+  const tend = s.time_ns[s.time_ns.length - 1], target = st.target_ns || 100;
+  if (st.stale) return h('span', {class: 'chip part', title: 'xtc changed since the last build'}, `stale · ${fmt(tend, 0)} ns`);
+  return tend >= target - 0.6 ? h('span', {class: 'chip ok'}, `${fmt(tend, 0)} ns`) : h('span', {class: 'chip part'}, `0–${fmt(tend, 1)} ns`);
+}
+function notices(b) {
+  const st = b.status || {}, out = [], s = b.series;
+  if (!s) { out.push(h('div', {class: 'notice'}, st.syncing ? 'Trajectory is still being rsynced; it will be processed on the next build.' : 'Not processed yet. Run scripts/build_site.py.')); return out; }
+  const tend = s.time_ns[s.time_ns.length - 1];
+  if (st.stale) out.push(h('div', {class: 'notice'}, 'The xtc on disk changed since this build. Re-run scripts/build_site.py to refresh.'));
+  if (st.syncing) out.push(h('div', {class: 'notice info'}, `A newer copy is being rsynced (${(st.sync_bytes / 1e9).toFixed(2)} GB so far). Showing the previous file.`));
+  if (st.target_ns && tend < st.target_ns - 0.6) out.push(h('div', {class: 'notice'}, `Partial trajectory: 0–${fmt(tend, 1)} ns of ${fmt(st.target_ns, 0)} ns on disk` + (st.log_time_ns != null ? ` (synced log reached ${fmt(st.log_time_ns, 1)} ns${st.finished ? ', finished' : ''}).` : '.') + ' Compare windows like for like.'));
+  return out;
+}
+
+// ---------- canvas chart ----------
+const TIP = $('#tip');
+class Chart {
+  constructor(o) {
+    this.o = o; this.el = h('div', {class: 'chart'});
+    this.valEl = h('span', {class: 'val'});
+    this.el.append(h('div', {class: 'ct'}, h('span', {}, o.title), this.valEl));
+    if (o.legend) this.el.append(h('div', {class: 'legend'}, o.legend.map(([c, l, dash]) => h('span', {}, h('i', {style: `background:${dash ? 'repeating-linear-gradient(90deg,' + c + ' 0 4px,transparent 4px 7px)' : c}`}), l))));
+    this.cv = h('canvas'); this.el.append(this.cv); if (o.sub) this.el.append(h('div', {class: 'sub'}, o.sub));
+    this.ctx = this.cv.getContext('2d'); this.cur = null;
+    this.cv.addEventListener('mousemove', e => this.hover(e)); this.cv.addEventListener('mouseleave', () => { TIP.style.display = 'none'; });
+    this.cv.addEventListener('mousedown', e => { this.drag = true; this.seek(e); });
+    window.addEventListener('mouseup', () => this.drag = false);
+    this.cv.addEventListener('mousemove', e => { if (this.drag) this.seek(e); });
+    new ResizeObserver(() => this.layout()).observe(this.el);
+  }
+  px2t(e) { const r = this.cv.getBoundingClientRect(); return this.x0 + (e.clientX - r.left - this.L) / this.W * (this.x1 - this.x0); }
+  seek(e) { if (this.o.onSeek) this.o.onSeek(Math.max(this.x0, Math.min(this.x1, this.px2t(e)))); }
+  hover(e) {
+    const t = this.px2t(e); if (t < this.x0 || t > this.x1) { TIP.style.display = 'none'; return; }
+    const o = this.o, tol = o.tol ?? 1.01, lines = [o.xName ? `${o.xName} = ${t.toFixed(2)}` : `t = ${t.toFixed(1)} ns`];
+    if (o.heat) { const r = this.cv.getBoundingClientRect(); const row = Math.floor((e.clientY - r.top - this.T) / this.H * o.heat.rows.length);
+      if (row >= 0 && row < o.heat.rows.length) { const i = idxAt(o.heat.x, t); lines.push(`${o.heat.rowLabel(row)}: ${o.heat.fmt(o.heat.rows[row][i])}`); } }
+    for (const s of o.series || []) if (s.name) { const i = idxAt(s.x, t); if (s.x[i] != null && Math.abs(s.x[i] - t) < tol) lines.push(`${s.name}: ${fmt(s.y[i], s.dec ?? 2)}${s.err && s.err[i] != null && isFinite(s.err[i]) ? ' ± ' + fmt(s.err[i], s.dec ?? 2) : ''}${s.note ? ' ' + s.note[i] : ''}`); }
+    TIP.textContent = lines.join('\n'); TIP.style.display = 'block'; TIP.style.left = (e.clientX + 14) + 'px'; TIP.style.top = (e.clientY + 10) + 'px';
+  }
+  layout() {
+    const o = this.o, dpr = window.devicePixelRatio || 1, Wc = this.el.clientWidth, Hc = o.height || 130;
+    if (!Wc) return;
+    this.cv.width = Wc * dpr; this.cv.height = Hc * dpr; this.cv.style.height = Hc + 'px';
+    this.L = 44; this.R = 10; this.T = 6; this.Bm = 20; this.W = Wc - this.L - this.R; this.H = Hc - this.T - this.Bm; this.dpr = dpr;
+    this.x0 = o.xMin ?? 0; this.x1 = o.xMax; o.series = o.series || [];
+    let lo = o.yMin, hi = o.yMax;
+    if (lo == null || hi == null) {
+      let a = Infinity, b2 = -Infinity;
+      for (const s of o.series) if (!s.hidden) s.y.forEach((v, i) => { if (v != null && isFinite(v)) { const e = (s.err && isFinite(s.err[i]) && s.err[i]) || 0; a = Math.min(a, v - e); b2 = Math.max(b2, v + e); } });
+      for (const r of o.refs || []) { a = Math.min(a, r.y); b2 = Math.max(b2, r.y); }
+      if (!isFinite(a)) { a = 0; b2 = 1; } const pad = (b2 - a) * 0.08 || 0.5;
+      if (lo == null) lo = a - pad; if (hi == null) hi = b2 + pad;
+    }
+    if (o.heat) { lo = 0; hi = o.heat.rows.length; }
+    this.y0 = lo; this.y1 = hi;
+    // static layer
+    const bg = this.bg = document.createElement('canvas'); bg.width = this.cv.width; bg.height = this.cv.height;
+    const c = bg.getContext('2d'); c.scale(dpr, dpr); c.font = '10.5px -apple-system,Helvetica,Arial'; c.fillStyle = '#6B7280'; c.strokeStyle = '#EEF0F3'; c.lineWidth = 1;
+    const X = this.X = v => this.L + (v - this.x0) / (this.x1 - this.x0) * this.W, Y = this.Y = v => this.T + (1 - (v - this.y0) / (this.y1 - this.y0)) * this.H;
+    const ticks = (a, b2, n) => { const st = Math.pow(10, Math.floor(Math.log10((b2 - a) / n))); const m = [1, 2, 2.5, 5, 10].find(m => (b2 - a) / (st * m) <= n) * st; const out = []; for (let v = Math.ceil(a / m) * m; v <= b2 + 1e-9; v += m) out.push(+v.toFixed(6)); return out; };
+    c.textAlign = 'right'; c.textBaseline = 'middle';
+    if (o.heat) { const hm = o.heat, n = hm.rows.length, rh = this.H / n; c.textAlign = 'right'; c.textBaseline = 'middle';
+      hm.rows.forEach((row, r) => { for (let i = 0; i < hm.x.length; i++) { const v = row[i]; if (v == null || !isFinite(v)) continue; const xa = X(i ? (hm.x[i - 1] + hm.x[i]) / 2 : hm.x[0]), xb = X(i < hm.x.length - 1 ? (hm.x[i] + hm.x[i + 1]) / 2 : hm.x[i]);
+        c.fillStyle = hm.color(v); c.fillRect(xa, this.T + (n - 1 - r) * rh, Math.max(1, xb - xa + 0.4), rh + 0.4); }
+        if (n <= 12 || r % Math.ceil(n / 8) === 0) { c.fillStyle = '#6B7280'; c.fillText(hm.short(r), this.L - 5, this.T + (n - 1 - r + 0.5) * rh); } });
+      c.fillStyle = '#6B7280'; }
+    for (const v of (o.heat ? [] : (o.yTicks || ticks(lo, hi, 4)))) { if (v < lo || v > hi) continue; c.beginPath(); c.moveTo(this.L, Y(v) + .5); c.lineTo(this.L + this.W, Y(v) + .5); c.stroke(); c.fillText(v, this.L - 5, Y(v)); }
+    c.textAlign = 'center'; c.textBaseline = 'top';
+    c.strokeStyle = '#9CA3AF'; c.beginPath(); c.moveTo(this.L + .5, this.T); c.lineTo(this.L + .5, this.T + this.H); c.lineTo(this.L + this.W, this.T + this.H + .5); c.stroke();
+    let unit = false;
+    const xl = o.xLabel ?? 'ns';
+    for (const v of (o.xTicks || ticks(this.x0, this.x1, 8))) { if (X(v) > this.L + this.W - 22 && xl) { c.textAlign = 'right'; c.fillText(v + ' ' + xl, this.L + this.W, this.T + this.H + 4); c.textAlign = 'center'; unit = true; } else c.fillText(v, X(v), this.T + this.H + 4); }
+    if (!unit && xl) { c.textAlign = 'right'; c.fillText(xl, this.L + this.W, this.T + this.H + 4); }
+    for (const r of o.refs || []) { c.save(); c.setLineDash([5, 4]); c.strokeStyle = r.color || '#6B7280'; c.lineWidth = 1.2; c.beginPath(); c.moveTo(this.L, Y(r.y)); c.lineTo(this.L + this.W, Y(r.y)); c.stroke(); c.restore(); if (r.label) { c.fillStyle = r.color || '#6B7280'; c.textAlign = 'right'; c.textBaseline = 'bottom'; c.fillText(r.label, this.L + this.W - 2, Y(r.y) - 2); } }
+    c.save(); c.beginPath(); c.rect(this.L, this.T - 2, this.W, this.H + 4); c.clip();
+    for (const s of o.series) {
+      if (s.hidden) continue;
+      c.strokeStyle = s.color; c.lineWidth = s.width || 1.4; c.globalAlpha = s.alpha ?? 1; c.setLineDash(s.dash || []); c.beginPath(); let pen = false;
+      for (let i = 0; i < s.x.length; i++) { const v = s.y[i]; if (v == null || !isFinite(v)) { pen = false; continue; } const xx = X(s.x[i]), yy = Y(v);
+        if (!pen) { c.moveTo(xx, yy); pen = true; } else if (s.step) { c.lineTo(xx, Y(s.y[i - 1] ?? v)); c.lineTo(xx, yy); } else c.lineTo(xx, yy); }
+      c.stroke();
+      if (s.err) { c.setLineDash([]); c.lineWidth = 1.2; s.y.forEach((v, i) => { const e = s.err[i]; if (v == null || e == null || !isFinite(e)) return; const xx = X(s.x[i]); c.beginPath(); c.moveTo(xx, Y(v - e)); c.lineTo(xx, Y(v + e)); c.moveTo(xx - 4, Y(v - e)); c.lineTo(xx + 4, Y(v - e)); c.moveTo(xx - 4, Y(v + e)); c.lineTo(xx + 4, Y(v + e)); c.stroke(); }); }
+      if (s.points) { c.globalAlpha = 1; s.y.forEach((v, i) => { if (v == null || !isFinite(v)) return; c.fillStyle = s.color; c.beginPath(); c.arc(X(s.x[i]), Y(v), 4.2, 0, 7); c.fill(); c.strokeStyle = '#fff'; c.lineWidth = 1.2; c.stroke(); c.strokeStyle = s.color; }); }
+      c.globalAlpha = 1;
+    }
+    c.restore(); this.draw(this.cur);
+  }
+  draw(t) {
+    this.cur = t; if (!this.bg) return; const c = this.ctx, d = this.dpr; c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, this.cv.width, this.cv.height); c.drawImage(this.bg, 0, 0); c.scale(d, d);
+    if (t == null || this.o.noCursor) return; const xx = this.X(t);
+    c.strokeStyle = '#1B2A41'; c.lineWidth = 1; c.beginPath(); c.moveTo(xx + .5, this.T); c.lineTo(xx + .5, this.T + this.H); c.stroke();
+    const vals = [];
+    for (const s of this.o.series) { if (!s.marker) continue; const i = idxAt(s.x, t); const v = s.y[i]; if (v == null || !isFinite(v) || Math.abs(s.x[i] - t) > 1.01) continue;
+      c.fillStyle = s.color; c.beginPath(); c.arc(this.X(s.x[i]), this.Y(v), 3.6, 0, 7); c.fill(); c.strokeStyle = '#fff'; c.lineWidth = 1.2; c.stroke(); vals.push([s, v]); }
+    if (this.o.valueText) this.valEl.textContent = this.o.valueText(t); else if (vals.length === 1) this.valEl.textContent = fmt(vals[0][1], vals[0][0].dec ?? 2) + (this.o.unit ? ' ' + this.o.unit : '');
+  }
+}
+
+// ---------- video clock helpers ----------
+function frameOfVideo(v, b) { const n = b.series.time_ns.length; return Math.max(0, Math.min(n - 1, Math.floor(v.currentTime * FPS + 1e-3))); }
+function seekVideoTo(v, b, tns) { const t = b.series.time_ns; const i = idxAt(t, tns); v.currentTime = (i + 0.5) / FPS; return i; }
+
+// ---------- BOX view ----------
+let raf = null; const stopLoop = () => { if (raf) cancelAnimationFrame(raf); raf = null; };
+function boxView(name) {
+  stopLoop(); const b = BOX[name] || S.boxes[0]; const M = $('#main'); M.innerHTML = '';
+  M.append(h('div', {style: 'display:flex;align-items:baseline;gap:12px;margin-bottom:4px'}, h('h2', {style: 'margin:0;font-size:17px'}, b.label), h('span', {class: 'small'}, `${b.name} · ${b.set} · ${b.npyr} pyrene, ${b.nchains} chain${b.nchains === 1 ? '' : 's'}${b.patterns.length ? ' (' + [...new Set(b.patterns)].join(', ') + ')' : ''}`), statusChip(b)));
+  notices(b).forEach(n => M.append(n));
+  if (!b.series) return;
+  const d = derive(b), t = d.t, xMax = Math.max((b.status || {}).target_ns || 0, t[t.length - 1]);
+  const sw = +(LS.smooth || 1);
+  const left = h('div', {class: 'card sticky'}), right = h('div', {});
+  M.append(h('div', {class: 'boxview'}, left, right));
+  const v = h('video', {src: b.video, muted: '', playsinline: '', preload: 'auto'}); v.muted = true;
+  const play = h('button', {}, '▶ Play'), slider = h('input', {type: 'range', min: 0, max: t.length - 1, value: 0, step: 1}), tread = h('span', {class: 'tread'});
+  const speed = h('select', {}, [['0.1', '0.1× (1.25 ns/s)'], ['0.25', '0.25× (3 ns/s)'], ['0.5', '0.5× (6 ns/s)'], ['1', '1× (12.5 ns/s)'], ['2', '2× (25 ns/s)']].map(([val, l]) => h('option', {value: val}, l)));
+  speed.value = LS.speed || '0.5'; v.playbackRate = +speed.value;
+  const sm = h('select', {title: 'running-mean window for the bold curves'}, [['1', 'raw'], ['5', 'smooth 2.5 ns'], ['11', 'smooth 5 ns']].map(([val, l]) => h('option', {value: val}, l))); sm.value = String(sw);
+  sm.onchange = () => { LS.smooth = sm.value; boxView(b.name); };
+  speed.onchange = () => { v.playbackRate = +speed.value; LS.speed = speed.value; };
+  const step = k => { v.pause(); const i = Math.max(0, Math.min(t.length - 1, frameOfVideo(v, b) + k)); v.currentTime = (i + 0.5) / FPS; };
+  play.onclick = () => v.paused ? v.play() : v.pause();
+  v.onplay = () => play.textContent = '❚❚ Pause'; v.onpause = () => play.textContent = '▶ Play';
+  slider.oninput = () => { v.pause(); v.currentTime = (+slider.value + 0.5) / FPS; };
+  left.append(v, h('div', {class: 'transport'}, play, h('button', {onclick: () => step(-1), title: '←'}, '◀'), h('button', {onclick: () => step(1), title: '→'}, '▶'), slider, tread),
+              h('div', {class: 'transport'}, speed, sm, h('span', {class: 'small'}, h('kbd', {}, 'space'), ' play · ', h('kbd', {}, '←'), h('kbd', {}, '→'), ' frame · click/drag a chart to seek')));
+  const nowEl = h('div', {class: 'now'}); left.append(nowEl);
+  const seek = x => { v.pause(); seekVideoTo(v, b, x); };
+  const charts = [], nowItems = [];
+  const add = (o, nowList) => { const c = new Chart(Object.assign({xMax, onSeek: seek}, o)); right.append(h('div', {class: 'card', style: 'margin-bottom:10px'}, c.el)); charts.push(c); (nowList || []).forEach(x => nowItems.push(x)); return c; };
+  const per = (arr, pal, alpha = .35, w = 1) => arr.map((y, k) => ({x: t, y, color: pal[k % pal.length], width: w, alpha, name: null}));
+  if (d.cov) {
+    add({title: d.covLabel + ' (%)', unit: '%', yMin: 0, yMax: 100, yTicks: [0, 25, 50, 75, 100], height: 140,
+      series: [...per(d.covper, ['#A78BFA']), {x: t, y: smooth(d.cov, sw), color: '#7C3AED', width: 2.2, marker: true, name: `mean of ${b.npyr}`, dec: 1}],
+      legend: b.npyr > 1 ? [['#7C3AED', `mean of ${b.npyr} pyrene`], ['#C4B5FD', 'each pyrene']] : null,
+      sub: 'SASA burial, 0.14 nm probe: 1 − SASA(pyrene | occluders) / SASA(pyrene alone).'},
+      [{label: d.covLabel.replace('Pyrene surface ', '') + ' (%)', get: i => fmt(d.cov[i], 1)}]);
+  }
+  if (d.wpp) {
+    const ref = waterRef();
+    add({title: 'Waters within 0.45 nm of pyrene (per pyrene)', height: 140, yMin: 0,
+      series: [...per(d.wpyr, ['#7FB8D8']), {x: t, y: smooth(d.wpp, sw), color: '#1F6F9F', width: 2.2, marker: true, name: 'per pyrene (mean)', dec: 1}, ...(b.npyr > 1 ? [{x: t, y: d.wtot, color: '#94A3B8', hidden: true, name: 'union (all pyrene)', dec: 0}] : [])],
+      refs: ref && b.name !== 'sys_pyronly' ? [{y: ref.v, label: `free pyrene ${ref.v.toFixed(1)}`, color: '#1F6F9F'}] : [],
+      valueText: x => { const i = idxAt(t, x); return `${fmt(d.wpp[i], 1)} per pyrene` + (d.strip ? ` · ${fmt(d.strip[i], 0)}% of free shell stripped` : ''); },
+      sub: ref ? `Dashed: free pyrene in water (sys_pyronly, mean over ≥20 ns). Stripped % = 1 − waters / free-pyrene value.` : 'Free-pyrene reference not built yet.'},
+      [{label: 'waters per pyrene', get: i => fmt(d.wpp[i], 1)}, ...(d.strip && b.name !== 'sys_pyronly' ? [{label: 'hydration shell stripped', get: i => fmt(d.strip[i], 0) + '%'}] : [])]);
+  }
+  if (d.rg) {
+    const ref = rgRef(b), pal = b.nchains > 8 ? seqPal(b.nchains) : PAL;
+    add({title: 'Chain radius of gyration (nm)', unit: 'nm', height: 150,
+      series: [...per(d.rg, pal, b.nchains > 1 ? .45 : 1, 1.1).map((s, k) => Object.assign(s, {name: b.nchains <= 8 ? `chain ${k + 1} (${b.patterns[k]})` : null})), ...(b.nchains > 1 ? [{x: t, y: smooth(d.rgm, sw), color: '#1B2A41', width: 2.2, marker: true, name: 'mean', dec: 3}] : [Object.assign({}, {x: t, y: smooth(d.rgm, sw), color: '#1B2A41', width: 2, marker: true, name: 'Rg', dec: 3})])],
+      refs: ref && !b.name.startsWith('chainonly') ? [{y: ref.v, label: `free-chain baseline ${ref.v.toFixed(2)}`, color: '#6B7280'}] : [],
+      legend: b.nchains > 1 && b.nchains <= 8 ? d.rg.map((_, k) => [pal[k % pal.length], `chain ${k + 1} (${b.patterns[k]})`]).concat([['#1B2A41', 'mean']]) : null,
+      sub: ref && !b.name.startsWith('chainonly') ? 'Dashed: mean Rg of the same cis/trans patterns alone in water (chain-only controls, ≥20 ns).' : null},
+      [{label: 'mean chain Rg (nm)', get: i => fmt(d.rgm[i], 2)}]);
+  }
+  const agg = [];
+  if (d.pclu) agg.push({x: t, y: d.pclu, color: '#7C3AED', width: 2, step: true, marker: true, name: `pyrene clusters (of ${b.npyr})`, dec: 0}, {x: t, y: d.plarge, color: '#C084FC', width: 1.3, step: true, dash: [4, 3], name: 'largest pyrene cluster', dec: 0});
+  if (d.clarge && b.nchains > 1) agg.push({x: t, y: d.clarge, color: '#B8400C', width: 2, step: true, marker: true, name: `largest chain cluster (of ${b.nchains})`, dec: 0}, {x: t, y: d.cclu, color: '#F59E0B', width: 1.3, step: true, dash: [4, 3], name: 'chain clusters', dec: 0});
+  if (agg.length) add({title: 'Aggregation (contact < 0.4 nm, heavy atoms)', height: 140, yMin: 0, yMax: Math.max(b.npyr, b.nchains) + 0.5, series: agg,
+      legend: agg.map(s => [s.color, s.name, !!s.dash]), valueText: x => { const i = idxAt(t, x); return agg.filter(s => s.marker).map(s => `${s.name.split(' (')[0]} ${fmt(s.y[i], 0)}`).join(' · '); }},
+      [...(d.pclu ? [{label: `pyrene clusters (of ${b.npyr})`, get: i => fmt(d.pclu[i], 0)}] : []), ...(d.clarge && b.nchains > 1 ? [{label: `largest chain cluster (of ${b.nchains})`, get: i => fmt(d.clarge[i], 0)}] : [])]);
+  if (d.cpp) {
+    if (b.npyr === 1) {
+      add({title: 'Distance of each chain to pyrene (nm, min heavy-atom)', height: 140, yMin: 0,
+        series: d.mdch.map((y, k) => ({x: t, y, color: PAL[k % PAL.length], width: 1.5, marker: true, name: `chain ${k + 1}`, dec: 2})), refs: [{y: 0.4, label: 'contact 0.4 nm', color: '#9CA3AF'}],
+        legend: d.mdch.map((_, k) => [PAL[k % PAL.length], `chain ${k + 1} (${b.patterns[k]})`]), valueText: x => { const i = idxAt(t, x); return `${fmt(d.cpp[i], 0)} chain(s) in contact`; }},
+        [{label: 'chains touching pyrene', get: i => fmt(d.cpp[i], 0)}]);
+    } else {
+      add({title: 'Polymer contact per pyrene', height: 130, yMin: 0,
+        series: [{x: t, y: smooth(d.cpp, sw), color: '#B8400C', width: 2.2, marker: true, name: 'chains touching each pyrene (mean)', dec: 2}, {x: t, y: d.pfree, color: '#7C3AED', width: 1.4, step: true, marker: true, name: `pyrene with no chain contact (of ${b.npyr})`, dec: 0}],
+        legend: [['#B8400C', 'chains touching each pyrene (mean)'], ['#7C3AED', `pyrene with no chain contact (of ${b.npyr})`]], valueText: x => { const i = idxAt(t, x); return `${fmt(d.cpp[i], 2)} chains/pyrene · ${fmt(d.pfree[i], 0)} free`; }},
+        [{label: 'chains per pyrene', get: i => fmt(d.cpp[i], 2)}, {label: 'pyrene w/o polymer', get: i => fmt(d.pfree[i], 0)}]);
+      if (d.mdch && d.mdch.length) {
+        const bound = range(t.length).map(i => d.mdch.filter(a => a[i] < 0.4).length);
+        add({title: 'Chains touching any pyrene', height: 110, yMin: 0, yMax: b.nchains + 0.5, series: [{x: t, y: bound, color: '#2563EB', width: 2, step: true, marker: true, name: `chains on pyrene (of ${b.nchains})`, dec: 0}]},
+          [{label: `chains on any pyrene (of ${b.nchains})`, get: i => fmt(bound[i], 0)}]);
+      }
+    }
+  }
+  // heatmaps: per-pyrene coverage, per-chain contact with any pyrene
+  if (d.covper && b.npyr > 1) {
+    const cm = v => `hsl(265,${20 + 0.6 * v}%,${97 - 0.55 * v}%)`;
+    add({title: `${d.covLabel}: each pyrene (%)`, height: Math.max(90, 14 * b.npyr + 26), heat: {x: t, rows: d.covper, color: cm, short: r => `P${r + 1}`, rowLabel: r => `pyrene ${r + 1}`, fmt: v => fmt(v, 0) + '%'},
+      valueText: x => { const i = idxAt(t, x); const v = d.covper.map(a => a[i]); return `min ${fmt(Math.min(...v), 0)}% · max ${fmt(Math.max(...v), 0)}%`; }, sub: 'Light = exposed, dark purple = fully covered.'});
+  }
+  if (d.mdch && d.mdch.length && b.npyr) {
+    const rows = d.mdch;
+    const cm = v => v < 0.4 ? '#B8400C' : v < 0.8 ? '#F4C7A1' : v < 1.5 ? '#EEF0F3' : '#FFFFFF';
+    add({title: 'Chain–pyrene contact, each chain (dark = within 0.4 nm of a pyrene)', height: Math.max(80, Math.min(10 * b.nchains, 260) + 26),
+      heat: {x: t, rows, color: cm, short: r => `c${r + 1}`, rowLabel: r => `chain ${r + 1} (${b.patterns[r]}) min distance`, fmt: v => fmt(v, 2) + ' nm'},
+      valueText: x => { const i = idxAt(t, x); return `${rows.filter(a => a[i] < 0.4).length} of ${b.nchains} chains in contact`; }, sub: 'Shades: <0.4 nm contact, 0.4–0.8 nm near, 0.8–1.5 nm nearby, white >1.5 nm. Long dark runs = chains that stay bound; gaps = exchange.'});
+  }
+  // windows table
+  const wins = (() => { const te = t[t.length - 1]; const w = [['0–20 ns', 0, 20]]; if (te > 20) w.push([`20–${fmt(te, 0)} ns`, 20, te + 1e-6]); w.push([`last 10 ns (${fmt(Math.max(0, te - 10), 0)}–${fmt(te, 0)})`, te - 10, te + 1e-6]); return w; })();
+  const rowsW = [];
+  if (d.cov) rowsW.push([d.covLabel.replace('Pyrene surface ', 'surface ') + ' (%)', d.cov, 1]);
+  if (d.wpp) rowsW.push(['waters per pyrene', d.wpp, 1]); if (d.strip && b.name !== 'sys_pyronly') rowsW.push(['hydration shell stripped (%)', d.strip, 0]);
+  if (d.rgm) rowsW.push(['mean chain Rg (nm)', d.rgm, 3]); if (d.pclu) rowsW.push(['pyrene clusters', d.pclu, 2]); if (d.clarge && b.nchains > 1) rowsW.push(['largest chain cluster', d.clarge, 2]);
+  if (d.cpp) rowsW.push(['chains per pyrene', d.cpp, 2]);
+  const tbl = h('table', {}, h('tr', {}, h('th', {}, 'window mean'), wins.map(w => h('th', {}, w[0]))), rowsW.map(([l, a, dec]) => h('tr', {}, h('td', {}, l), wins.map(([, lo, hi]) => h('td', {}, fmt(mean(a.filter((_, i) => t[i] >= lo && t[i] < hi)), dec))))));
+  right.append(h('div', {class: 'card'}, h('div', {class: 'ct', style: 'font-weight:600;margin-bottom:4px'}, 'Window means (500 ps frames; frames are autocorrelated, so these are descriptive)'), tbl));
+  nowItems.forEach(it => { it.el = h('b'); nowEl.append(h('div', {}, it.el, h('span', {}, it.label))); });
+  // loop
+  let last = -1;
+  const tick = () => { const i = frameOfVideo(v, b); if (i !== last) { last = i; const x = t[i]; charts.forEach(c => c.draw(x)); slider.value = i; tread.textContent = `t = ${x.toFixed(1)} ns · frame ${i + 1}/${t.length}`; nowItems.forEach(it => it.el.textContent = it.get(i)); } raf = requestAnimationFrame(tick); };
+  v.addEventListener('loadeddata', () => { last = -1; }); tick();
+  window.onkeydown = e => { if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return; if (e.code === 'Space') { e.preventDefault(); play.onclick(); } if (e.code === 'ArrowLeft') step(e.shiftKey ? -10 : -1); if (e.code === 'ArrowRight') step(e.shiftKey ? 10 : 1); };
+}
+
+// ---------- WALL view ----------
+const METRICS = {
+  cov: {label: 'Pyrene coverage by polymer (%) [pyrene-only: burial by pyrene]', get: d => d.cov, yMin: 0, yMax: 100, dec: 0},
+  wpp: {label: 'Waters within 0.45 nm per pyrene', get: d => d.wpp, yMin: 0, dec: 1},
+  strip: {label: 'Hydration shell stripped vs free pyrene (%)', get: d => d.strip, dec: 0},
+  rgm: {label: 'Mean chain Rg (nm)', get: d => d.rgm, dec: 2},
+  pclu: {label: 'Pyrene clusters', get: d => d.pclu, yMin: 0, dec: 0, step: true},
+  clarge: {label: 'Largest chain cluster', get: d => d.clarge, yMin: 0, dec: 0, step: true},
+  cpp: {label: 'Chains touching each pyrene (mean)', get: d => d.cpp, yMin: 0, dec: 2},
+  pfree: {label: 'Pyrene with no chain contact', get: d => d.pfree, yMin: 0, dec: 0, step: true},
+};
+function wallView(setName, metric) {
+  stopLoop(); window.onkeydown = null; const M = $('#main'); M.innerHTML = '';
+  const sets = [...new Set(S.boxes.map(b => b.set))]; setName = sets.includes(setName) ? setName : sets.find(s => s.startsWith('Many')) || sets[0];
+  metric = METRICS[metric] ? metric : 'cov';
+  const boxes = S.boxes.filter(b => b.set === setName && b.series);
+  const selS = h('select', {}, sets.map(s => h('option', {value: s}, s))); selS.value = setName;
+  const selM = h('select', {}, Object.entries(METRICS).map(([k, m]) => h('option', {value: k}, m.label))); selM.value = metric;
+  selS.onchange = () => go(`wall/${encodeURIComponent(selS.value)}/${selM.value}`); selM.onchange = () => go(`wall/${encodeURIComponent(selS.value)}/${selM.value}`);
+  const play = h('button', {}, '▶ Play all'), slider = h('input', {type: 'range', min: 0, max: 1000, value: 0, style: 'flex:1;min-width:200px'}), tread = h('span', {class: 'tread'});
+  const speed = h('select', {}, [['0.1', '0.1×'], ['0.25', '0.25×'], ['0.5', '0.5×'], ['1', '1× (12.5 ns/s)'], ['2', '2×']].map(([v, l]) => h('option', {value: v}, l))); speed.value = LS.speed || '0.5';
+  M.append(h('div', {class: 'wallbar card'}, h('b', {}, 'Set'), selS, h('b', {}, 'Metric'), selM, h('div', {class: 'transport', style: 'margin:0;flex:1'}, play, speed, slider, tread)));
+  if (!boxes.length) { M.append(h('div', {class: 'notice'}, 'No processed boxes in this set yet.')); return; }
+  const pal = setName.startsWith('Many') || setName.includes('stoich') ? seqPal(boxes.length) : PAL;
+  const tMax = Math.max(...boxes.map(b => Math.max((b.status || {}).target_ns || 0, b.series.time_ns[b.series.time_ns.length - 1])));
+  let T = 0, playing = false, lastTs = null;
+  const cells = boxes.map((b, k) => {
+    const v = h('video', {src: b.video, muted: '', playsinline: '', preload: 'auto'}); v.muted = true;
+    const val = h('b'), ended = h('div', {class: 'ended'}, `run on disk ends at ${fmt(b.series.time_ns[b.series.time_ns.length - 1], 1)} ns`);
+    const cell = h('div', {class: 'cell'}, v, ended, h('div', {class: 'lab'}, h('span', {}, h('i', {style: `display:inline-block;width:10px;height:10px;border-radius:5px;background:${pal[k % pal.length]};margin-right:6px`}), h('a', {href: `#box/${b.name}`}, b.label)), val));
+    return {b, v, val, ended, cell, d: derive(b)};
+  });
+  const series = cells.filter(c => METRICS[metric].get(c.d)).map((c, k) => ({x: c.d.t, y: smooth(METRICS[metric].get(c.d), +(LS.smooth || 1)), color: pal[cells.indexOf(c) % pal.length], width: 2, marker: true, name: c.b.label, dec: METRICS[metric].dec, step: METRICS[metric].step}));
+  const setT = x => { T = Math.max(0, Math.min(tMax, x)); sync(true); };
+  const chart = new Chart({title: METRICS[metric].label, xMax: tMax, height: 190, yMin: METRICS[metric].yMin, yMax: METRICS[metric].yMax, series, onSeek: x => { pause(); setT(x); },
+     refs: metric === 'wpp' && waterRef() ? [{y: waterRef().v, label: 'free pyrene', color: '#1F6F9F'}] : [], legend: series.map(s => [s.color, s.name])});
+  M.append(h('div', {class: 'card', style: 'margin-bottom:10px'}, chart.el));
+  M.append(h('div', {class: 'grid'}, cells.map(c => c.cell)));
+  // summary table across boxes
+  const win = [['0–20 ns', 0, 20], ['20 ns–end', 20, 1e9], ['last 10 ns', null, null]];
+  const tb = h('table', {}, h('tr', {}, h('th', {}, 'box'), h('th', {}, 'on disk'), win.map(w => h('th', {}, w[0]))),
+    cells.map(c => { const a = METRICS[metric].get(c.d), t = c.d.t, te = t[t.length - 1]; return h('tr', {}, h('td', {}, c.b.label), h('td', {}, `0–${fmt(te, 1)} ns`),
+      win.map(([, lo, hi]) => { if (lo == null) { lo = te - 10; hi = te + 1; } return h('td', {}, a ? fmt(mean(a.filter((_, i) => t[i] >= lo && t[i] < hi)), METRICS[metric].dec + 1) : '–'); })); }));
+  M.append(h('div', {class: 'card', style: 'margin-top:10px'}, h('div', {class: 'ct', style: 'font-weight:600;margin-bottom:4px'}, `Window means: ${METRICS[metric].label}`), tb, h('div', {class: 'small', style: 'margin-top:4px'}, 'Partial runs: "20 ns–end" and "last 10 ns" cover different times in different boxes. Compare like for like.')));
+  function sync(force) {
+    for (const c of cells) {
+      const t = c.d.t, te = t[t.length - 1], i = idxAt(t, Math.min(T, te)), want = (i + 0.5) / FPS;
+      c.ended.style.display = T > te + 0.25 ? 'flex' : 'none';
+      if (playing && T <= te) { if (c.v.paused) c.v.play().catch(() => {}); if (Math.abs(c.v.currentTime - T / 12.5) > 0.2) c.v.currentTime = Math.min(want, c.v.duration || want); }
+      else { if (!c.v.paused) c.v.pause(); if (force || Math.abs(c.v.currentTime - want) > 0.02) c.v.currentTime = want; }
+      const a = METRICS[metric].get(c.d); c.val.textContent = a ? `${fmt(a[i], METRICS[metric].dec)}${metric === 'cov' || metric === 'strip' ? '%' : ''}` : '–';
+    }
+    chart.draw(T); slider.value = Math.round(T / tMax * 1000); tread.textContent = `t = ${T.toFixed(1)} ns`;
+  }
+  function pause() { playing = false; play.textContent = '▶ Play all'; cells.forEach(c => c.v.pause()); }
+  play.onclick = () => { if (playing) return pause(); if (T >= tMax - 0.5) T = 0; playing = true; play.textContent = '❚❚ Pause'; lastTs = null; cells.forEach(c => c.v.playbackRate = +speed.value); };
+  speed.onchange = () => { LS.speed = speed.value; cells.forEach(c => c.v.playbackRate = +speed.value); };
+  slider.oninput = () => { pause(); setT(slider.value / 1000 * tMax); };
+  const loop = ts => { if (playing) { if (lastTs != null) T += (ts - lastTs) / 1000 * 12.5 * +speed.value; lastTs = ts; if (T >= tMax) { T = tMax; pause(); } sync(false); } else lastTs = null; raf = requestAnimationFrame(loop); };
+  Promise.all(cells.map(c => new Promise(r => c.v.readyState >= 1 ? r() : c.v.addEventListener('loadedmetadata', r, {once: true})))).then(() => sync(true));
+  raf = requestAnimationFrame(loop);
+  window.onkeydown = e => { if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return; if (e.code === 'Space') { e.preventDefault(); play.onclick(); } if (e.code === 'ArrowLeft') { pause(); setT(T - (e.shiftKey ? 5 : 0.5)); } if (e.code === 'ArrowRight') { pause(); setT(T + (e.shiftKey ? 5 : 0.5)); } };
+}
+
+// ---------- OVERVIEW view ----------
+function blockStat(t, a, lo, nb = 4) {   // mean over t >= lo, with SE from nb contiguous blocks
+  if (!a) return {m: NaN, se: NaN}; const v = a.filter((x, i) => t[i] >= lo && x != null && isFinite(x)); if (v.length < nb * 2) return {m: mean(v), se: NaN};
+  const L = Math.floor(v.length / nb), bm = range(nb).map(k => mean(v.slice(k * L, (k + 1) * L))), mb = mean(bm);
+  return {m: mean(v), se: Math.sqrt(bm.reduce((s, x) => s + (x - mb) ** 2, 0) / (nb - 1) / nb)};
+}
+function overviewView() {
+  stopLoop(); window.onkeydown = null; const M = $('#main'); M.innerHTML = '';
+  const LO = 20, ref = waterRef();
+  const rows = S.boxes.filter(b => b.series).map(b => { const d = derive(b), t = d.t, rr = rgRef(b), te = t[t.length - 1];
+    const st = a => blockStat(t, a, LO), l10 = a => a ? mean(a.filter((_, i) => t[i] >= te - 10)) : NaN;
+    return {b, d, ratio: b.npyr ? b.nchains / b.npyr : null, cov: st(d.cov), cov10: l10(d.cov), wpp: st(d.wpp), strip: st(d.strip), cpp: st(d.cpp), pclu: st(d.pclu), clarge: st(d.clarge), clfrac: st(d.clarge && b.nchains > 1 ? d.clarge.map(v => 100 * v / b.nchains) : null), rgm: st(d.rgm),
+            drg: rr && d.rgm ? blockStat(t, d.rgm.map(v => v - rr.v), LO) : {m: NaN, se: NaN}, te}; });
+  const pm = (x, k = 1) => isFinite(x.m) ? `${fmt(x.m, k)}${isFinite(x.se) ? ' ± ' + fmt(x.se, k) : ''}` : '–';
+  M.append(h('div', {class: 'card', style: 'margin-bottom:10px'}, h('h2', {style: 'margin:0 0 4px;font-size:16px'}, `All boxes: means over ${LO} ns to end of run (± SE of 4 contiguous blocks)`),
+    h('div', {class: 'small', style: 'margin-bottom:6px'}, `Single replicate per box; block SE understates run-to-run scatter. Pyrene concentration differs between boxes (column 3), so chain ratio and dilution are confounded in the many-pyrene set.${ref ? ` Free-pyrene hydration reference: ${ref.v.toFixed(1)} waters.` : ''}`),
+    h('table', {}, h('tr', {}, ['box', 'chains : pyrene', '[pyrene] mM', 'on disk', 'coverage %', 'cov. last 10 ns', 'waters / pyrene', 'shell stripped %', 'chains / pyrene', 'pyrene clusters', 'largest chain cluster', 'Rg (nm)', 'ΔRg vs free (nm)'].map(x => h('th', {}, x))),
+      rows.map(r => h('tr', {}, h('td', {}, h('a', {href: `#box/${r.b.name}`}, r.b.label)), h('td', {}, r.b.npyr ? `${r.b.nchains}:${r.b.npyr}` : '–'), h('td', {}, r.b.geo && r.b.geo.pyr_mM ? fmt(r.b.geo.pyr_mM, 1) : '–'), h('td', {}, `0–${fmt(r.te, 0)} ns`),
+        h('td', {}, r.b.nchains ? pm(r.cov) : (r.b.npyr > 1 ? pm(r.cov) + ' (by pyrene)' : '–')), h('td', {}, r.b.npyr && (r.b.nchains || r.b.npyr > 1) ? fmt(r.cov10, 1) : '–'), h('td', {}, pm(r.wpp)), h('td', {}, r.b.name === 'sys_pyronly' ? 'ref' : pm(r.strip, 0)),
+        h('td', {}, pm(r.cpp, 2)), h('td', {}, r.b.npyr > 1 ? pm(r.pclu, 2) : '–'), h('td', {}, r.b.nchains > 1 ? pm(r.clarge, 1) : '–'), h('td', {}, pm(r.rgm, 3)), h('td', {}, r.b.name.startsWith('chainonly') ? 'ref' : pm(r.drg, 3)))))));
+  const sets = [['C1 stoichiometry (1 pyrene)', '#B8400C', 'C1: 1 pyrene + N chains'], ['Many-pyrene (8 pyrene)', '#7C3AED', '8 pyrene + 8N chains']];
+  const mk = (key, title, opts = {}) => {
+    const series = sets.map(([set, color, name]) => { const rr = rows.filter(r => r.b.set === set && r.ratio != null && (opts.keep ? opts.keep(r) : true)).sort((a, b2) => a.ratio - b2.ratio);
+      return {x: rr.map(r => r.ratio), y: rr.map(r => r[key].m), err: rr.map(r => r[key].se), color, width: 1.6, points: true, name, dec: opts.dec ?? 1, note: rr.map(r => `(${r.b.label}${r.b.geo && r.b.geo.pyr_mM ? ', ' + fmt(r.b.geo.pyr_mM, 1) + ' mM' : ''})`)}; }).filter(s => s.x.length);
+    const c = new Chart({title, xMin: -0.3, xMax: 4.3, xTicks: [0, 1, 2, 3, 4], xLabel: '', xName: 'chains per pyrene', tol: 0.3, height: 170, noCursor: true, series, yMin: opts.yMin, yMax: opts.yMax,
+      refs: opts.refs || [], legend: series.map(s => [s.color, s.name]), sub: 'x = chains per pyrene in the box (0 = no polymer). Whiskers: block SE.'});
+    return h('div', {class: 'card'}, c.el);
+  };
+  M.append(h('div', {style: 'display:grid;grid-template-columns:repeat(auto-fill,minmax(520px,1fr));gap:10px'},
+    mk('cov', `Pyrene surface covered by polymer (%), ${LO} ns to end`, {yMin: 0, yMax: 100, keep: r => r.b.nchains > 0}),
+    mk('strip', 'Hydration shell stripped vs free pyrene (%)', {yMin: 0, yMax: 100, dec: 0, keep: r => r.b.name !== 'sys_pyronly'}),
+    mk('cpp', 'Chains touching each pyrene (mean)', {yMin: 0, dec: 2, keep: r => r.b.nchains > 0}),
+    mk('pclu', 'Pyrene clusters (8 = all separate)', {yMin: 0, yMax: 8.5, dec: 2, keep: r => r.b.npyr > 1}),
+    mk('drg', 'Chain Rg change vs same pattern alone (nm)', {dec: 3, keep: r => r.b.nchains > 0, refs: [{y: 0, label: 'free chain', color: '#9CA3AF'}]}),
+    mk('clfrac', 'Chains in the largest chain cluster (% of chains in box)', {yMin: 0, yMax: 105, dec: 0, keep: r => r.b.nchains > 1})));
+}
+
+// ---------- RUNS view ----------
+function runsView() {
+  stopLoop(); window.onkeydown = null; const M = $('#main'); M.innerHTML = '';
+  const tb = h('table', {}, h('tr', {}, ['box', 'set', 'pyrene', 'chains', 'ARC log time', 'finished', 'ns/day', 'xtc on disk', 'processed window', 'frames', 'state'].map(x => h('th', {}, x))),
+    S.boxes.map(b => { const st = b.status || {}, s = b.series; return h('tr', {}, h('td', {}, h('a', {href: `#box/${b.name}`}, b.name)), h('td', {}, b.set), h('td', {}, b.npyr), h('td', {}, b.nchains),
+      h('td', {}, st.log_time_ns != null ? `${fmt(st.log_time_ns, 1)} / ${fmt(st.target_ns, 0)} ns` : '–'), h('td', {}, st.finished ? '✓' : '–'), h('td', {}, fmt(st.ns_per_day, 0)),
+      h('td', {}, st.xtc_bytes ? `${(st.xtc_bytes / 1e9).toFixed(2)} GB` : '–'), h('td', {}, s ? `0–${fmt(s.time_ns[s.time_ns.length - 1], 1)} ns` : '–'), h('td', {}, s ? s.time_ns.length : '–'), h('td', {}, statusChip(b))); }));
+  M.append(h('div', {class: 'card'}, h('h2', {style: 'margin:0 0 6px;font-size:16px'}, 'Run status'), tb,
+    h('p', {class: 'small'}, 'ARC log time is read from the synced md_<name>.log; "xtc on disk" is what this Mac has. A log can say finished while the xtc is still partial or syncing. Refresh with: python scripts/build_site.py (or --watch 300 to keep picking up new rsyncs).')));
+}
+function helpView() {
+  stopLoop(); window.onkeydown = null; const M = $('#main'); M.innerHTML = '';
+  M.append(h('div', {class: 'card', style: 'max-width:900px', html: `
+  <h2 style="margin:0 0 8px;font-size:16px">Definitions</h2>
+  <p>All curves are computed from a whole-molecule, water-included trajectory at a 500 ps stride, one point per movie frame (25 fps, so 1 s of video = 12.5 ns). Frames are autocorrelated, so window means are descriptive only.</p>
+  <ul>
+  <li><b>Coverage</b>: 1 − SASA(pyrene with occluders) / SASA(pyrene alone), with a 0.14 nm probe, 960 dots and gmx sasa (scripts/analyze_many.py). Polymer coverage uses all chains plus that pyrene as occluders. In pyrene-only boxes the curve is burial by the other pyrene. Coverage measures burial, not solubility.</li>
+  <li><b>Waters per pyrene</b>: waters whose O lies within 0.45 nm of any heavy atom of that pyrene, averaged over the pyrene in the box. The union over all pyrene is in the tooltip. <b>Stripped %</b> = 1 − (waters per pyrene) / (free pyrene, sys_pyronly mean over ≥20 ns).</li>
+  <li><b>Rg</b>: chain radius of gyration with masses guessed from atom names, which matches gmx gyrate to about 0.002 nm. The dashed baseline is the mean Rg of the same cis/trans patterns in the chain-only controls (≥20 ns).</li>
+  <li><b>Aggregation</b>: connected components of the molecule contact graph, where contact means a minimum heavy-atom distance below 0.4 nm under minimum image. The 0.4 nm cutoff is descriptive, not a definition of "bound".</li>
+  <li>Each box is a single replicate. Many-pyrene boxes differ in pyrene concentration (larger packing spheres for 24 and 32 chains), so the chain ratio is confounded with dilution.</li>
+  </ul>`}));
+}
+
+// ---------- nav / routing ----------
+function buildNav(active) {
+  const N = $('#nav'); N.innerHTML = '';
+  for (const set of [...new Set(S.boxes.map(b => b.set))]) {
+    N.append(h('h3', {}, set, ' ', h('a', {href: `#wall/${encodeURIComponent(set)}/cov`, style: 'display:inline;padding:0;color:#7C3AED;font-weight:400;text-transform:none'}, '▸ wall')));
+    for (const b of S.boxes.filter(x => x.set === set)) N.append(h('a', {href: `#box/${b.name}`, class: b.name === active ? 'on' : ''}, h('span', {}, b.label), statusChip(b)));
+  }
+}
+function go(hash) { location.hash = hash; }
+function route() {
+  const [tab, a1, a2] = (location.hash.slice(1) || 'wall').split('/').map(decodeURIComponent);
+  document.querySelectorAll('header .tabs button').forEach(bt => bt.classList.toggle('on', bt.dataset.tab === tab));
+  buildNav(tab === 'box' ? a1 : null);
+  if (tab === 'box') boxView(a1 || S.boxes.find(b => b.series)?.name); else if (tab === 'overview') overviewView(); else if (tab === 'runs') runsView(); else if (tab === 'help') helpView(); else wallView(a1, a2);
+}
+document.querySelectorAll('header .tabs button').forEach(bt => bt.onclick = () => go(bt.dataset.tab === 'box' ? `box/${(location.hash.match(/box\/([^/]+)/) || [])[1] || S.boxes.find(b => b.series)?.name}` : bt.dataset.tab));
+$('#built').textContent = S.built ? `built ${S.built} · ${S.boxes.filter(b => b.series).length}/${S.boxes.length} boxes processed` : 'data.js missing: run scripts/build_site.py';
+window.addEventListener('hashchange', route); route();
+</script>
+</body>
+</html>

@@ -27,12 +27,15 @@ ap.add_argument('--buffer', type=float, default=6.0); ap.add_argument('--out', d
 ap.add_argument('--chains', default='chains/c1_dp10'); ap.add_argument('--params', default='params/monomer_c1')
 ap.add_argument('--pyrene-mol2', default='params/pyrene/pyrene_gaff2_pyrcorr.mol2'); ap.add_argument('--pyrene-pdb', default='params/pyrene/pyrene_gaff2.pdb')
 ap.add_argument('--pyrene-frcmod', default='params/pyrene/pyrene.frcmod'); ap.add_argument('--seed', type=int, default=None)
+ap.add_argument('--name', default=None, help='output name (default many_p<NP>_c<NC>)')
+ap.add_argument('--pyr-sep', type=float, default=30.0, help='minimum pyrene centre-centre distance (A); lower it for >8 pyrene')
+ap.add_argument('--box-edge', type=float, default=None, help='target cubic box edge (nm): the solvatebox buffer is tuned (two tleap passes) to reach it')
 a = ap.parse_args()
 NP, NC, R = a.n_pyr, a.n_chain, a.radius
 assert NP + NC > 0
 A = os.path.abspath; OUT, CH, P = A(a.out), A(a.chains), A(a.params); os.makedirs(OUT, exist_ok=True)
 PM, PP, PF = A(a.pyrene_mol2), A(a.pyrene_pdb), A(a.pyrene_frcmod)
-name = f'many_p{NP}_c{NC}'
+name = a.name or f'many_p{NP}_c{NC}'
 seed = a.seed or (3000 + 100 * NP + NC)
 sh = lambda cmd: subprocess.run(cmd, shell=True, cwd=OUT, capture_output=True, text=True)
 rec = lambda p: [l for l in open(p) if l.startswith(('ATOM', 'HETATM'))]
@@ -56,7 +59,7 @@ while len(centres) < NP:
     v = np.array([rng.uniform(-1, 1) for _ in range(3)])
     if np.linalg.norm(v) > 1: continue
     v = v * a.rpyr
-    if all(np.linalg.norm(v - np.array(c)) >= 30.0 for c in centres): centres.append(tuple(v))
+    if all(np.linalg.norm(v - np.array(c)) >= a.pyr_sep for c in centres): centres.append(tuple(v))
 chains = [f'{CH}/chain_s{(k % 4) + 1}_min.pdb' for k in range(NC)]
 sizes = [len(pl)] * NP + [len(rec(c)) for c in chains]
 
@@ -85,15 +88,28 @@ if NP and NC:
     d = cdist(X[:npy], X[npy:]); print(f'  start: minimum pyrene-chain atom distance {d.min():.2f} A')
     check(d.min() > 6.0, 'no pyrene is in contact with a chain at the start (min atom distance > 6 A; Packmol rule is centre-to-atom >= 12 A)')
     pm = np.array([X[26 * i:26 * (i + 1)].mean(0) for i in range(NP)])
-    if NP > 1: print('  start: minimum pyrene-pyrene centre distance %.1f A' % min(np.linalg.norm(pm[i] - pm[j]) for i in range(NP) for j in range(i)))
+if NP > 1:
+    from scipy.spatial.distance import cdist
+    pm = np.array([X[26 * i:26 * (i + 1)].mean(0) for i in range(NP)])
+    print('  start: minimum pyrene-pyrene centre distance %.1f A' % min(np.linalg.norm(pm[i] - pm[j]) for i in range(NP) for j in range(i)))
+    pp = min(cdist(X[26 * i:26 * (i + 1)], X[26 * j:26 * (j + 1)]).min() for i in range(NP) for j in range(i))
+    check(pp > 4.5, f'no pyrene-pyrene contact at the start (min atom distance {pp:.2f} A > 4.5 A)')
 print(f'  start: packmol sphere R={R:.0f} A, {NP} pyrene, {NC} chains')
 
 res_loads = ''.join(f'{r} = loadmol2 {P}/res_{r}.mol2\n' for r in ('MON', 'MNF', 'MNL', 'CPH', 'CPT'))
 ff = 'source leaprc.gaff2\nsource leaprc.water.tip3p\n'
 if NC: ff += f'loadamberparams {P}/monomer.frcmod\n{res_loads}'
 if NP: ff += f'loadamberparams {PF}\nPYR = loadmol2 {PM}\n'
-open(f'{OUT}/solv_{name}.in', 'w').write(ff + f'sys = loadpdb {name}.pdb\ncheck sys\ncharge sys\nsolvatebox sys TIP3PBOX {a.buffer} iso\nsaveamberparm sys {name}.prmtop {name}.inpcrd\nquit\n')
-sh(f'tleap -f solv_{name}.in > leap_{name}.txt 2>&1')
+def solvate(buf):
+    open(f'{OUT}/solv_{name}.in', 'w').write(ff + f'sys = loadpdb {name}.pdb\ncheck sys\ncharge sys\nsolvatebox sys TIP3PBOX {buf:.3f} iso\nsaveamberparm sys {name}.prmtop {name}.inpcrd\nquit\n')
+    sh(f'tleap -f solv_{name}.in > leap_{name}.txt 2>&1')
+    m_ = re.findall(r'Total bounding box for atom centers:\s+([\d.]+)', open(f'{OUT}/leap_{name}.txt').read())
+    return float(m_[-1]) + 3.4 if m_ else None          # GROMACS box edge is about atom-centre box + 3.4 A (c8: 103.17 -> 106.5)
+buf = a.buffer; edge = solvate(buf)
+if a.box_edge and edge:
+    for _ in range(2):
+        buf = max(2.0, buf + (a.box_edge * 10 - edge) / 2); edge = solvate(buf)
+    print(f'  box-edge target {a.box_edge:.2f} nm: buffer {buf:.2f} A -> tleap vdw box {edge / 10:.2f} nm')
 log = open(f'{OUT}/leap_{name}.txt').read()
 check('Errors = 0' in log, 'tleap errors = 0')
 m = re.search(r'Total unperturbed charge:\s+(\S+)', log); check(m and abs(float(m.group(1))) < 1e-3, f'tleap net charge {m.group(1) if m else "?"}')
