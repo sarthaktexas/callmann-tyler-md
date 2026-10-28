@@ -1,0 +1,11 @@
+PASS packmol finished successfully
+PASS raw pdb has 8896 atoms == 8896
+  start: packmol sphere R=46 A, 0 pyrene, 16 chains
+PASS tleap errors = 0
+PASS tleap net charge -0.000000
+  tleap close-contact warnings: 0
+PASS prmtop written
+  [ molecules ]: system1 16 | WAT 33825
+  box (nm): ['11.01077', '11.03645', '11.07409']  atoms: 110371  waters: 33825
+PASS atom count 110371 == solute 8896 + 3 x 33825 waters
+RESULT: ALL CHECKS PASSED
